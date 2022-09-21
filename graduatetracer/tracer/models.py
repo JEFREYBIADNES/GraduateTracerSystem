@@ -14,6 +14,8 @@ class UserManager(BaseUserManager):
                     middle_name=None,
                     last_name=None,
                     school=None,
+                    employment_status=None,
+                    user_type=None,
                     is_argaoCampus=False,
                     is_bariliCampus=False,
                     is_carmenCampus=False,
@@ -32,7 +34,8 @@ class UserManager(BaseUserManager):
                     is_tuburanCampus=False,
                     is_employed=False,
                     is_unemployed=False,
-                    is_staff=False, is_admin=False, is_active=True):
+                    is_staff=False, is_admin=False, is_active=True,
+                    is_admin_sao=False, is_approver_admin=False):
         if not email:
             raise ValueError("Users must have an email address")
         if not password:
@@ -43,12 +46,21 @@ class UserManager(BaseUserManager):
                               first_name=first_name,
                               middle_name=middle_name,
                               last_name=last_name,
+                              school=school,
+                              employment_status=employment_status,
+                              user_type=user_type,
                               )
         user_obj.set_password(password)
         user_obj.staff = is_staff
         user_obj.admin = is_admin
+        user_obj.is_active = is_active
+
         user_obj.employed = is_employed
         user_obj.unemployed = is_unemployed
+
+        user_obj.is_approver_admin = is_approver_admin
+        user_obj.is_admin_sao = is_admin_sao
+
         user_obj.argaoCampus = is_argaoCampus
         user_obj.bariliCampus = is_bariliCampus
         user_obj.carmenCampus = is_carmenCampus
@@ -65,7 +77,7 @@ class UserManager(BaseUserManager):
         user_obj.sanfernandoExt = is_sanfernandoExt
         user_obj.sanfranciscoCampus = is_sanfranciscoCampus
         user_obj.tuburanCampus = is_tuburanCampus
-        user_obj.is_active = is_active
+
         user_obj.save(using=self._db)
         return user_obj
 
@@ -108,6 +120,10 @@ class User(AbstractBaseUser):
     Employment_Status = (
         ('Employed', 'Employed'),
         ('Unemployed', 'Unemployed'),
+    )
+    Type_of_User = (
+        ('AdminSao', 'AdminSao'),
+        ('AdminAppprover', 'AdminAppprover'),
     )
     Course_Type = (
         ('Bachelor of Science in Information Technology', 'Bachelor of Science in Information Technology'),
@@ -269,6 +285,7 @@ class User(AbstractBaseUser):
     course_type = models.CharField(max_length=100, blank=True, null=True, choices=Course_Type)
     employment_status = models.CharField(max_length=100, blank=True, null=True, choices=Employment_Status)
     school = models.CharField(max_length=100, blank=True, null=True, choices=School)
+    user_type = models.CharField(max_length=100, blank=True, null=True, choices=Type_of_User)
     job_description = models.CharField(max_length=200, null=True, blank=True)
     skill = models.CharField(max_length=200, null=True, blank=True)
 

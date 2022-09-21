@@ -32,10 +32,30 @@ class UserAdminCreationForm(forms.ModelForm):
                   'date_graduated',
                   'course_type',
                   'school',
+                  'argaoCampus',
+                  'bariliCampus',
+                  'carmenCampus',
+                  'CCMECampus',
+                  'daanbantayanCampus',
+                  'danaoCampus',
+                  'dumanjugExt',
+                  'ginatilanExt',
+                  'mainCampus',
+                  'moalboalCampus',
+                  'nagaExt',
+                  'oslobExt',
+                  'pinamungajanExt',
+                  'sanfernandoExt',
+                  'sanfranciscoCampus',
+                  'tuburanCampus',
+                  'user_type',
+                  'admin_sao',
+                  'approver_admin',
                   'job_description',
                   'skill',
+                  'employment_status',
                   'employed',
-                  'unemployed',
+                  'unemployed'
         )
 
     def clean_password2(self):
@@ -82,13 +102,31 @@ class UserAdminChangeForm(forms.ModelForm):
                   'date_graduated',
                   'course_type',
                   'school',
+                  'argaoCampus',
+                  'bariliCampus',
+                  'carmenCampus',
+                  'CCMECampus',
+                  'daanbantayanCampus',
+                  'danaoCampus',
+                  'dumanjugExt',
+                  'ginatilanExt',
+                  'mainCampus',
+                  'moalboalCampus',
+                  'nagaExt',
+                  'oslobExt',
+                  'pinamungajanExt',
+                  'sanfernandoExt',
+                  'sanfranciscoCampus',
+                  'tuburanCampus',
+                  'user_type', 'admin_sao', 'approver_admin',
                   'job_description',
                   'skill',
+                  'employment_status',
                   'employed',
                   'unemployed',
                   'is_active',
                   'staff',
-                  'admin',)
+                  'admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -133,7 +171,7 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = ('email', 'IDNum', 'first_name', 'middle_name', 'last_name',
                   'course_type', 'school', 'date_graduated',
-                   'employment_status','employed', 'unemployed',
+                   'employment_status', 'employed', 'unemployed',
                   'password1', 'password2',
                   'argaoCampus',
                   'bariliCampus',
@@ -160,11 +198,12 @@ class RegisterForm(forms.ModelForm):
                    'last_name': forms.TextInput(attrs={'class': 'form-control'}),
                    'course_type': forms.Select(attrs={'class': 'form-control'}),
                    'school': forms.Select(attrs={'class': 'form-control'}),
+                   'user_type': forms.Select(attrs={'class': 'form-control'}),
                    'date_graduated': forms.Select(attrs={'class': 'form-control'}),
                    'employment_status': forms.Select(attrs={'class': 'form-control'}),
                    'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
                    'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
-                    }
+        }
 
     def clean_password2(self):
         '''
@@ -200,7 +239,8 @@ class RegisterAdminForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'middle_name', 'last_name',
-                   'school', 'password1', 'password2',
+                   'school', 'password1', 'password2', 'user_type',
+                   'admin_sao', 'approver_admin',
                    'argaoCampus',
                    'bariliCampus',
                    'carmenCampus',
@@ -216,7 +256,7 @@ class RegisterAdminForm(forms.ModelForm):
                    'pinamungajanExt',
                    'sanfernandoExt',
                    'sanfranciscoCampus',
-                   'tuburanCampus')
+                   'tuburanCampus',)
 
         widgets = {
                    'email': forms.EmailInput(attrs={'class': 'form-control'}),
@@ -224,6 +264,7 @@ class RegisterAdminForm(forms.ModelForm):
                    'middle_name': forms.TextInput(attrs={'class': 'form-control'}),
                    'last_name': forms.TextInput(attrs={'class': 'form-control'}),
                    'school': forms.Select(attrs={'class': 'form-control'}),
+                   'user_type': forms.Select(attrs={'class': 'form-control'}),
                    'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
                    'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
                     }

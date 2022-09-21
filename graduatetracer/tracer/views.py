@@ -1283,9 +1283,9 @@ def add_announcements(request):
 
 
 def create_user_management(request):
-    adform = RegisterForm()
+    adform = RegisterAdminForm()
     if request.method == 'POST':
-        adform = RegisterForm(request.POST)
+        adform = RegisterAdminForm(request.POST)
         if adform.is_valid():
             adform.save()
             messages.success(

@@ -114,7 +114,17 @@
         </div>
     </div>
 </div>
-
+<script>
+  {% for message in messages %}
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '{{message}}',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  {% endfor %}
+</script>
 <!-- /.container-fluid -->
 
 

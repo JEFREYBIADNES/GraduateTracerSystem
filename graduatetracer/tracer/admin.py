@@ -62,7 +62,7 @@ class UserAdmin(BaseUserAdmin):
                                  'sanfranciscoCampus',
                                  'tuburanCampus',)}),
         ('Permissions', {'fields': ('admin', 'staff', 'is_active')}),
-        ('Types of User', {'fields': ('graduate', 'admin_sao','approver_admin')}),
+        ('Types of User', {'fields': ('user_type','graduate', 'admin_sao','approver_admin')}),
         ('Graduate Status', {'fields': ('employment_status',
          'employed', 'unemployed')}),
 
