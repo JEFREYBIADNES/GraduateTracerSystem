@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/ctu_logo.png' %}" type="image/gif" sizes="16x16">
+    <title>Admin</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- Chatbot Css -->
+    <link href="{% static 'css/chatbot.css' %}" rel="stylesheet">
+
+    <!-- Charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</head>
+<body id="page-top">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+    {% include 'tracer/adminreal/sidebar.html' %}
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        {% include 'tracer/adminreal/topbar.html' %}
+  				<!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            {% block content %}
+
+
+    				{% endblock %}
+
+          </div>
+          <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+      </div>
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded " href="#page-top">
+          <i class="fas fa-angle-up"></i>
+      </a>
+
+  <!-- Chatbot Script -->
+  <script src="{% static 'js/chatbot.js' %}"></script>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+	<!-- Page level plugins -->
+	<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+  <!-- Sweet Alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Datatables -->
+  <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      $('.dataTables_length').addClass('bs-select');
+    });
+  </script>
+  <script>
+      $(document).ready(function() {
+          $('#tablePagination').DataTable();
+      } );
+
+
+       $(window).on("load",function(){
+           $(".loader-wrapper").fadeOut("milliseconds");
+      });
+
+
+      $(window).on("load",function() {
+   	  	// Animate loader off screen
+  	  	$(".se-pre-con").fadeOut("slow");;
+  	  });
+  </script>
+</body>
+
+</html>

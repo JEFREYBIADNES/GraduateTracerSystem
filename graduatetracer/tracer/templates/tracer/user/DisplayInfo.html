@@ -1,0 +1,89 @@
+{% extends 'tracer/user/template.html'%}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid mt-0 h-100 ">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 mb-5">
+            <div class="card pt-0 pr-0 pl-0 pb-2 bg-gradient-light ">
+            <form method="POST" action="{% url 'DisplayGradInfo' %}">
+                {% csrf_token %}
+                    <div class="card-header bg-c-lite-green text-black ">
+                        <div class="row">
+                            <div class="col-lg-12 mt-2 ml-4 text-center profile-pic-div">
+                                <img class="img-profile rounded-circle shadow-sm" src="{{user.profile_picture.url}}" width=" 100" height="100" alt="User-Profile-Image" id="photo">
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-8">
+                                <p class="pt-3">Email Address: {{user.email}}</p>
+                                <h6>Date Created: {{user.timestamp}}</h6>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="text-right pt-5">
+                                <a href="{% url 'UpdateGradInfo' user.id %}" button type="button" class="btn btn-outline-warning btn-sm text-dark "><i class="fas fa-user-edit"></i> Edit Information </a>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pl-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Contact Number: {{user.contact_number}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Name: {{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
+                            </div>
+                            <div class="col-lg-7 ">
+                                <p>Course Graduated: {{user.course_type}}</p>
+                            </div>
+                            <div class="col-lg-7 ">
+                                <p>School: {{user.school}}</p>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Gender: {{user.gender}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>Year Graduated: {{user.date_graduated}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Birth Date: {{user.birth_date}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>Job Description: {{user.job_description}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Age: {{user.age}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>Status: {{user.employment_status}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>Address: {{user.address}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>Skills: {{user.skill}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    {% endblock %}

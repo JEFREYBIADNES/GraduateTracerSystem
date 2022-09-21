@@ -1,0 +1,107 @@
+{% load humanize %}
+
+<style>
+  .custom-badge{
+    font-size:90%;
+    top: 22px;
+  }
+</style>
+<!-- Topbar -->
+<form class="" action="" method="GET">
+  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+      <!-- Sidebar Toggle (Topbar) -->
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+      </button>
+
+      <!-- Topbar Navbar -->
+
+      <ul class="navbar-nav ml-auto">
+        <!-- Nav Item - Alerts -->
+        <!-- <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-lg fas fa-bell fa-fw"></i> -->
+                <!-- Counter - Alerts -->
+                <!-- {% if user_announcement_notifications_counter > 3 or user_job_advertise_notifications_counter > 3 %}
+                <span class="badge badge-danger custom-badge badge-counter">{{user_top_nav_notifications_counter}}+</span>
+                {% else %}
+                <span class="badge badge-danger custom-badge badge-counter">{{user_top_nav_notifications_counter}}</span>
+                {% endif %}
+
+            </a> -->
+            <!-- Dropdown - Alerts -->
+            <!-- {% if user_top_nav_notifications_counter != 0 %}
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header  bg-c-lite-green" style="border: 0;">
+                    Notification
+                </h6>
+                {% for announcement in top_notif_announcements %}
+
+                  {% if announcement.announcement_notif_counter == False %}
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'display_announcement_notification' announcement.id %}">
+                      <div class="mr-3">
+                          <div class="icon-circle bg-primary">
+                              <i class="fas fa-bullhorn text-white"></i>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="small text-gray-500">{{announcement.date_created|naturaltime}}</div>
+                          <span class="font-weight-bold">{{announcement.title}}</span>
+                      </div>
+                  </a>
+                  {% endif %}
+                {% endfor %}
+                {% for job in top_notif_jobs %}
+                  {% if job.job_advertise_notif_counter == False %}
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'display_job_advertised_notification' job.id %}">
+                      <div class="mr-3">
+                          <div class="icon-circle bg-success">
+                              <i class="fas fa-donate text-white"></i>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="small text-gray-500">{{job.date_created|naturaltime}}</div>
+                          {{job.title}} | Up to PhP{{job.salary|intcomma }}!
+                      </div>
+                  </a>
+                  {% endif %}
+                {% endfor %}
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Notfications</a>
+            </div>
+      {% endif %}
+        </li> -->
+
+        <div class="topbar-divider d-none d-sm-block text-dark"></div>
+
+          <!-- Nav Item - User Information -->
+          <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</span>
+                  <img class="img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown">
+                  {%if request.user %}
+
+                  <a class="dropdown-item" href="{% url 'profile_picture' request.user.id %}">
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Profile
+                  </a>
+                  {% endif %}
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'logout' %}">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                  </a>
+              </div>
+          </li>
+
+      </ul>
+
+  </nav>
+
+</form>
+  <!-- End of Topbar -->

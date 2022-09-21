@@ -1,0 +1,447 @@
+{% load static %}
+{% load widget_tweaks %}
+<html>
+
+<head>
+	<title>CTU-Ginatilan Register Page</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	{% include 'tracer/firstInterface/css.html' %}
+</head>
+
+<body class="bg-gradient-primary" onload="passwordAddClass()" >
+
+	<div class="container">
+
+		<!-- Outer Row -->
+		<div class="row justify-content-center">
+
+			<div class="col-xl-10 col-lg-12 col-md-9">
+
+				<div class="card o-hidden border-0 shadow-lg my-5">
+					<div class="card-body p-0">
+						<!-- Nested Row within Card Body -->
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="p-8 pr-5 pl-5">
+									<div class="text-center">
+                    <img src="{% static 'img/CTU.png'%}" width="85px" alt="CTU LOGO">
+										<h5 class="text-gray-900 mb-4">CREATE ACCOUNT</h5>
+									</div>
+									<form class="user" method="POST" action="" enctype="multipart/form-data">
+										{% csrf_token %}
+                    <div class="row g-3">
+                      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 input">
+                        <label for="inputFirstname" class="form-label" Required="first_name">First Name</label>
+												{{ form.first_name }}
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 input">
+                        <label for="inputMiddlename" class="form-label" Required="middle_name">Middle Name</label>
+                        {{ form.middle_name }}
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <label for="inputLastname" class="form-label" Required="last_name">Last Name</label>
+                        {{ form.last_name }}
+                      </div>
+											<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputCourse" class="form-label" Required="IDNum">ID Number</label>
+												{{form.IDNum}}
+                      </div>
+											<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputEmail" class="form-label" Required="email">Email</label>
+                        {{ form.email }}
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputCourse" class="form-label" Required="course_type">Course Type</label>
+                        {{ form.course_type}}
+                      </div>
+											<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputSchool" class="form-label" Required="school">School</label>
+
+												{% render_field form.school class="form-control" onchange="School()" id="id_school" %}
+
+												{% render_field form.argaoCampus style="display:none;"%}
+												{% render_field form.bariliCampus style="display:none;"%}
+												{% render_field form.carmenCampus style="display:none;"%}
+												{% render_field form.CCMECampus style="display:none;"%}
+												{% render_field form.daanbantayanCampus style="display:none;"%}
+												{% render_field form.danaoCampus style="display:none;"%}
+												{% render_field form.dumanjugExt style="display:none;"%}
+												{% render_field form.ginatilanExt style="display:none;"%}
+												{% render_field form.mainCampus style="display:none;"%}
+												{% render_field form.moalboalCampus style="display:none;"%}
+												{% render_field form.nagaExt style="display:none;"%}
+												{% render_field form.oslobExt style="display:none;"%}
+												{% render_field form.pinamungajanExt style="display:none;"%}
+												{% render_field form.sanfernandoExt style="display:none;"%}
+												{% render_field form.sanfranciscoCampus style="display:none;"%}
+												{% render_field form.tuburanCampus style="display:none;"%}
+
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputYear" class="form-label" Required="date_graduated">Date Graduated</label>
+												{{ form.date_graduated }}
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputEnployment" class="form-label" Required="employment_status">Employment Status</label>
+
+												{% render_field form.employment_status class="form-control" onchange="Employment Status()" id="id_employment_status" %}
+
+												{% render_field form.employed style="display:none;"%}
+												{% render_field form.unemployed style="display:none;"%}
+
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputPassword" class="form-label" Required="password1">Password</label>
+                        {{ form.password1 }}
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputConfirmpass" class="form-label" Required="password2">Confirm Pasword</label>
+                        {{ form.password2 }}
+                      </div>
+                      <div class=" d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-success" role="button" aria-pressed="true" type="submit" value="Register">Register Account</button>
+                      </div>
+                    </div>
+                  </form>
+									{% for message in messages %}
+									<p id="messages">{{message}}</p>
+									{% endfor %}
+									<hr>
+									<div class="text-center mb-2">
+										Already have an account?
+                    <a class="small" href="{% url 'login' %}" class="ml-2"><strong>LOGIN</strong></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</body>
+
+</html>
+<script type="text/javascript">
+		function passwordAddClass(){
+			pass1 = document.getElementById('id_password1')
+			pass1.classList.add('form-control')
+			pass2 = document.getElementById('id_password2')
+			pass2.classList.add('form-control')
+		}
+		function Employment_Status() {
+		  var employment_status = document.getElementById("id_employment_status").value;
+
+			if (employment_status == "Employed"){
+				document.getElementById("id_employed").checked = true;
+				document.getElementById("id_unemployed").checked = false;
+			}else if (employment_status == "Unemployed"){
+				document.getElementById("id_employed").checked = false;
+				document.getElementById("id_unemployed").checked = true;
+			}else{
+
+			}
+		}
+
+		function School() {
+		  var school = document.getElementById("id_school").value;
+
+			if (school == "Argao Campus"){
+				document.getElementById("id_argaoCampus").checked = true;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Barili Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = true;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Carmen Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = true;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Cebu City Mountain Extension Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = true;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Daanbantayan Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = true;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Danao Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = true;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Dumanjug Extension Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = true;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Ginatilan Extension Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = true;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Main Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = true;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Moalboal Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = true;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Naga Extension Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = true;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Oslob Extension Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = true;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Pinamungajan Extension Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = true;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "San Fernando Extension Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = true;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "San Francisco Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = true;
+				document.getElementById("id_tuburanCampus").checked = false;
+
+			}else if (school == "Tuburan Campus"){
+				document.getElementById("id_argaoCampus").checked = false;
+				document.getElementById("id_bariliCampus").checked = false;
+				document.getElementById("id_carmenCampus").checked = false;
+				document.getElementById("id_CCMECampus").checked = false;
+				document.getElementById("id_daanbantayanCampus").checked = false;
+				document.getElementById("id_danaoCampus").checked = false;
+				document.getElementById("id_dumanjugExt").checked = false;
+				document.getElementById("id_ginatilanExt").checked = false;
+				document.getElementById("id_mainCampus").checked = false;
+				document.getElementById("id_moalboalCampus").checked = false;
+				document.getElementById("id_nagaExt").checked = false;
+				document.getElementById("id_oslobExt").checked = false;
+				document.getElementById("id_pinamungajanExt").checked = false;
+				document.getElementById("id_sanfernandoExt").checked = false;
+				document.getElementById("id_sanfranciscoCampus").checked = false;
+				document.getElementById("id_tuburanCampus").checked = true;
+
+			}
+		}
+
+</script>

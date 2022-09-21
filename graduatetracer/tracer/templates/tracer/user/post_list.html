@@ -1,0 +1,89 @@
+{% extends 'tracer/user/template.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+	<div class="row justify-content-center mt-3">
+		<div class="col-md-5 col-sm-12 border-bottom">
+			<h5>Add a Post!</h5>
+		</div>
+	</div>
+
+	<div class="row justify-content-center mt-4 mb-5">
+		<div class="col-md-5 col-sm-12 border-bottom">
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form | crispy }}
+				<div class="d-grid gap-2">
+					<button class="btn btn-success btn-sm btn-block">Submit!</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+	{% for post in post_list %}
+
+<div class="row justify-content-center mt-3">
+	<div class="col-md-5 col-sm-12 border-bottom position-relative">
+
+		<div class="card text-black mb-3">
+			<div class="card-header bg-trasparent border-none" style="background-color:powderblue;">
+
+				<a href="{% url 'GradProfilePicture' %}">
+					<img class="img-profile rounded-circle shadow-sm" src="{{user.profile_pic.url}}" width=" 40" height="40" alt="User-Profile-Image">
+
+					<a class="post-text ">
+					<a href="{% url 'GradProfilePicture' %}" class="mr-2 d-none d-lg-inline text-dark small" src="post.user.profile_pic.url"><font size="4">{{ post.author.firstname }} {{ post.author.lastname }}</font>
+					</a>
+				</a>
+				</a>
+
+
+				<div class="mt-0 text-white">
+  				<font size="1">{{ post.created_on }}</font>
+  			    </div>
+			</div>
+
+
+ 				 <div class="card-body">
+ 				 	<div class="position-relative text-brown mt-1">
+ 				 		{% if post.image %}
+ 				 		<img src="{{ post.image.url }}" class="post-image" />
+ 				 		{% endif %}
+   					 	<font size="4"> {{ post.body }}
+   					 	<a href="{% url 'post-detail' post.pk %}" class="stretched-link"></a>
+   				 	 </div>
+   				 </div>
+
+
+
+					 			<div class="card-footer bg-trasparent border-none " style="background-color:powderblue;">
+									<div class="d-flex flex-row">
+										<form method="POST" action="{% url 'like' post.pk %}">
+ 											{% csrf_token %}
+	 									<input type="hidden" name="next" value="{{ request.path }}">
+										<button style="background-color: lightgray;color: info; border-bottom-color: none; box-shadow: none;" type="submit">
+											<i class=" small fas fa-thumbs-up"><span> {{ post.likes.all.count }} </span></i>
+										</button>
+									</form>
+
+									<form method="POST" action="{% url 'dislike' post.pk %}">
+ 										{% csrf_token %}
+	 								<input type="hidden" name="next" value="{{ request.path }}">
+									<button style="background-color: lightgray;color: info; border-bottom-color: none; box-shadow: none;" type="submit">
+										<i class="small fas fa-thumbs-down"><span> {{ post.dislikes.all.count }} </span></i>
+									</button>
+								</form>
+							</div>
+						</div>
+
+		</div>
+
+
+	</div>
+</div>
+
+	{% endfor %}
+</div>
+{% endblock content %}
