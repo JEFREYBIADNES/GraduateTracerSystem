@@ -31,50 +31,46 @@
         <a href="{% url 'AddJobExperience'%}" class="btn btn-primary">Add Job Experience </a>
       </div>
    </div>
-    <div class="container-fluid">
-      {% include 'tracer/user/JobExperience/_messages.html' %}
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="datatables" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                          <tr>
-                            <th class="th-w-20" style="white-space: nowrap">Company Name</th>
-                            <th class="th-w-20" style="white-space: nowrap">Address</th>
-                            <th class="th-w-20" style="white-space: nowrap">Position</th>
-                            <th class="th-w-20" style="white-space: nowrap">Description</th>
-                            <th class="th-w-20" style="white-space: nowrap">Date Started</th>
-                            <th class="th-w-20" style="white-space: nowrap">Date Leaved</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
 
-                        <tbody>
-                          {% for JobExperiences in JobExperience %}
 
-                          <tr>
-                            <td style="white-space: nowrap">{{JobExperiences.company_name}}</td>
-                            <td style="white-space: nowrap">{{JobExperiences.address}}</td>
-                            <td style="white-space: nowrap">{{JobExperiences.position}}</td>
-                            <td style="white-space: nowrap">{{JobExperiences.description}}</td>
-                            <td style="white-space: nowrap">{{JobExperiences.experienceStartDate}}</td>
-                            <td style="white-space: nowrap">{{JobExperiences.experienceEndDate}}</td>
-                            <td><a href ="{% url 'edit_experience' JobExperiences.id %}" title="Edit" class='fa fa-edit btn btn-success btn-sm'></a></td>
-                          </tr>
+   <div class ="container-fluid">
 
-                          {% endfor %}
+     {% include 'tracer/user/JobExperience/_messages.html' %}
 
-                        </tbody>
-
-                    </table>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-  <!-- /.container-fluid -->
+     <div class="card shadow mb-4">
+       <div class="card-body">
+         <div class="table-responsive">
+             <table id="dataTables_filter" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+             <thead>
+              <tr>
+                <th class="th-w-20" style="white-space: nowrap">Company Name</th>
+                <th class="th-w-20" style="white-space: nowrap">Address</th>
+                <th class="th-w-20" style="white-space: nowrap">Position</th>
+                <th class="th-w-20" style="white-space: nowrap">Description</th>
+                <th class="th-w-20" style="white-space: nowrap">Date Started</th>
+                <th class="th-w-20" style="white-space: nowrap">Date Leaved</th>
+                <th class="text-center" scope="col" colspan="2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for JobExperiences in JobExperience %}
+              <tr>
+                <td style="white-space: nowrap">{{JobExperiences.company_name}}</td>
+                <td style="white-space: nowrap">{{JobExperiences.address}}</td>
+                <td style="white-space: nowrap">{{JobExperiences.position}}</td>
+                <td style="white-space: nowrap">{{JobExperiences.description}}</td>
+                <td style="white-space: nowrap">{{JobExperiences.experienceStartDate}}</td>
+                <td style="white-space: nowrap">{{JobExperiences.experienceEndDate}}</td>
+                <td><a href ="{% url 'edit_experience' JobExperiences.id %}" title="Edit" class='fa fa-edit btn btn-success btn-sm'></a></td>
+                <td><a href="{% url 'delete_experience' JobExperiences.id %}" class="fas fa-trash-alt btn-danger btn-sm"></a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+  </div>
 
 
 

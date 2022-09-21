@@ -24,8 +24,11 @@ urlpatterns = [
          views.UpdateGradInfo, name='UpdateGradInfo'),
     path('graduates/profile/', views.GradProfilePicture, name="GradProfilePicture"),
 
+    path('view_ads/<int:pk>/', views.view_ads, name="view_ads"),
     path('graduate/index/job/experiences/',
          views.HomeJobExperience, name="HomeJobExperience"),
+    path('categorized-job/<int:category>',
+         views.categorized_job, name="categorized_job"),
     path('graduates/AddJobExperience/',
          views.AddJobExperience, name="AddJobExperience"),
     path('graduates/EDITJobExperience/<int:id>',

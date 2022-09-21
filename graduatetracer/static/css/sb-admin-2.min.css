@@ -159,6 +159,10 @@ body {
   background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
   background: linear-gradient(to right, #ee5a6f, #f29263)
 }
+.bg-c-ads {
+  background: -webkit-gradient(linear, left top, right top, from(#ee5a6f), to(#f29263));
+  background: linear-gradient(to right, #f29263, #ee5a6f)
+}
 .text-c-lite-green{
   color: linear-gradient(to right, #ee5a6f, #f29263) !important;
 }
@@ -2007,7 +2011,6 @@ pre code {
   background-color: #eaecf4;
   opacity: 1;
 }
-
 
 input[type="date"].form-control,
 input[type="time"].form-control,

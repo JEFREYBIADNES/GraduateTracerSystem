@@ -51,42 +51,6 @@ def registerPage(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-            # if instance.employment_status.employed:
-            #     instance.employed = True
-            # elif instance.employment_status.unemployed:
-            #     instance.unemployed = True
-            # elif instance.school.argaoCampus:
-            #     instance.argaoCampus = True
-            # elif instance.school.bariliCampus:
-            #     instance.bariliCampus = True
-            # elif instance.school.carmenCampus:
-            #     instance.carmenCampus = True
-            # elif instance.school.CCMECampus:
-            #     instance.CCMECampus = True
-            # elif instance.school.daanbantayanCampus:
-            #     instance.daanbantayanCampus = True
-            # elif instance.school.danaoCampus:
-            #     instance.danaoCampus = True
-            # elif instance.school.dumanjugExt:
-            #     instance.dumanjugExt = True
-            # elif instance.school.ginatilanExt:
-            #     instance.ginatilanExt = True
-            # elif instance.school.mainCampus:
-            #     instance.mainCampus = True
-            # elif instance.school.moalboalCampus:
-            #     instance.moalboalCampus = True
-            # elif instance.school.nagaExt:
-            #     instance.nagaExt = True
-            # elif instance.school.oslobExt:
-            #     instance.oslobExt = True
-            # elif instance.school.pinamungajanExt:
-            #     instance.pinamungajanExt = True
-            # elif instance.school.sanfernandoExt:
-            #     instance.sanfernandoExt = True
-            # elif instance.school.sanfranciscoCampus:
-            #     instance.sanfranciscoCampus = True
-            # elif instance.school.tuburanCampus:
-            #     instance.tuburanCampus = True
             instance.graduate = True
             form.save()
             return redirect('welcomeMsg')
@@ -371,6 +335,12 @@ def GradProfilePicture(request):
 
    return render(request, "tracer/user/profile.html", context)
 
+def view_ads(request, pk):
+    ad = Advertise.objects.get(id=pk)
+
+    context = {'ad': ad}
+    return render(request, 'tracer/user/view_ads.html', context)
+
 
 # views for adding or editing job experiences
 @login_required(login_url='login')
@@ -413,6 +383,28 @@ def HomeJobExperience(request):
                }
 
     return render(request, 'tracer/user/JobExperience/homeJobExp.html', context)
+
+
+def categorized_job(request, category):
+    job_category = JobCategory.objects.filter(id=category)
+
+    if 'query' in request.GET:
+        query = request.GET['query']
+        multiple_query = Q(Q(title__icontains=query) | Q(description__icontains=query)
+                           | Q(date_created__icontains=query))
+        if query:
+            ads = Advertise.objects.filter(multiple_query)
+
+        else:
+            ads = Advertise.objects.all().order_by('-id')
+    else:
+        ads = Advertise.objects.all().order_by('-id')
+
+    context = {'ads': ads,
+               'category': category,
+               'job_category': job_category,
+               }
+    return render(request, 'tracer/user/categorized_job.html', context)
 
 
 def AddJobExperience(request):

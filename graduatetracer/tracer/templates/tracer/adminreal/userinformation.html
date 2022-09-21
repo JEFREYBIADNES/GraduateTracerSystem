@@ -47,11 +47,7 @@
                     </div>
                     <div class="col-xm-12 col-sm-6 col-md-6 col-lg-4">
                         <p class="m-b-10 f-w-600">Employments Status</p>
-                        {% if user_info.employed %}
-                        <h6 class="text-muted mby-1 f-w-400">Employed</h6>
-                        {% elif user_info.unemployed %}
-                        <h6 class="text-muted mby-1 f-w-400">Unemployed</h6>
-                        {% endif %}
+                        {{ user_info.employment_status }}
                     </div>
                   </div>
                   <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Action</h6>

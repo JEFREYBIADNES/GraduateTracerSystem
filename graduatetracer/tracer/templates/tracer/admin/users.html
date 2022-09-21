@@ -32,8 +32,9 @@
                 {% if user_info.profile_picture %}
                   <img class="img-profile rounded-circle shadow-sm" src="{{user_info.profile_picture.url}}" width="100" height="90" alt="User-Profile-Image">
                 {% endif %}
-                <div class="mt-2">
+                <div class="mt-1">
                   <p>{{user_info.first_name}} {{user_info.middle_name}} {{user_info.last_name}}</p>
+                  <p>{{user_info.email}}</p>
                 </div>
               </div>
             </div>

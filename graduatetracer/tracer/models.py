@@ -84,65 +84,6 @@ class UserManager(BaseUserManager):
                                 )
         return user
 
-# class GraduateStatus(models.Model):
-#     Employment_Status = (
-#         ('Employed', 'Employed'),
-#         ('Unemployed', 'Unemployed'),
-#     )
-#     name = models.CharField(max_length=100, blank=True, null=True, choices=Employment_Status)
-#     employed = models.BooleanField(default=False)
-#     unemployed = models.BooleanField(default=False)
-#
-#     def __str__(self):
-#         return self.name
-
-# class School(models.Model):
-#     School = (
-#         ('Argao Campus', 'Argao Campus'),
-#         ('Barili Campus', 'Barili Campus'),
-#         ('Carmen Campus', 'Carmen Campus'),
-#         ('Cebu City Mountain Extension Campus', 'Cebu City Mountain Extension Campus'),
-#         ('Daanbantayan Campus', 'Daanbantayan Campus'),
-#         ('Danao Campus', 'Danao Campus'),
-#         ('Dumanjug Extension Campus', 'Dumanjug Extension Campus'),
-#         ('Ginatilan Extension Campus', 'Ginatilan Extension Campus'),
-#         ('Main Campus', 'Main Campus'),
-#         ('Moalboal Campus', 'Moalboal Campus'),
-#         ('Naga Extension Campus', 'Naga Extension Campus'),
-#         ('Oslob Extension Campus', 'Oslob Extension Campus'),
-#         ('Pinamungajan Extension Campus', 'Pinamungajan Extension Campus'),
-#         ('San Fernando Extension Campus', 'San Fernando Extension Campus'),
-#         ('San Francisco Campus', 'San Francisco Campus'),
-#         ('Tuburan Campus', 'Tuburan Campus'),
-#     )
-#     name = models.CharField(max_length=100, blank=True, null=True, choices=School)
-#     argaoCampus= models.BooleanField(default=False)
-#     bariliCampus= models.BooleanField(default=False)
-#     carmenCampus= models.BooleanField(default=False)
-#     CCMECampus= models.BooleanField(default=False)
-#     daanbantayanCampus= models.BooleanField(default=False)
-#     danaoCampus= models.BooleanField(default=False)
-#     dumanjugExt= models.BooleanField(default=False)
-#     ginatilanExt= models.BooleanField(default=False)
-#     mainCampus= models.BooleanField(default=False)
-#     moalboalCampus= models.BooleanField(default=False)
-#     nagaExt= models.BooleanField(default=False)
-#     oslobExt= models.BooleanField(default=False)
-#     pinamungajanExt= models.BooleanField(default=False)
-#     sanfernandoExt= models.BooleanField(default=False)
-#     sanfranciscoCampus= models.BooleanField(default=False)
-#     tuburanCampus= models.BooleanField(default=False)
-#
-#     def __str__(self):
-#         return self.name
-# class UserStatus(models.Model):
-#     User_Type = (
-#         ('graduate', 'graduate'),
-#         ('admin_approver', 'admin_approver'),
-#         ('approver_admin', 'approver_admin'),
-#     )
-#     name = models.CharField(max_length=100, blank=True, null=True, choices=User_Type)
-
 class User(AbstractBaseUser):
     email = models.EmailField(
         max_length=255, unique=True)
