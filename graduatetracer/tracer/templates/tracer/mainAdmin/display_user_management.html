@@ -56,19 +56,19 @@
 
                     <tbody>
                       {% for ad in ad_info %}
-                        {% if ad.admin_sao %}
-                          <tr>
-                              <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                              <td class="text-center">
-                                  <div class="pl-2 pr-2 pb-2 pt-1">
-                                      <a class="btn btn-success" href="#"><i class="fas fa-eye"></i></a>
-                                  </div>
-                              </td>
-                          </tr>
+                      {% if ad.admin_sao %}
+                        <tr>
+                            <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
+                            <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
+                            <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
+                            <td class="text-center">
+                                <div class="pl-2 pr-2 pb-2 pt-1">
+                                    <a class="btn btn-success" href="#"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </td>
+                        </tr>
                         {% endif %}
-                      {% endfor %}
+                        {% endfor %}
                     </tbody>
 
                 </table>
@@ -93,19 +93,19 @@
 
                     <tbody>
                       {% for ad in ad_info %}
-                        {% if ad.approver_admin %}
-                          <tr>
-                              <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                              <td class="text-center">
-                                  <div class="pl-2 pr-2 pb-2 pt-1">
-                                      <a class="btn btn-success" href="#"><i class="fas fa-eye"></i></a>
-                                  </div>
-                              </td>
-                          </tr>
+                      {% if ad.approver_admin %}
+                        <tr>
+                            <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
+                            <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
+                            <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
+                            <td class="text-center">
+                                <div class="pl-2 pr-2 pb-2 pt-1">
+                                    <a class="btn btn-success" href="#"><i class="fas fa-eye"></i></a>
+                                </div>
+                            </td>
+                        </tr>
                         {% endif %}
-                      {% endfor %}
+                        {% endfor %}
                     </tbody>
 
                 </table>

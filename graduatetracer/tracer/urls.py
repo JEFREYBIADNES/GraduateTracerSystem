@@ -1,6 +1,7 @@
 from django.urls import path
 from .import views
 from .import approver
+from .import sao
 from django.contrib.auth import views as auth_views
 from .views import PostListView, PostDetailView, PostEditView, PostDeleteView, CommentDeleteView, AddLike, AddDislike
 urlpatterns = [
@@ -11,6 +12,26 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUSer, name="logout"),
     path('welcomemessage/', views.welcomeMsg, name="welcomeMsg"),
+
+
+
+    # User Password Reset
+    path('reset_password/',
+         auth_views.PasswordResetView.as_view(
+             template_name="tracer/firstInterface/password/password_reset.html"),
+         name="reset_password"),
+    path('reset_password_sent/',
+         auth_views.PasswordResetDoneView.as_view(
+             template_name="tracer/firstInterface/password/password_reset_sent.html"),
+         name="password_reset_done"),
+    path('reset/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(
+             template_name="tracer/firstInterface/password/password_reset_form.html"),
+         name="password_reset_confirm"),
+    path('reset_password_complete/',
+         auth_views.PasswordResetCompleteView.as_view(
+             template_name="tracer/firstInterface/password/password_reset_done.html"),
+         name="password_reset_complete"),
 
 
 
@@ -39,38 +60,8 @@ urlpatterns = [
     path('About/', views.AboutView, name="about"),
 
 
-    # admin URLs ...
-    path('admindashboard/', views.DashboardAdmin, name="DashboardAdmin"),
-    path('adminApprover/profile/', views.AdminProfilePicture,
-         name="AdminProfilePicture"),
-    path('display/pending/', views.AdminDisplayPendingAccts,
-         name='AdminDisplayPendingAccts'),
-    path('display/approved/', views.AdminDisplayApprovedAccts,
-         name='AdminDisplayApprovedAccts'),
-    path('approve/user/<int:pk>/', views.ApproveUser, name='approveUser'),
-    path('disapproved/user/<int:pk>/', views.DeleteUser, name='deleteUser'),
 
 
-
-
-
-    # User Password Reset
-    path('reset_password/',
-         auth_views.PasswordResetView.as_view(
-             template_name="tracer/firstInterface/password/password_reset.html"),
-         name="reset_password"),
-    path('reset_password_sent/',
-         auth_views.PasswordResetDoneView.as_view(
-             template_name="tracer/firstInterface/password/password_reset_sent.html"),
-         name="password_reset_done"),
-    path('reset/<uidb64>/<token>/',
-         auth_views.PasswordResetConfirmView.as_view(
-             template_name="tracer/firstInterface/password/password_reset_form.html"),
-         name="password_reset_confirm"),
-    path('reset_password_complete/',
-         auth_views.PasswordResetCompleteView.as_view(
-             template_name="tracer/firstInterface/password/password_reset_done.html"),
-         name="password_reset_complete"),
 
 
     # URLs for posting updates
@@ -93,12 +84,20 @@ urlpatterns = [
     path('notification-job-category/<int:pk>/', views.display_job_category_notification,
          name="display_job_category_notification"),
 
-    # Recommender System URL
 
-    # path('dashboard/', views.dashboard, name="dashboard"),
-    path('announcement/', views.add_announcements, name="add_announcements"),
-    path('browse-announcements/', views.display_announcement,
+    # admin URLs ...
+    path('admindashboard/', sao.DashboardAdmin, name="DashboardAdmin"),
+    path('profile-picture/<int:pk>/',
+         sao.profile_picture, name="profile_picture"),
+    path('announcement/', sao.add_announcements, name="add_announcements"),
+    path('browse-announcements/', sao.display_announcement,
          name="display_announcements"),
+    path('users/', sao.users, name="users"),
+    path('user-infos/<int:pk>/', sao.user_informations, name="user_informations"),
+    path('create-user-management', sao.create_user_management, name="create_user_management"),
+    path('display-user-management', sao.display_user_management, name="display_user_management"),
+
+
     path('advertise-jobs/', views.advertise, name="advertise"),
     path('view-job/<int:pk>/', views.view_ad, name="view_ad"),
     path('update-advertisement/<int:pk>/', views.update_ad, name="update_ad"),
@@ -112,15 +111,11 @@ urlpatterns = [
     path('delete-job-request/<int:pk>/',
          views.delete_job_request, name='delete_job_request'),
 
-    path('users/', views.users, name="users"),
-    path('user-info/<int:pk>/', views.user_information, name="user_information"),
-    path('user-infos/<int:pk>/', views.user_informations, name="user_informations"),
 
-    path('create-user-management', views.create_user_management, name="create_user_management"),
-    path('display-user-management', views.display_user_management, name="display_user_management"),
 
-    path('profile-picture/<int:pk>/',
-         views.profile_picture, name="profile_picture"),
+
+
+
 
     # Graduate Tracer - Adminz
     #Jobs
@@ -139,6 +134,10 @@ urlpatterns = [
          views.update_category_type, name='update_job_type'),
     path('delete-job-types/<int:pk>/',
          views.delete_category_type, name='delete_job_type'),
+
+
+
+
 
     #admindashboard
      path('admindash/', approver.admindash, name='admindash'),
