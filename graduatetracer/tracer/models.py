@@ -58,8 +58,8 @@ class UserManager(BaseUserManager):
         user_obj.employed = is_employed
         user_obj.unemployed = is_unemployed
 
-        user_obj.is_approver_admin = is_approver_admin
-        user_obj.is_admin_sao = is_admin_sao
+        user_obj.approver_admin = is_approver_admin
+        user_obj.admin_sao = is_admin_sao
 
         user_obj.argaoCampus = is_argaoCampus
         user_obj.bariliCampus = is_bariliCampus
