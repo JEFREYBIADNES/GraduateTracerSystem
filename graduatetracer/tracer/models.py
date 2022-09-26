@@ -35,7 +35,7 @@ class UserManager(BaseUserManager):
                     is_employed=False,
                     is_unemployed=False,
                     is_staff=False, is_admin=False, is_active=True,
-                    is_admin_sao=False, is_approver_admin=False):
+                    is_system_admin=False, is_admin_sao=False):
         if not email:
             raise ValueError("Users must have an email address")
         if not password:
@@ -58,8 +58,8 @@ class UserManager(BaseUserManager):
         user_obj.employed = is_employed
         user_obj.unemployed = is_unemployed
 
-        user_obj.is_approver_admin = is_approver_admin
-        user_obj.is_admin_sao = is_admin_sao
+        user_obj.system_admin = is_system_admin
+        user_obj.admin_sao = is_admin_sao
 
         user_obj.argaoCampus = is_argaoCampus
         user_obj.bariliCampus = is_bariliCampus
@@ -93,6 +93,7 @@ class UserManager(BaseUserManager):
                                 password=password,
                                 is_staff=True,
                                 is_admin=True,
+                                is_system_admin=True,
                                 )
         return user
 
@@ -313,7 +314,7 @@ class User(AbstractBaseUser):
 
     graduate = models.BooleanField(default=False)
     admin_sao = models.BooleanField(default=False)
-    approver_admin = models.BooleanField(default=False)
+    system_admin = models.BooleanField(default=False)
 
     pending = models.BooleanField(default=True)
     approved = models.BooleanField(default=False)
@@ -413,8 +414,8 @@ class User(AbstractBaseUser):
         return self.admin_sao
 
     @property
-    def is_approver_admin(self):
-        return self.approver_admin
+    def is_system_admin(self):
+        return self.system_admin
 
     @property
     def is_staff(self):

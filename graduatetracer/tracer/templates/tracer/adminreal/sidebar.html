@@ -14,12 +14,16 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0 sticky">
 
-    <!-- Nav Item - Dashboard -->
     <li class="nav-item active sticky">
         <a class="nav-link" href="{% url 'admindash' %}">
-            <img class="img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
+          {% if user.profile_picture %}
+            <img class="img-fluid img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
+          {% else %}
+            <img class="img-fluid img-profile rounded-circle" src="{% static 'img/default_profile_2.png'  %}">
+          {% endif %}
             <span>Dashboard</span></a>
     </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider sticky">
