@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 </head>
-<body id="page-top">
+<body id="page-top" onload="side_bar_active()">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
     {% include 'tracer/adminreal/sidebar.html' %}
@@ -106,6 +106,18 @@
   	  	$(".se-pre-con").fadeOut("slow");;
   	  });
   </script>
+
+  <script>
+   function side_bar_active(){
+     current_url = window.location.href;
+     dashboard = document.getElementById("{% url 'admindash' %}");
+
+       if (current_url == dashboard){
+         dashboard.style.background = "black";
+         dashboard.style.color = "white";
+       }
+   }
+ </script>
 </body>
 
 </html>

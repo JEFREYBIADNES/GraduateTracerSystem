@@ -34,7 +34,7 @@ from django.core.mail import EmailMessage
 
 # ADMIN
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['is_approver_admin'])
+@allowed_users(allowed_roles=['is_system_admin'])
 def admindash(request):
     count_users = User.objects.filter(graduate=True).count()
     count_employed = User.objects.filter(employed=True).count()
@@ -76,27 +76,6 @@ def display_user_management(request):
                }
     return render(request, 'tracer/adminreal/display_user_management.html', context)
 
-
-def displayannounce(request):
-    announcements = Announcement.objects.all().order_by('-date_created')
-    context = {'announcements': announcements, }
-    return render(request, 'tracer/adminreal/displayannounce.html', context)
-
-
-def addannounce(request):
-    announcements = AnnouncementForm()
-
-    if request.method == 'POST':
-        image = request.FILES.get('image')
-        announcements = AnnouncementForm(request.POST, request.FILES)
-        if announcements.is_valid():
-            announcements.save()
-            messages.success(
-                request, 'You have successfully added a new Announcement')
-            return redirect('displayannounce')
-
-    context = {'announcements': announcements, }
-    return render(request, 'tracer/adminreal/announce.html', context)
 
 def user(request):
 
@@ -150,3 +129,7 @@ def adprof(request, pk):
 
     context = {'user': user, 'user_info': user_info, 'full_name': full_name}
     return render(request, 'tracer/adminreal/adprof.html', context)
+
+def school_report(request):
+    context = {}
+    return render(request, 'tracer/adminreal/school_report.html', context)

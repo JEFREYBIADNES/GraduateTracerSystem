@@ -35,7 +35,7 @@ class UserManager(BaseUserManager):
                     is_employed=False,
                     is_unemployed=False,
                     is_staff=False, is_admin=False, is_active=True,
-                    is_admin_sao=False, is_approver_admin=False):
+                    is_system_admin=False, is_admin_sao=False):
         if not email:
             raise ValueError("Users must have an email address")
         if not password:
@@ -58,8 +58,8 @@ class UserManager(BaseUserManager):
         user_obj.employed = is_employed
         user_obj.unemployed = is_unemployed
 
-        user_obj.is_approver_admin = is_approver_admin
-        user_obj.is_admin_sao = is_admin_sao
+        user_obj.system_admin = is_system_admin
+        user_obj.admin_sao = is_admin_sao
 
         user_obj.argaoCampus = is_argaoCampus
         user_obj.bariliCampus = is_bariliCampus
@@ -93,6 +93,7 @@ class UserManager(BaseUserManager):
                                 password=password,
                                 is_staff=True,
                                 is_admin=True,
+                                is_system_admin=True,
                                 )
         return user
 
@@ -313,7 +314,7 @@ class User(AbstractBaseUser):
 
     graduate = models.BooleanField(default=False)
     admin_sao = models.BooleanField(default=False)
-    approver_admin = models.BooleanField(default=False)
+    system_admin = models.BooleanField(default=False)
 
     pending = models.BooleanField(default=True)
     approved = models.BooleanField(default=False)
@@ -413,8 +414,8 @@ class User(AbstractBaseUser):
         return self.admin_sao
 
     @property
-    def is_approver_admin(self):
-        return self.approver_admin
+    def is_system_admin(self):
+        return self.system_admin
 
     @property
     def is_staff(self):
@@ -424,7 +425,25 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
+    class Meta:
+        db_table = "user"
+
+class SystemUser(models.Model):
+    userid = models.CharField(max_length=45,primary_key = True)
+    password = models.BinaryField(max_length=450)
+    firstname = models.CharField(max_length=45)
+    middlename = models.CharField(max_length=45,default="")
+    lastname = models.CharField(max_length=45)
+    emailaddress = models.EmailField(null = True)
+    usertype = models.CharField(max_length=45)
+    profile_picture = models.ImageField(default="default_profile_2.png", null=True, blank=True)
+    approver_flag = models.CharField(max_length = 50,default="0")
+
+    class Meta:
+        db_table = "systemuser"
+
 class Post(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     body = models.TextField()
     image = models.ImageField(upload_to='upload_photos', blank=True, null=True)
     created_on = models.DateTimeField(default=timezone.now)
@@ -434,15 +453,23 @@ class Post(models.Model):
     dislikes = models.ManyToManyField(
         User, blank=True, related_name='dislikes')
 
+    class Meta:
+        db_table = "post"
+
 
 class Comment(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     comment = models.TextField()
     created_on = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = "comment"
+
 
 class WorkExperiences(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     company_name = models.CharField(max_length=100, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     position = models.CharField(max_length=100, blank=True, null=True)
@@ -454,10 +481,14 @@ class WorkExperiences(models.Model):
     def __str__(self):
         return self.graduateUser
 
+    class Meta:
+        db_table = "workexperiences"
+
 # Recommender System
 
 
 class Announcement(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     title = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=1000, null=True)
     image = models.ImageField(
@@ -470,8 +501,12 @@ class Announcement(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        db_table = "announcement"
+
 
 class JobCategory(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     title = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=1000, null=True)
 
@@ -481,8 +516,12 @@ class JobCategory(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        db_table = "jobcategory"
+
 
 class CategoryType(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=1000, null=True)
@@ -491,8 +530,12 @@ class CategoryType(models.Model):
     def __str__(self):
         return "{} - {}".format(self.job_category, self.job_category.title)
 
+    class Meta:
+        db_table = "categorytype"
+
 
 class ControlVote(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     user = models.ForeignKey(User,  null=True, on_delete=models.SET_NULL)
     job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
@@ -501,7 +544,12 @@ class ControlVote(models.Model):
         return "{} - {} - {}".format(self.user, self.job_category, self.status)
 
 
+    class Meta:
+        db_table = "controlvote"
+
+
 class JobRequest(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     job_category = models.ForeignKey(
         JobCategory, on_delete=models.CASCADE, null=True, blank=True)
@@ -514,8 +562,12 @@ class JobRequest(models.Model):
     def __str__(self):
         return "{} - {}".format(self.job_category, self.job_category.title)
 
+    class Meta:
+        db_table = "jobrequest"
+
 
 class Advertise(models.Model):
+    id = models.CharField(max_length=45,primary_key = True)
     job_category = models.ForeignKey(
         JobCategory, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -548,3 +600,6 @@ class Advertise(models.Model):
     def delete(self, *args, **kwargs):
         self.image.delete()
         super().delete(*args, **kwargs)
+
+    class Meta:
+        db_table = "advertise"

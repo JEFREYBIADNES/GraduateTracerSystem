@@ -78,7 +78,7 @@ def loginPage(request):
                 return redirect('DashboardUser')
             elif request.user.is_admin_sao:
                 return redirect('DashboardAdmin')
-            elif request.user.is_approver_admin:
+            elif request.user.is_system_admin:
                 return redirect('admindash')
             else:
                 return HttpResponse('You are not authorized to view this page')
@@ -924,7 +924,7 @@ def top_nav_notifications_counter(user):
         user) + top_nav_job_announcement_notifications_counter(user)
 
     return user_notifications_count
-    
+
 #Local Functions
 
 

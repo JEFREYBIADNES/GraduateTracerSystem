@@ -9,7 +9,7 @@ def unauthenticated_user(view_func):
                 return redirect('DashboardUser')
             elif request.user.is_admin_sao:
                 return redirect('DashboardAdmin')
-            elif request.user.is_approver_admin:
+            elif request.user.is_system_admin:
                 return redirect('admindash')
             else:
                 return HttpResponse('You are not authorized to view this page')
@@ -28,8 +28,8 @@ def allowed_users(allowed_roles=[]):
                 permissions = 'is_graduate'
             elif request.user.is_admin_sao:
                 permissions = 'is_admin_sao'
-            elif request.user.is_approver_admin:
-                permissions = 'is_approver_admin'
+            elif request.user.is_system_admin:
+                permissions = 'is_system_admin'
             elif request.user.is_admin:
                 permissions = 'is_admin'
 
@@ -46,10 +46,10 @@ def admin_only(view_func):
         permissions = None
         if request.user.is_graduate:
             permissions = 'is_graduate'
-        elif request.user.is_admin_approver:
+        elif request.user.is_admin_system:
             permissions = 'is_admin_sao'
-        elif request.user.is_approver_admin:
-            permissions = 'is_approver_admin'
+        elif request.user.is_system_admin:
+            permissions = 'is_system_admin'
         if permissions == 'is_graduate':
             return redirect('DashboardUser')
 

@@ -153,9 +153,10 @@ urlpatterns = [
      path('display-user-management', systemadmin.display_user_management, name="display_user_management"),
 
 
-     # Announcements
-     path('addannounce/', systemadmin.addannounce, name='addannounce'),
-     path('displayannounce/', systemadmin.displayannounce, name='displayannounce'),
+
+     #School Reports
+     path('school-report/', systemadmin.school_report, name='school_report'),
+
      #users
      path('user/', systemadmin.user, name='user'),
      path('userinformations/<int:pk>', systemadmin.userinformations, name='userinformations'),
