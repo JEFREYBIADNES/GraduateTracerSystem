@@ -4,65 +4,48 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">DASHBOARD</h1>
-
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+        <div class="card-header py-3 bg-c-lite-green">
+            <h6 class="m-0 font-weight-bold text-black">APPROVED ACCOUNTS</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table id="datatables" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Course</th>
-                            <th>Date Graduated</th>
-                            <th>Date Created</th>
-                            <th>OPTION</th>
+                            <th class="th-w-20" style="white-space: nowrap">ID Number</th>
+                            <th class="th-w-20" style="white-space: nowrap">Name</th>
+                            <th class="th-w-20" style="white-space: nowrap">Email</th>
+                            <th class="th-w-20" style="white-space: nowrap">School</th>
+                            <th class="th-w-20" style="white-space: nowrap">Course</th>
+                            <th class="th-w-20" style="white-space: nowrap">Date Graduated</th>
 
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Course</th>
-                            <th>Date Graduated</th>
-                            <th>Date Created</th>
-                            <th>OPTION</th>
 
-                        </tr>
-                    </tfoot>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                            <td></td>
-
-                        </tr>
-
-
-
+                      {% for gradAcct in gradAccts %}
+                        {% if gradAcct.approved %}
+                          <tr>
+                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.IDNum}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.first_name}} {{gradAcct.middle_name}} {{gradAcct.last_name}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.email}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.school}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.course_type}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.date_graduated}}</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
                     </tbody>
+
                 </table>
+
             </div>
         </div>
     </div>
-
 </div>
+
 <!-- /.container-fluid -->
 
 
@@ -98,5 +81,6 @@
             </div>
         </div>
     </div>
+
 </div>
 {% endblock %}

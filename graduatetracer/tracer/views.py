@@ -855,8 +855,76 @@ class AddDislike(LoginRequiredMixin, View):
 
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
- 
 
+#Count all Notification
+
+def announcement_notifications_counter(user):
+    announcement_notif_counter = Announcement.objects.filter(
+        announcement_notif_counter=False).count()
+
+    user.announcement_counter = announcement_notif_counter
+    user_announcement_count = user.announcement_counter
+    return user_announcement_count
+
+
+def job_advertise_notifications_counter(user):
+    job_advertise_notif_counter = Advertise.objects.filter(
+        job_advertise_notif_counter=False).count()
+
+    user.job_advertise_counter = job_advertise_notif_counter
+    user_job_advertise_count = user.job_advertise_counter
+    return user_job_advertise_count
+
+
+def job_request_notifications_counter(user):
+    job_request_notif_counter = JobRequest.objects.filter(
+        job_request_notif_counter=False).count()
+
+    user.job_request_counter = job_request_notif_counter
+    user_job_request_count = user.job_request_counter
+    return user_job_request_count
+
+
+def job_category_notifications_counter(user):
+    job_category_notif_counter = JobCategory.objects.filter(
+        job_category_notif_counter=False).count()
+
+    user.job_category_counter = job_category_notif_counter
+    user_job_category_count = user.job_category_counter
+    return user_job_category_count
+
+
+def chat_bot_notifications_counter(user):
+    user_notifications_count = job_advertise_notifications_counter(user) + job_request_notifications_counter(
+        user) + job_category_notifications_counter(user) + announcement_notifications_counter(user)
+
+    return user_notifications_count
+
+
+def top_nav_job_announcement_notifications_counter(user):
+    announcement_notif_counter = Announcement.objects.filter(
+        announcement_notif_counter=False)[:3].count()
+
+    user.announcement_counter = announcement_notif_counter
+    user_announcement_count = user.announcement_counter
+    return user_announcement_count
+
+
+def top_nav_job_advertise_notifications_counter(user):
+    job_advertise_notif_counter = Advertise.objects.filter(
+        job_advertise_notif_counter=False)[:3].count()
+
+    user.job_advertise_counter = job_advertise_notif_counter
+    user_job_advertise_count = user.job_advertise_counter
+    return user_job_advertise_count
+
+
+def top_nav_notifications_counter(user):
+    user_notifications_count = top_nav_job_advertise_notifications_counter(
+        user) + top_nav_job_announcement_notifications_counter(user)
+
+    return user_notifications_count
+    
 #Local Functions
 
 

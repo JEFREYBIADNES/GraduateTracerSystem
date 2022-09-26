@@ -56,7 +56,7 @@ def DashboardAdmin(request):
     user = request.user
     user_chat_bot_notifications_counter = chat_bot_notifications_counter(user)
     user_top_nav_notifications_counter = top_nav_notifications_counter(user)
-  
+
     user_announcement_notifications_counter = announcement_notifications_counter(
         user)
     user_job_advertise_notifications_counter = job_advertise_notifications_counter(
@@ -209,36 +209,56 @@ def add_announcements(request):
     context = {'announcements': announcements, }
     return render(request, 'tracer/admin/announcement.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_admin_sao'])
+def pendingaccounts(request):
+    gradAccts = User.objects.all()
 
-def create_user_management(request):
-    adform = RegisterAdminForm()
+    context = {'gradAccts': gradAccts}
+    return render(request, 'tracer/admin/pending.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_admin_sao'])
+def approvedaccounts(request):
+    gradAccts = User.objects.all()
+
+    context = {'gradAccts': gradAccts}
+    return render(request, 'tracer/admin/approved.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_admin_sao'])
+def ApprovedUser(request, pk):
+
     if request.method == 'POST':
-        adform = RegisterAdminForm(request.POST)
-        if adform.is_valid():
-            adform.save()
-            messages.success(
-                request, 'New Account Created Successfully!')
-            return redirect('display_user_management')
-        else:
-            messages.info(
-                request, 'The email you used is taken already.')
+        user = User.objects.get(id=pk)
+        user.pending = False
+        user.approved = True
+        user.save()
 
-    context = {'adform': adform}
-    return render(request, 'tracer/admin/create_user_management.html', context)
+        template = render_to_string(
+                'tracer/firstInterface/emailConfirm_template.html',
+                {'name': user.first_name})
 
-def display_user_management(request):
-    ad_info = User.objects.all
-    context = {
-               'ad_info': ad_info
-               }
-    return render(request, 'tracer/admin/display_user_management.html', context)
+        email = EmailMessage(
+                             'Confirm To Log In',
+                             template,
+                             settings.EMAIL_HOST_USER,
+                             [user.email],
+        )
 
+        email.fail_silently = False
+        email.send()
 
-
+    return redirect('approvedaccounts')
 
 
+def DisapprovedUser(request, pk):
+    user_delete = User.objects.get(id=pk)
 
-
+    if request.method == 'POST':
+        user_delete = User.objects.get(id=pk)
+        user_delete.delete()
+        return redirect('pendingaccounts')
 
 def users(request):
 
@@ -263,6 +283,12 @@ def users(request):
     context = {'user_infos': user_infos}
 
     return render(request, 'tracer/admin/users.html', context)
+
+def userinformation(request, pk):
+    user_info = User.objects.get(id=pk)
+
+    context = {'user_info': user_info}
+    return render(request, 'tracer/admin/userinformation.html', context)
 
 def user_informations(request, pk):
     user_info = User.objects.get(id=pk)

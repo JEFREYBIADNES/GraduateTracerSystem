@@ -1,6 +1,6 @@
 from django.urls import path
 from .import views
-from .import approver
+from .import systemadmin
 from .import sao
 from django.contrib.auth import views as auth_views
 from .views import PostListView, PostDetailView, PostEditView, PostDeleteView, CommentDeleteView, AddLike, AddDislike
@@ -94,8 +94,14 @@ urlpatterns = [
          name="display_announcements"),
     path('users/', sao.users, name="users"),
     path('user-infos/<int:pk>/', sao.user_informations, name="user_informations"),
-    path('create-user-management', sao.create_user_management, name="create_user_management"),
-    path('display-user-management', sao.display_user_management, name="display_user_management"),
+
+    #create accounts
+    path('approvedaccounts/', sao.approvedaccounts, name='approvedaccounts'),
+    path('pendingaccounts/', sao.pendingaccounts, name='pendingaccounts'),
+    path('approved/user/<int:pk>/', sao.ApprovedUser, name='approvedUser'),
+    path('disapproved/user/<int:pk>/', sao.DisapprovedUser, name='disapprovedUser'),
+         path('userinformation/<int:pk>', sao.userinformation, name='userinformation'),
+
 
 
     path('advertise-jobs/', views.advertise, name="advertise"),
@@ -140,19 +146,19 @@ urlpatterns = [
 
 
     #admindashboard
-     path('admindash/', approver.admindash, name='admindash'),
-     #create accounts
-     path('approvedaccounts/', approver.approvedaccounts, name='approvedaccounts'),
-     path('pendingaccounts/', approver.pendingaccounts, name='pendingaccounts'),
-     path('approved/user/<int:pk>/', approver.ApprovedUser, name='approvedUser'),
-     path('disapproved/user/<int:pk>/', approver.DisapprovedUser, name='disapprovedUser'),
+     path('admindash/', systemadmin.admindash, name='admindash'),
+
+
+     path('create-user-management', systemadmin.create_user_management, name="create_user_management"),
+     path('display-user-management', systemadmin.display_user_management, name="display_user_management"),
+
+
      # Announcements
-     path('addannounce/', approver.addannounce, name='addannounce'),
-     path('displayannounce/', approver.displayannounce, name='displayannounce'),
+     path('addannounce/', systemadmin.addannounce, name='addannounce'),
+     path('displayannounce/', systemadmin.displayannounce, name='displayannounce'),
      #users
-     path('user/', approver.user, name='user'),
-     path('userinformation/<int:pk>', approver.userinformation, name='userinformation'),
-     path('userinformations/<int:pk>', approver.userinformations, name='userinformations'),
-     path('adprof/<int:pk>', approver.adprof, name='adprof'),
+     path('user/', systemadmin.user, name='user'),
+     path('userinformations/<int:pk>', systemadmin.userinformations, name='userinformations'),
+     path('adprof/<int:pk>', systemadmin.adprof, name='adprof'),
 
     ]

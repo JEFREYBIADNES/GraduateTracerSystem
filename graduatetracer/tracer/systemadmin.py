@@ -53,56 +53,29 @@ def admindash(request):
     return render(request, 'tracer/adminreal/admindash.html', context)
 
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['is_approver_admin'])
-def pendingaccounts(request):
-    gradAccts = User.objects.all()
-
-    context = {'gradAccts': gradAccts}
-    return render(request, 'tracer/adminreal/pending.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['is_approver_admin'])
-def approvedaccounts(request):
-    gradAccts = User.objects.all()
-
-    context = {'gradAccts': gradAccts}
-    return render(request, 'tracer/adminreal/approved.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['is_approver_admin'])
-def ApprovedUser(request, pk):
-
+def create_user_management(request):
+    adform = RegisterAdminForm()
     if request.method == 'POST':
-        user = User.objects.get(id=pk)
-        user.pending = False
-        user.approved = True
-        user.save()
+        adform = RegisterAdminForm(request.POST)
+        if adform.is_valid():
+            adform.save()
+            messages.success(
+                request, 'New Account Created Successfully!')
+            return redirect('display_user_management')
+        else:
+            messages.info(
+                request, 'The email you used is taken already.')
 
-        template = render_to_string(
-                'tracer/firstInterface/emailConfirm_template.html',
-                {'name': user.first_name})
+    context = {'adform': adform}
+    return render(request, 'tracer/adminreal/create_user_management.html', context)
 
-        email = EmailMessage(
-                             'Confirm To Log In',
-                             template,
-                             settings.EMAIL_HOST_USER,
-                             [user.email],
-        )
+def display_user_management(request):
+    ad_info = User.objects.all
+    context = {
+               'ad_info': ad_info
+               }
+    return render(request, 'tracer/adminreal/display_user_management.html', context)
 
-        email.fail_silently = False
-        email.send()
-
-    return redirect('approvedaccounts')
-
-
-def DisapprovedUser(request, pk):
-    user_delete = User.objects.get(id=pk)
-
-    if request.method == 'POST':
-        user_delete = User.objects.get(id=pk)
-        user_delete.delete()
-        return redirect('pendingaccounts')
 
 def displayannounce(request):
     announcements = Announcement.objects.all().order_by('-date_created')
@@ -149,12 +122,6 @@ def user(request):
 
     return render(request, 'tracer/adminreal/user.html', context)
 
-
-def userinformation(request, pk):
-    user_info = User.objects.get(id=pk)
-
-    context = {'user_info': user_info}
-    return render(request, 'tracer/adminreal/userinformation.html', context)
 
 def userinformations(request, pk):
     user_info = User.objects.get(id=pk)

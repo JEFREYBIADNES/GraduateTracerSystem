@@ -44,6 +44,19 @@
     </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Graduates</span>
+        </a>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{% url 'pendingaccounts' %}">Pending</a>
+                <a class="collapse-item" href="{% url 'approvedaccounts' %}">Approved</a>
+            </div>
+        </div>
+    </li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-bullhorn"></i>
             <span>Announcements</span>
@@ -69,19 +82,6 @@
             <span>Job Requests</span></a>
     </li> -->
 
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Admin Management</span>
-        </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{% url 'create_user_management' %}">Create Admin</a>
-                <a class="collapse-item" href="{% url 'display_user_management' %}">Display Admin</a>
-            </div>
-        </div>
-    </li>
 
     <li class="nav-item sticky">
         <a class="nav-link" href="{% url 'users' %}">
