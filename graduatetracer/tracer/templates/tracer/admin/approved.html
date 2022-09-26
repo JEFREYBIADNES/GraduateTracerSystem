@@ -27,14 +27,16 @@
                     <tbody>
                       {% for gradAcct in gradAccts %}
                         {% if gradAcct.approved %}
-                          <tr>
-                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.IDNum}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.first_name}} {{gradAcct.middle_name}} {{gradAcct.last_name}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.email}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.school}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.course_type}}</td>
-                              <td class="th-w-20" style="white-space: nowrap">{{gradAcct.date_graduated}}</td>
-                          </tr>
+                          {% if gradAcct.school == request.user.school %}
+                            <tr>
+                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.IDNum}}</td>
+                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.first_name}} {{gradAcct.middle_name}} {{gradAcct.last_name}}</td>
+                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.email}}</td>
+                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.school}}</td>
+                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.course_type}}</td>
+                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.date_graduated}}</td>
+                            </tr>
+                          {% endif %}
                         {% endif %}
                       {% endfor %}
                     </tbody>

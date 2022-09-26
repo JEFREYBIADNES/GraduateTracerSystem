@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import (
-    AbstractBaseUser, BaseUserManager
+    AbstractBaseUser, BaseUserManager, AbstractUser
 )
 
 
@@ -428,7 +428,8 @@ class User(AbstractBaseUser):
     class Meta:
         db_table = "user"
 
-class SystemUser(models.Model):
+class SystemUser(AbstractUser):
+
     userid = models.CharField(max_length=45,primary_key = True)
     password = models.BinaryField(max_length=450)
     firstname = models.CharField(max_length=45)
