@@ -124,7 +124,7 @@ class User(AbstractBaseUser):
     )
     Type_of_User = (
         ('AdminSao', 'AdminSao'),
-        ('AdminAppprover', 'AdminAppprover'),
+        ('SystemAdmin', 'SystemAdmin'),
     )
     Course_Type = (
         ('Bachelor of Science in Information Technology', 'Bachelor of Science in Information Technology'),
