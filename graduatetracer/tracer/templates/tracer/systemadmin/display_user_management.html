@@ -49,7 +49,7 @@
                             <th class="th-w-20" style="white-space: nowrap">Name</th>
                             <th class="th-w-20" style="white-space: nowrap">Email</th>
                             <th class="th-w-20" style="white-space: nowrap">School</th>
-                            <th class="th-w-20 text-center" style="white-space: nowrap">Action</th>
+                            <th class="th-w-20 text-center" style="white-space: nowrap">Type of User</th>
 
                         </tr>
                     </thead>
@@ -61,11 +61,7 @@
                               <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
                               <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                               <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                              <td class="text-center">
-                                  <div class="pl-2 pr-2 pb-2 pt-1">
-                                      <a class="btn btn-success" href="#"><i class="fas fa-eye"></i></a>
-                                  </div>
-                              </td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.user_type}}</td>
                           </tr>
                         {% endif %}
                       {% endfor %}
@@ -86,23 +82,118 @@
                             <th class="th-w-20" style="white-space: nowrap">Name</th>
                             <th class="th-w-20" style="white-space: nowrap">Email</th>
                             <th class="th-w-20" style="white-space: nowrap">School</th>
-                            <th class="th-w-20 text-center" style="white-space: nowrap">Action</th>
+                            <th class="th-w-20 text-center" style="white-space: nowrap">Type of User</th>
 
                         </tr>
                     </thead>
 
                     <tbody>
                       {% for ad in ad_info %}
-                        {% if ad.approver_admin %}
+                        {% if ad.system_admin %}
                           <tr>
                               <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
                               <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                               <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                              <td class="text-center">
-                                  <div class="pl-2 pr-2 pb-2 pt-1">
-                                      <a class="btn btn-success" href="#"><i class="fas fa-eye"></i></a>
-                                  </div>
-                              </td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.user_type}}</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+        <div class="card-header py-3 bg-gradient-info">
+            <h6 class="m-0 font-weight-bold text-black">ADMIN DEAN ACCOUNTS</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatables" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="th-w-20" style="white-space: nowrap">Name</th>
+                            <th class="th-w-20" style="white-space: nowrap">Email</th>
+                            <th class="th-w-20" style="white-space: nowrap">School</th>
+                            <th class="th-w-20 text-center" style="white-space: nowrap">Type of User</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for ad in ad_info %}
+                        {% if ad.dean %}
+                          <tr>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.user_type}}</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+        <div class="card-header py-3 bg-gradient-info">
+            <h6 class="m-0 font-weight-bold text-black">ADMIN CAMPUS DIRECTOR ACCOUNTS</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatables" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="th-w-20" style="white-space: nowrap">Name</th>
+                            <th class="th-w-20" style="white-space: nowrap">Email</th>
+                            <th class="th-w-20" style="white-space: nowrap">School</th>
+                            <th class="th-w-20 text-center" style="white-space: nowrap">Type of User</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for ad in ad_info %}
+                        {% if ad.campus_director %}
+                          <tr>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.user_type}}</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+        <div class="card-header py-3 bg-gradient-info">
+            <h6 class="m-0 font-weight-bold text-black">ADMIN UNIVERSITY PRESIDENT ACCOUNTS</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatables" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="th-w-20" style="white-space: nowrap">Name</th>
+                            <th class="th-w-20" style="white-space: nowrap">Email</th>
+                            <th class="th-w-20" style="white-space: nowrap">School</th>
+                            <th class="th-w-20 text-center" style="white-space: nowrap">Type of User</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for ad in ad_info %}
+                        {% if ad.university_pres %}
+                          <tr>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.first_name}} {{ad.middle_name}} {{ad.last_name}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
+                              <td class="th-w-20" style="white-space: nowrap">{{ad.user_type}}</td>
                           </tr>
                         {% endif %}
                       {% endfor %}

@@ -19,7 +19,7 @@
 
   <div class="card">
     <div class="card-body">
-      <form action = "{% url 'edit_experience' JobExperiences.id %}" method = "post">
+      <form action = "{% url 'edit_experience' workexperiences.id %}" method = "post">
         {% include 'tracer/user/JobExperience/_messages.html' %}
         {% csrf_token %}
 

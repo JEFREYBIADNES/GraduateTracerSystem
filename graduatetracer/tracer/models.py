@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from datetime import date
 from django.contrib.auth.models import (
-    AbstractBaseUser, BaseUserManager, AbstractUser
+    AbstractBaseUser, BaseUserManager
 )
 
 
@@ -35,7 +36,7 @@ class UserManager(BaseUserManager):
                     is_employed=False,
                     is_unemployed=False,
                     is_staff=False, is_admin=False, is_active=True,
-                    is_system_admin=False, is_admin_sao=False):
+                    is_graduate=False, is_system_admin=False, is_admin_sao=False,is_dean=False,is_campus_director=False,is_university_pres=False):
         if not email:
             raise ValueError("Users must have an email address")
         if not password:
@@ -55,11 +56,15 @@ class UserManager(BaseUserManager):
         user_obj.admin = is_admin
         user_obj.is_active = is_active
 
+        user_obj.graduate = is_graduate
         user_obj.employed = is_employed
         user_obj.unemployed = is_unemployed
 
         user_obj.system_admin = is_system_admin
         user_obj.admin_sao = is_admin_sao
+        user_obj.dean = is_dean
+        user_obj.campus_director = is_campus_director
+        user_obj.university_pres = is_university_pres
 
         user_obj.argaoCampus = is_argaoCampus
         user_obj.bariliCampus = is_bariliCampus
@@ -125,6 +130,11 @@ class User(AbstractBaseUser):
     Type_of_User = (
         ('AdminSao', 'AdminSao'),
         ('SystemAdmin', 'SystemAdmin'),
+
+        ('DEAN', 'DEAN'),
+        ('Campus Director', 'Campus Director'),
+        ('University President', 'University President'),
+
     )
     Course_Type = (
         ('Bachelor of Science in Information Technology', 'Bachelor of Science in Information Technology'),
@@ -294,6 +304,13 @@ class User(AbstractBaseUser):
     employed = models.BooleanField(default=False)
     unemployed = models.BooleanField(default=False)
 
+    graduate = models.BooleanField(default=False)
+    admin_sao = models.BooleanField(default=False)
+    system_admin = models.BooleanField(default=False)
+    dean = models.BooleanField(default=False)
+    campus_director = models.BooleanField(default=False)
+    university_pres = models.BooleanField(default=False)
+
     # school = models.ForeignKey(School, on_delete=models.CASCADE, blank=True, null=True)
     argaoCampus= models.BooleanField(default=False)
     bariliCampus= models.BooleanField(default=False)
@@ -311,10 +328,6 @@ class User(AbstractBaseUser):
     sanfernandoExt= models.BooleanField(default=False)
     sanfranciscoCampus= models.BooleanField(default=False)
     tuburanCampus= models.BooleanField(default=False)
-
-    graduate = models.BooleanField(default=False)
-    admin_sao = models.BooleanField(default=False)
-    system_admin = models.BooleanField(default=False)
 
     pending = models.BooleanField(default=True)
     approved = models.BooleanField(default=False)
@@ -351,14 +364,6 @@ class User(AbstractBaseUser):
     @property
     def is_graduate(self):
         return self.graduate
-
-    @property
-    def is_employed(self):
-        return self.employed
-
-    @property
-    def is_unemployed(self):
-        return self.unemployed
 
     @property
     def is_argaoCampus(self):
@@ -416,6 +421,17 @@ class User(AbstractBaseUser):
     @property
     def is_system_admin(self):
         return self.system_admin
+    @property
+    def is_dean(self):
+        return self.dean
+
+    @property
+    def is_campus_director(self):
+        return self.campus_director
+
+    @property
+    def is_university_pres(self):
+        return self.university_pres
 
     @property
     def is_staff(self):
@@ -428,23 +444,172 @@ class User(AbstractBaseUser):
     class Meta:
         db_table = "user"
 
-class SystemUser(AbstractUser):
-
-    userid = models.CharField(max_length=45,primary_key = True)
-    password = models.BinaryField(max_length=450)
-    firstname = models.CharField(max_length=45)
-    middlename = models.CharField(max_length=45,default="")
-    lastname = models.CharField(max_length=45)
-    emailaddress = models.EmailField(null = True)
-    usertype = models.CharField(max_length=45)
-    profile_picture = models.ImageField(default="default_profile_2.png", null=True, blank=True)
-    approver_flag = models.CharField(max_length = 50,default="0")
-
-    class Meta:
-        db_table = "systemuser"
+# class SystemUser(AbstractUser):
+#
+#     Type_of_User = (
+#         ('AdminSao', 'AdminSao'),
+#         ('SystemAdmin', 'SystemAdmin'),
+#         ('DEAN', 'DEAN'),
+#         ('Campus Director', 'Campus Director'),
+#         ('University President', 'University President'),
+#     )
+#     School = (
+#             ('Argao Campus', 'Argao Campus'),
+#             ('Barili Campus', 'Barili Campus'),
+#             ('Carmen Campus', 'Carmen Campus'),
+#             ('Cebu City Mountain Extension Campus', 'Cebu City Mountain Extension Campus'),
+#             ('Daanbantayan Campus', 'Daanbantayan Campus'),
+#             ('Danao Campus', 'Danao Campus'),
+#             ('Dumanjug Extension Campus', 'Dumanjug Extension Campus'),
+#             ('Ginatilan Extension Campus', 'Ginatilan Extension Campus'),
+#             ('Main Campus', 'Main Campus'),
+#             ('Moalboal Campus', 'Moalboal Campus'),
+#             ('Naga Extension Campus', 'Naga Extension Campus'),
+#             ('Oslob Extension Campus', 'Oslob Extension Campus'),
+#             ('Pinamungajan Extension Campus', 'Pinamungajan Extension Campus'),
+#             ('San Fernando Extension Campus', 'San Fernando Extension Campus'),
+#             ('San Francisco Campus', 'San Francisco Campus'),
+#             ('Tuburan Campus', 'Tuburan Campus'),
+#         )
+#     emailaddress = models.EmailField(primary_key=True, max_length=20)
+#     password = models.BinaryField(max_length=450, blank=True)
+#     firstname = models.CharField(max_length=45, blank=True)
+#     middlename = models.CharField(max_length=45, blank=True)
+#     lastname = models.CharField(max_length=45, blank=True)
+#
+#     school = models.CharField(max_length=100, blank=True, null=True, choices=School)
+#     argaoCampus= models.BooleanField(default=False)
+#     bariliCampus= models.BooleanField(default=False)
+#     carmenCampus= models.BooleanField(default=False)
+#     CCMECampus= models.BooleanField(default=False)
+#     daanbantayanCampus= models.BooleanField(default=False)
+#     danaoCampus= models.BooleanField(default=False)
+#     dumanjugExt= models.BooleanField(default=False)
+#     ginatilanExt= models.BooleanField(default=False)
+#     mainCampus= models.BooleanField(default=False)
+#     moalboalCampus= models.BooleanField(default=False)
+#     nagaExt= models.BooleanField(default=False)
+#     oslobExt= models.BooleanField(default=False)
+#     pinamungajanExt= models.BooleanField(default=False)
+#     sanfernandoExt= models.BooleanField(default=False)
+#     sanfranciscoCampus= models.BooleanField(default=False)
+#     tuburanCampus= models.BooleanField(default=False)
+#
+#     user_type = models.CharField(max_length=100, blank=True, null=True, choices=Type_of_User)
+#     admin_sao = models.BooleanField(default=False)
+#     system_admin = models.BooleanField(default=False)
+#     dean = models.BooleanField(default=False)
+#     campus_director = models.BooleanField(default=False)
+#     university_pres = models.BooleanField(default=False)
+#     profile_picture = models.ImageField(default="default_profile_2.png", null=True, blank=True)
+#
+#
+#     is_active = models.BooleanField(default=True)  # can login
+#     staff = models. BooleanField(default=False)  # staff user non superuser
+#     admin = models.BooleanField(default=False)  # superuser
+#     timestamp = models.DateTimeField(auto_now_add=True)
+#
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = []
+#
+#     objects = UserManager()
+#
+#     def __str__(self):
+#         return self.email
+#
+#     def get_full_name(self):
+#         return self.email
+#
+#     def get_short_name(self):
+#         return self.email
+#
+#     def has_perm(self, perm, obj=None):
+#         "Does the user have a specific permission?"
+#         # Simplest possible answer: Yes, always
+#         return True
+#
+#     def has_module_perms(self, app_label):
+#         "Does the user have permissions to view the app `app_label`?"
+#         # Simplest possible answer: Yes, always
+#         return True
+#
+#     @property
+#     def is_graduate(self):
+#         return self.graduate
+#
+#     @property
+#     def is_argaoCampus(self):
+#         return self.argaoCampus
+#     @property
+#     def is_bariliCampus(self):
+#         return self.bariliCampus
+#     @property
+#     def is_carmenCampus(self):
+#         return self.carmenCampus
+#     @property
+#     def is_CCMECampus(self):
+#         return self.CCMECampus
+#     @property
+#     def is_daanbantayanCampus(self):
+#         return self.daanbantayanCampus
+#     @property
+#     def is_danaoCampus(self):
+#         return self.danaoCampus
+#     @property
+#     def is_dumanjugExt(self):
+#         return self.dumanjugExt
+#     @property
+#     def is_ginatilanExt(self):
+#         return self.ginatilanExt
+#     @property
+#     def is_mainCampus(self):
+#         return self.mainCampus
+#     @property
+#     def is_moalboalCampus(self):
+#         return self.moalboalCampus
+#     @property
+#     def is_nagaExt(self):
+#         return self.nagaExt
+#     @property
+#     def is_oslobExt(self):
+#         return self.oslobExt
+#     @property
+#     def is_pinamungajanExt(self):
+#         return self.pinamungajanExt
+#     @property
+#     def is_sanfernandoExts(self):
+#         return self.sanfernandoExts
+#     @property
+#     def is_sanfranciscoCampus(self):
+#         return self.sanfranciscoCampus
+#     @property
+#     def is_tuburanCampus(self):
+#         return self.tuburanCampus
+#
+#     @property
+#     def is_dean(self):
+#         return self.dean
+#
+#     @property
+#     def is_campus_director(self):
+#         return self.campus_director
+#
+#     @property
+#     def is_university_pres(self):
+#         return self.university_pres
+#
+#     @property
+#     def is_staff(self):
+#         return self.staff
+#
+#     @property
+#     def is_admin(self):
+#         return self.admin
+#
+#     class Meta:
+#         db_table = "systemuser"
 
 class Post(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     body = models.TextField()
     image = models.ImageField(upload_to='upload_photos', blank=True, null=True)
     created_on = models.DateTimeField(default=timezone.now)
@@ -459,7 +624,6 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     comment = models.TextField()
     created_on = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -470,7 +634,6 @@ class Comment(models.Model):
 
 
 class WorkExperiences(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     company_name = models.CharField(max_length=100, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     position = models.CharField(max_length=100, blank=True, null=True)
@@ -489,7 +652,6 @@ class WorkExperiences(models.Model):
 
 
 class Announcement(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     title = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=1000, null=True)
     image = models.ImageField(
@@ -507,7 +669,6 @@ class Announcement(models.Model):
 
 
 class JobCategory(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     title = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=1000, null=True)
 
@@ -522,7 +683,6 @@ class JobCategory(models.Model):
 
 
 class CategoryType(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=1000, null=True)
@@ -536,7 +696,6 @@ class CategoryType(models.Model):
 
 
 class ControlVote(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     user = models.ForeignKey(User,  null=True, on_delete=models.SET_NULL)
     job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
@@ -550,7 +709,6 @@ class ControlVote(models.Model):
 
 
 class JobRequest(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     job_category = models.ForeignKey(
         JobCategory, on_delete=models.CASCADE, null=True, blank=True)
@@ -568,7 +726,6 @@ class JobRequest(models.Model):
 
 
 class Advertise(models.Model):
-    id = models.CharField(max_length=45,primary_key = True)
     job_category = models.ForeignKey(
         JobCategory, on_delete=models.CASCADE, null=True, blank=True)
 
