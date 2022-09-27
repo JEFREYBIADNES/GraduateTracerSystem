@@ -2,29 +2,40 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
+
+<div class="container-fluid">
   <div class="row">
     {% for grad_info in grad_infos %}
       {% if grad_info.approved %}
         {% if grad_info.email != request.user.email %}
-          <div class="col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="media align-items-center">
-                    <img class="img-profile rounded-circle shadow-sm" src="{{grad_info.profile_picture.url}}" width=" 100" height="100" alt="User-Profile-Image">
-                  <div class="media-body overflow-hidden">
-                    <h5 class="card-text mb-0">{{grad_info.first_name}} {{grad_info.middle_name}} {{grad_info.last_name}}</h5>
-                    <p class="card-text text-uppercase text-muted">{{grad_info.address}}</p>
-                    <p class="card-text" style="white-space: nowrap;">
-                      Email: {{grad_info.email}}<br><abbr title="Phone">Contact Num:  </abbr>{{grad_info.contact_number}}
-                    </p>
+          <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-2">
+            <div class="card shadow-sm">
+              <div class="card-header text-center text-dark">
+                <div class="mt-2">
+                  <img class="img-profile rounded-circle shadow-sm" src="{{grad_info.profile_picture.url}}" width="100" height="90" alt="User-Profile-Image">
+                  <div class="mt-1">
+                    <p>{{grad_info.first_name}} {{grad_info.middle_name}} {{grad_info.last_name}}</p>
+                    <p>{{grad_info.email}}</p>
                   </div>
-                </div><a href="#" class="tile-link"></a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="mt-2">
+                    <div class="col-sm-12">
+                      <p>Skills: {{grad_info.skill}}</p>
+                    </div>
+                    <div class="col-sm-12">
+                      <p>School: {{grad_info.school}}</p>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
-          {% endif %}
+        {% endif %}
       {% endif %}
     {% endfor %}
+  </div>
+</div>
+
 
 {% endblock %}
