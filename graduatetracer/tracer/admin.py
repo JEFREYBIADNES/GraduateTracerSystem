@@ -6,6 +6,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 from .models import Post, Comment, WorkExperiences
 User = get_user_model()
+# SystemUser = get_user_model()
 
 
 class UserAdmin(BaseUserAdmin):
@@ -62,9 +63,8 @@ class UserAdmin(BaseUserAdmin):
                                  'sanfranciscoCampus',
                                  'tuburanCampus',)}),
         ('Permissions', {'fields': ('admin', 'staff', 'is_active')}),
-        ('Types of User', {'fields': ('user_type','graduate', 'admin_sao','system_admin')}),
-        ('Graduate Status', {'fields': ('employment_status',
-         'employed', 'unemployed')}),
+        ('Types of User', {'fields': ('user_type','graduate', 'admin_sao','system_admin','dean','campus_director','university_pres')}),
+        ('Graduate Status', {'fields': ('employment_status','employed', 'unemployed')}),
 
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -83,7 +83,6 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Post)
 admin.site.register(Comment)
-# admin.site.register(GraduateStatus)
 admin.site.register(WorkExperiences)
 
 

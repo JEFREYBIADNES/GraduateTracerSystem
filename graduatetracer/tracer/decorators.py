@@ -46,7 +46,7 @@ def admin_only(view_func):
         permissions = None
         if request.user.is_graduate:
             permissions = 'is_graduate'
-        elif request.user.is_admin_system:
+        elif request.user.is_admin_sao:
             permissions = 'is_admin_sao'
         elif request.user.is_system_admin:
             permissions = 'is_system_admin'

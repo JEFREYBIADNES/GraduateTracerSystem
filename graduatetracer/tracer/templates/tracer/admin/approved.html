@@ -1,7 +1,38 @@
 {% extends 'tracer/admin/template.html' %}
 {% block content %}
 
+<style media="screen">
+    .none{
+      display:none;
+    }
 
+    .dataTables_wrapper{
+      z-index: 0;
+    }
+    .dataTables_length{
+      z-index: 2;
+    }
+
+    .dataTables_filter{
+      display: none;
+    }
+
+    .dropdown-filter{
+      top: 33px !important;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dataTables_length{
+      padding-bottom: 10px;
+    }
+    .th-w-20{
+      width:20% !important;
+    }
+    .th-w-10{
+      width:10% !important;
+    }
+  </style>
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- DataTales Example -->
