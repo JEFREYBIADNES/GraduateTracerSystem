@@ -93,7 +93,7 @@ DATABASES = {
          'NAME': 'trackingsys',
          'USER': 'root',
          'PASSWORD': 'graduatetracer',
-         'PORT': 3307,
+         'PORT': 3306,
          'HOST': '127.0.0.1'
      }
  }

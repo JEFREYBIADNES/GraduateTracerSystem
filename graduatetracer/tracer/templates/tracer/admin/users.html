@@ -4,9 +4,17 @@
 {% load widget_tweaks %}
 
 {% block content %}
+
+<style>
+  .col-lg-1 .btn :hover{
+    background-color:bg-c-lite-green;
+    color:white;
+    border:2px solid #4CAF50;
+  }
+</style>
   <div class="container-fluid">
     <div class="card shadow-sm mb-4">
-      <div class="card-body bg-gradient-info">
+      <div class="card-body bg-c-lite-green">
         <form>
           <div class="row">
             <div class="col-lg-10">
@@ -15,7 +23,7 @@
               </div>
             </div>
             <div class="col-lg-1">
-              <button class="btn bg-c-lite-green text-white shadow-lg" type="submit" name="button">Search</button>
+              <button class="btn bg-white text-white shadow-lg" type="submit" name="button" style="background-color:bg-c-lite-green;text-color:white;">Search</button>
             </div>
           </div>
         </form>
