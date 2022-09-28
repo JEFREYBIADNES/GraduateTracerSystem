@@ -76,6 +76,14 @@ def display_user_management(request):
                }
     return render(request, 'tracer/systemadmin/display_user_management.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_system_admin'])
+def usersGraduates(request):
+    graduateAcctsLists = User.objects.all()
+
+    context = {'graduateAcctsLists': graduateAcctsLists}
+    return render(request, 'tracer/systemadmin/user.html', context)
+
 
 def user(request):
 

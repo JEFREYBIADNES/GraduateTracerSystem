@@ -158,7 +158,7 @@ urlpatterns = [
      path('school-report/', systemadmin.school_report, name='school_report'),
 
      #users
-     path('user/', systemadmin.user, name='user'),
+     path('user/', systemadmin.usersGraduates, name='user'),
      path('userinformations/<int:pk>', systemadmin.userinformations, name='userinformations'),
      path('adprof/<int:pk>', systemadmin.adprof, name='adprof'),
 

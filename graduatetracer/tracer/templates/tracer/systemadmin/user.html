@@ -2,26 +2,69 @@
 
 {% load static %}
 {% load widget_tweaks %}
-
 {% block content %}
   <div class="container-fluid">
     <div class="card shadow-sm mb-4">
-      <div class="card-body bg-c-lite-green">
+      <div class="card-body bg-gradient-info">
         <form>
-
           <div class="row">
             <div class="col-lg-10">
-              <div class="form-outline mb-4">
-                <input type="search" class="form-control " name="query" placeholder="Name / Skills / Date Graduated / Status / Job Description" aria-label="Search">
-              </div>
-            </div>
-            <div class="col-lg-1">
-              <button class="btn bg-gradient-info text-white shadow-lg" type="submit" name="button">Search</button>
-            </div>
+                  <div class="form-outline mb-4">
+                    <input type="search" class="form-control " name="query" placeholder="Name / Skills / Date Graduated / Status / Job Description" aria-label="Search">
+                  </div>
+                </div>
+                <div class="col-lg-1">
+                  <button class="btn bg-gradient-info text-white shadow-lg" type="submit" name="button">Search</button>
+                </div>
           </div>
         </form>
       </div>
     </div>
-    <div class="row">
-        
+  </div>
+  <div class="container-fluid">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-info">
+                <h6 class="m-0 font-weight-bold text-black">GRADUATES ACCOUNT LIST</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                    <table id="dataTables_filter" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="th-w-20" style="white-space: nowrap">Name</th>
+                                <th class="th-w-20" style="white-space: nowrap">Email</th>
+                                <th class="th-w-20" style="white-space: nowrap">ID Number</th>
+                                <th class="th-w-20" style="white-space: nowrap">School</th>
+                                <th class="th-w-20" style="white-space: nowrap">Employment status</th>
+                                <th class="th-w-20" style="white-space: nowrap">Action</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for graduateAcctsList in graduateAcctsLists %}
+                              {% if graduateAcctsList.approved %}
+                                  <tr>
+                                      <td class="th-w-20" style="white-space: nowrap">{{graduateAcctsList.first_name}} {{graduateAcctsList.middle_name}} {{graduateAcctsList.last_name}}</td>
+                                      <td class="th-w-20" style="white-space: nowrap">{{graduateAcctsList.email}}</td>
+                                      <td class="th-w-20" style="white-space: nowrap">{{graduateAcctsList.IDNum}}</td>
+                                      <td class="th-w-20" style="white-space: nowrap">{{graduateAcctsList.school}}</td>
+                                      <td class="th-w-20" style="white-space: nowrap">{{graduateAcctsList.employment_status}}</td>
+                                      <td class="text-center">
+                                          <div class="pl-2 pr-2 pb-2 pt-1">
+                                              <a class="btn btn-success" href="{% url 'userinformation' graduateAcctsList.id %}"><i class="fas fa-eye"></i></a>
+                                          </div>
+                                      </td>
+                                  </tr>
+                                  {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+          </div>
+        </div>
+
 {% endblock %}
