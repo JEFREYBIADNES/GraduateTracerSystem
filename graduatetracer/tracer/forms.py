@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 User = get_user_model()
-# SystemUser = get_user_model()
+SystemUser = get_user_model()
 
 
 class UserAdminCreationForm(forms.ModelForm):
@@ -18,10 +18,10 @@ class UserAdminCreationForm(forms.ModelForm):
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('profile_picture',
                   'email',
-                  'IDNum',
+                  'IDNum',       
                   'first_name',
                   'middle_name',
                   'last_name',
@@ -89,7 +89,7 @@ class UserAdminChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('profile_picture',
                   'IDNum',
                   'first_name',
@@ -236,7 +236,7 @@ class RegisterAdminForm(forms.ModelForm):
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('email', 'first_name', 'middle_name', 'last_name',
                    'school', 'password1', 'password2','user_type',
                    'admin_sao', 'system_admin','dean','campus_director','university_pres',

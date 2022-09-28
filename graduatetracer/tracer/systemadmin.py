@@ -77,36 +77,39 @@ def display_user_management(request):
     return render(request, 'tracer/adminreal/display_user_management.html', context)
 
 
-def user(request):
+def user_graduates(request):
+    user_info = User.objects.all().order_by('-id')
+    query_IDNum = []
+    query_school = []
+    query_employment_status = []
+
+    for user_info in user_info:
+        if user_info.IDNum not in query_IDNum:
+            query_IDNum.append(user_info.IDNum)
+        if user_info.school not in query_school:
+            query_school.append(user_info.school)
+        if user_info.employment_status not in query_employment_status:
+            query_employment_status.append(user_info.employment_status)
 
     if 'query' in request.GET:
         query = request.GET['query']
-        multiple_query = Q(Q(first_name__icontains=query) | Q(middle_name__icontains=query)
-                           | Q(last_name__icontains=query) | Q(job_description__icontains=query) | Q(skill__icontains=query)
-                           | Q(date_graduated__icontains=query) | Q(employed__icontains=query) | Q(unemployed__icontains=query))
-
+        multiple_query = Q(Q(first_name__icontains=query) | Q(middle_name__icontains=query)| Q(last_name__icontains=query)
+                           | Q(email__icontains=query))
         if query:
-            user_infos = User.objects.filter(multiple_query)
-        elif query == None:
-            user_infos = User.objects.all()
-        elif query == 'Employed' or query == 'employed':
-            user_infos = User.objects.filter(employed=True)
-        elif query == 'Unemployed' or query == 'unemployed':
-            user_infos = User.objects.filter(unemployed=True)
+            user_info = User.objects.filter(multiple_query)
+
         else:
-            user_infos = User.objects.all()
+            user_info = User.objects.all().order_by('-id')
     else:
-        user_infos = User.objects.all()
-    context = {'user_infos': user_infos}
+        user_info = User.objects.all().order_by('-id')
 
-    return render(request, 'tracer/adminreal/user.html', context)
-
-
-def userinformations(request, pk):
-    user_info = User.objects.get(id=pk)
-
-    context = {'user_info': user_info}
-    return render(request, 'tracer/adminreal/userinformations.html', context)
+    context = {
+                'user_info': user_info,
+                'query_IDNum': query_IDNum,
+                'query_school': query_school,
+                'query_employment_status': query_employment_status,
+                }
+    return render(request, 'tracer/adminreal/user_graduates.html', context)
 
 def adprof(request, pk):
     user = User.objects.get(id=pk)
