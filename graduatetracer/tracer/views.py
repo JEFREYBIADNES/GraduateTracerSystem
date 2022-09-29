@@ -663,10 +663,11 @@ class PostListView(LoginRequiredMixin, View):
         login_in_user = request.user
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
-
+        grad_info = User.object.all
         context = {
             'post_list': posts,
             'form': form,
+            'grad_info': user_info,
         }
 
         return render(request, 'tracer/user/post_list.html', context)
