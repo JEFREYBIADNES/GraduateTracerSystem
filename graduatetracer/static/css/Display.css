@@ -199,6 +199,9 @@
 .mb-3, .my-3 {
 
     background-image: linear-gradient(180deg, #f8f9fc 10%, transparent 100%);
+    margin-left: 450px;
+    margin-right: -400px;
+    margin-top: -453px;
 }
 @media only screen and (max-width: 667px) {
   .card.pt-0.pr-0.pl-0.pb-2.bg-gradient-light {

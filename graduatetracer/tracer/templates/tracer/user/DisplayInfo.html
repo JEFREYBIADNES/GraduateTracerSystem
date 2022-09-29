@@ -1,177 +1,138 @@
 {% extends 'tracer/user/template.html'%}
 {% load static %}
-{% load widget_tweaks %}
 {% block content %}
-
-<style>
-    .profile-pic-div {
-        float: right;
-        max-height: 200px;
-        max-width: 200px;
-        position: relative;
-        overflow: hidden;
-    }
-    #photo {
-        height: 100%;
-        width: 100%;
-    }
-
-    #uploadBtn {
-    height: 40px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgb(160, 160, 160);
-    color: wheat;
-    line-height: 30px;
-    font-family: sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    }
-
-    ::-webkit-file-upload-button {
-    font: inherit;
-    -webkit-appearance: button
-    }
-    [hidden] {
-    display: none!important
-    }
-
-</style>
-
-<div class="container-fluid">
-  <div class="row d-flex justify-content-center">
-    <div class="col-lg-12">
-      <div class=" card border-0 d-flex text-white justify-content-center mt-lg-4 mb-lg-4 ml-4 mr-4">
-        <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="row mb-3 ">
-            <div class="col-md-4">
-              <div class="d-flex flex-column align-items-center text-center pt-2 pb-4">
-                <div class="col-lg-0 mt-4 mb-4">
-                  <div class="col-lg-12 mt-4 profile-pic-div">
-                    <img class="img-custom-border" src="{{request.user.profile_picture.url}}" id="photo">
-                    <input type="file" id="file" name="profile" hidden>
-                    <label for="file" id="uploadBtn">Choose Profile</label>
-                  </div>
-                </div>
-                <h6>{{user.first_name}} {{user.middle_name}} {{user.last_name}}</h6>
-                <div class="col-md-13 pl-4 pb-3">
-                  <span class="text-black-70">{{user.email}}</span>
-                </div>
-
-              </div>
-              <div class="col-md-12 pl-4 pb-3">
-                <label class="labels">First Name</label>
-                {{grad_info.first_name}}
-              </div>
-              <div class="col-md-12 pl-4 pb-3">
-                <label class="labels">Middle Name</label>
-                {{grad_info.middle_name}}
-              </div>
-              <div class="col-md-12 pl-4 pb-3">
-                <label class="labels">Last Name</label>
-                {{grad_info.last_name}}
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-0">
-              <div class="pt-4">
-                <div class="text-center d-flex justify-content-between align-items-center mb-5">
-                  <h4 class="text-right">Profile Settings</h4>
-                </div>
-                <div class="row mt-3">
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Birthdate</label>
-                    {{grad_info.birth_date}}
-                  </div>
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Age</label>
-                    {{grad_info.age}}
-                  </div>
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Gender</label>
-                    {{grad_info.gender}}
-                  </div>
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Address</label>
-                    {{grad_info.address}}
-                  </div>
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Contact Number</label>
-                    {{grad_info.contact_number}}
-                  </div>
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">ID Number</label>
-                    {{grad_info.IDNum}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br>
-            <br>
-            <div class="col-md-4 mt-0">
-              <div class="pt-4">
-                <div class="text-center d-flex justify-content-between align-items-center mb-5">
-                  <h4 class="text-right"></h4>
-                </div>
-                <div class="row mt-3">
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Year Graduated</label>
-                    {{grad_info.date_graduated}}
-                  </div>
-                  <br>
-
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Course</label>
-                    {% render_field grad_info.course_type class="form-control" disabled="disabled" %}
-                  </div>
-                  <br>
-
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">School</label>
-                    {% render_field grad_info.school class="form-control" disabled="disabled" %}
-                  </div>
-                  <br>
-
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Employment Status</label>
-                    {{grad_info.employment_status}}
-                  </div>
-                  <br>
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Job Description</label>
-                    {{grad_info.job_description}}
-                  </div>
-                  <br>
-
-                  <div class="col-md-12 pb-3">
-                    <label class="labels">Skills</label>
-                    {{grad_info.skill}}
-                  </div>
-                </div>
-                <br>
-
-
-                <div class="pt-3 text-center">
-                  <button type="submit" name="UpdateGradInfo" role="button" class="btn btn-outline-success">
-                    <i class="fa fa-fw fa-lg fa-check-circle"></i>
-                    Update Profile
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        </form>
+<link href="{% static 'css/Display.css' %}" rel="stylesheet">
+<div class="sec-title">
+  <div class="pg-sub-title">Home</div>
+  <div class="pg-title">My Profile</div>
       </div>
-    </div>
-  </div>
+<div class="container">
+<div class="row">
+<div class="col-md-4">
+
+<div class="profile-card-2"><img src="{{user.profile_picture.url}}" class="img img-responsive">
+<div class="profile-name">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
+<div class="profile-username">{{user.email}}</div>
 </div>
-<script src="{% static '/js/user/profile.js' %}"></script>
-{% endblock %}
+</div>
+
+
+</div>
+<a href="{% url 'UpdateGradInfo' user.id %}" button class="button-24" role="button">Edit Profile</a>
+
+</div>
+
+  
+            <form method="POST" action="{% url 'DisplayGradInfo' %}">
+                {% csrf_token %}
+
+                     <div class="col-md-8">
+              <div class="card mb-3">
+               
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.first_name}} {{user.middle_name}} {{user.last_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.email}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.contact_number}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">ID Numbber</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.IDNum}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Age</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.age}} 
+                    </div>
+                  </div>
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Gender</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.gender}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.address}} 
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Course</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.course_type}} 
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Status</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.employment_status}} 
+                    </div>
+                  </div>
+                      <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Job Description</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.job_description}} 
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Skill</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.skill}} 
+                    </div>
+                  </div>
+
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    {% endblock %}
