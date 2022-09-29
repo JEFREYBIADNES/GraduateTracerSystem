@@ -2,14 +2,13 @@
 {% load static %}
 {% block content %}
 <link href="{% static 'css/Display.css' %}" rel="stylesheet">
-<div class="sec-title">
-  <div class="pg-sub-title">Home</div>
-  <div class="pg-title">My Profile</div>
-      </div>
+  <div class="sec-title">
+   <div class="pg-sub-title">Home</div>
+     <div class="pg-title">My Profile</div>
+   </div>
 <div class="container">
-<div class="row">
-<div class="col-md-4">
-
+ <div class="row">
+   <div class="col-md-4">
 <div class="profile-card-2"><img src="{{user.profile_picture.url}}" class="img img-responsive">
 <div class="profile-name">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
 <div class="profile-username">{{user.email}}</div>
@@ -21,16 +20,16 @@
 <a href="{% url 'UpdateGradInfo' user.id %}" button class="button-24" role="button">Edit Profile</a>
 
 </div>
-
-  
+<div class="container-fluid mt-0 h-100 ">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 mb-5">
+            
             <form method="POST" action="{% url 'DisplayGradInfo' %}">
                 {% csrf_token %}
-
-                     <div class="col-md-8">
-              <div class="card mb-3">
-               
-                  <div class="row">
-                    <div class="col-sm-3">
+            <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
                       <h6 class="mb-0">Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
@@ -128,6 +127,7 @@
                      {{user.skill}} 
                     </div>
                   </div>
+
 
             </form>
             </div>
