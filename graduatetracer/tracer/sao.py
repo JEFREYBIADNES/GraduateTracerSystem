@@ -214,7 +214,9 @@ def add_announcements(request):
 def pendingaccounts(request):
     gradAccts = User.objects.all()
 
-    context = {'gradAccts': gradAccts}
+    context = {
+                'gradAccts': gradAccts
+                }
     return render(request, 'tracer/admin/pending.html', context)
 
 @login_required(login_url='login')

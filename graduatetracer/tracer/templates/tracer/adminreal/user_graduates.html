@@ -57,11 +57,10 @@
     }
   </script>
   <!-- End -->
-
+<div class="card-header py-3 bg-gradient-info">
+    <h6 class="m-0 font-weight-bold text-black">Graduates</h6>
+</div>
 <div class="container-fluid bg-white pr-4 pl-4 pb-2">
-  <div class="card-header py-3 bg-c-lite-green">
-      <h6 class="m-0 font-weight-bold text-black">PENDING ACCOUNTS</h6>
-  </div>
   <div class="row ">
 
     <div class="row w-20">
@@ -175,13 +174,13 @@
 
     } );
     $('#query0').on('change', function(){
-       table.columns(3).search(this.value).draw();
+       table.columns(2).search(this.value).draw();
     });
     $('#query1').on('change', function(){
-       table.columns(4).search(this.value).draw();
+       table.columns(3).search(this.value).draw();
     });
     $('#query2').on('change', function(){
-       table.columns(5).search(this.value).draw();
+       table.columns(4).search(this.value).draw();
     });
 } );
 </script>

@@ -470,8 +470,8 @@ class SystemUser(AbstractUser):
             ('Tuburan Campus', 'Tuburan Campus'),
         )
     userid = models.CharField(max_length=45,primary_key = True)
+    username = models.CharField(primary_key=False,max_length=45, blank=True, null=True)
     email = models.EmailField(null = True)
-    password = models.BinaryField(max_length=450, blank=True)
     first_name = models.CharField(max_length=45, blank=True)
     middle_name = models.CharField(max_length=45, blank=True)
     last_name = models.CharField(max_length=45, blank=True)

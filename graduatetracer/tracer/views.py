@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 
 from .models import *
 from .forms import *
-
+from .dataporter import *
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.contrib import messages
@@ -39,6 +39,7 @@ def error_404_view(request, exception):
     return render(request, 'tracer/firstInterface/404.html', {})
 
 def home(request):
+    data_separator()
     context = {}
     return render(request, 'tracer/firstInterface/landingPage.html', context)
 
