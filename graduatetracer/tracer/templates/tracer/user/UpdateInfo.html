@@ -4,19 +4,19 @@
 {% block content %}
 
 <style>
-  .profile-pic-div {
-      float: right;
-      max-height: 200px;
-      max-width: 200px;
-      position: relative;
-      overflow: hidden;
-  }
-  #photo {
-      height: 100%;
-      width: 100%;
-  }
+    .profile-pic-div {
+        float: right;
+        max-height: 200px;
+        max-width: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+    #photo {
+        height: 100%;
+        width: 100%;
+    }
 
-  #uploadBtn {
+    #uploadBtn {
     height: 40px;
     width: 100%;
     position: absolute;
@@ -31,70 +31,65 @@
     font-family: sans-serif;
     font-size: 15px;
     cursor: pointer;
-  }
+    }
 
-  ::-webkit-file-upload-button {
+    ::-webkit-file-upload-button {
     font: inherit;
     -webkit-appearance: button
-  }
-
-  [hidden] {
+    }
+    [hidden] {
     display: none!important
-  }
+    }
 
 </style>
-
 
 <div class="container-fluid">
   <div class="row d-flex justify-content-center">
     <div class="col-lg-12">
-      <div class=" card border-0 d-flex text-white justify-content-center mt-lg-4 mb-lg-4 ml-4 mr-4 bg-c-lite-green">
+      <div class=" card border-0 d-flex text-black justify-content-center mt-lg-4 mb-lg-4 ml-4 mr-4">
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <div class="row mb-3 ">
-            <div class="col-md-4">
+          <div class="row mb-2 " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 3%;">
+            <div class="col-sm 12 col-md-12 col-lg-4">
               <div class="d-flex flex-column align-items-center text-center pt-2 pb-4">
                 <div class="col-lg-0 mt-4 mb-4">
                   <div class="col-lg-12 mt-4 profile-pic-div">
-                    <img class="img-custom-border" src="{{request.user.profile_picture.url}}" id="photo">
+                    <img class="img-custom-border mb-3" src="{{request.user.profile_picture.url}}" id="photo">
                     <input type="file" id="file" name="profile" hidden>
                     <label for="file" id="uploadBtn">Choose Profile</label>
                   </div>
                 </div>
                 <h6>{{user.first_name}} {{user.middle_name}} {{user.last_name}}</h6>
-                <div class="col-md-13 pl-4 pb-3">
+                <div class="col-md-12 ">
                   <span class="text-black-70">{{user.email}}</span>
                 </div>
-
               </div>
-              <div class="col-md-12 pl-4 pb-3">
+              <div class="col-md-12">
                 <label class="labels">First Name</label>
                 {{grad_info.first_name}}
               </div>
-              <div class="col-md-12 pl-4 pb-3">
+              <div class="col-md-12 ">
                 <label class="labels">Middle Name</label>
                 {{grad_info.middle_name}}
               </div>
-              <div class="col-md-12 pl-4 pb-3">
+              <div class="col-md-12 ">
                 <label class="labels">Last Name</label>
                 {{grad_info.last_name}}
               </div>
             </div>
 
-            <div class="col-md-4 mt-0">
+            <div class="col-sm-12 col-md-6 col-lg-4 mt-0">
               <div class="pt-4">
                 <div class="text-center d-flex justify-content-between align-items-center mb-5">
-                  <h4 class="text-right">Profile Settings</h4>
+                  <h4 class="text-right"><b>Profile Settings</b></h4>
                 </div>
-                <div class="d-flex pb-2">Date Created:</div>
-                <div class="border px-3 p-1"> {{user.timestamp}}</div>
                 <div class="row mt-3">
                   <div class="col-md-12 pb-3">
                     <label class="labels">Birthdate</label>
                     {{grad_info.birth_date}}
                   </div>
                   <div class="col-md-12 pb-3">
-                    <class="labels">Age</label>
+                    <label class="labels">Age</label>
                     {{grad_info.age}}
                   </div>
                   <div class="col-md-12 pb-3">
@@ -109,146 +104,63 @@
                     <label class="labels">Contact Number</label>
                     {{grad_info.contact_number}}
                   </div>
+                  <div class="col-md-12 pb-3">
+                    <label class="labels">ID Number</label>
+                    {{grad_info.IDNum}}
+                  </div>
                 </div>
               </div>
             </div>
             <br>
-            <div class="col-md-4 pt-4">
-              <div class="p-1">
-                <div class="col-md-12">
-                  <label class="labels">Year Graduated</label>
-                  {{grad_info.date_graduated}}
+            <br>
+            <div class="col-sm-12 col-md-6 col-lg-4 mt-0">
+              <div class="pt-4">
+                <div class="text-center d-flex justify-content-between align-items-center mb-5" style="opacity: 0!important;">
+                  <h4 class="text-right"><b> asdasd </b></h4>
                 </div>
-                <br>
-                <div class="col-md-12">
-                  <label class="labels">Course</label>
-                  {% render_field grad_info.course_type class="form-control" disabled="disabled"%}
-                </div>
-                <br>
+                <div class="row mt-3">
+                  <div class="col-md-12 pb-3">
+                    <label class="labels">Year Graduated</label>
+                    {{grad_info.date_graduated}}
+                  </div>
 
-                <div class="col-md-12">
-                  <label class="labels">School</label>
-                  {% render_field grad_info.school class="form-control" disabled="disabled"%}
-                </div>
-                <br>
+                  <div class="col-md-12 pb-3">
+                    <label class="labels">Course</label>
+                    {% render_field grad_info.course_type class="form-control" disabled="disabled" %}
+                  </div>
 
-                <div class="col-md-12">
-                  <label class="labels">Employment Status</label>
-                  {{grad_info.employment_status}}
-                </div>
-                <br>
-                <div class="col-md-12">
-                  <label class="labels">Job Description</label>
-                  {{grad_info.job_description}}
-                </div>
-                <br>
+                  <div class="col-md-12 pb-3">
+                    <label class="labels">School</label>
+                    {% render_field grad_info.school class="form-control" disabled="disabled" %}
+                  </div>
+                  <div class="col-md-12 pb-3">
+                    <label class="labels">Employment Status</label>
+                    {{grad_info.employment_status}}
+                  </div>
 
-                <div class="col-md-12">
-                  <label class="labels">Skills</label>
-                  {{grad_info.skill}}
+                  <div class="col-md-12 pb-3">
+                    <label class="labels">Job Description</label>
+                    {{grad_info.job_description}}
+                  </div>
+
+                  <div class="col-md-12 pb-3">
+                    <label class="labels">Skills</label>
+                    {{grad_info.skill}}
+                  <div class="pt-3 text-center">
+                    <button type="submit" name="UpdateGradInfo" role="button" class="btn btn-outline-success mt-4">
+                      <i class="fa fa-fw fa-lg fa-check-circle"></i>
+                      Update Profile
+                    </button>
+                  </div>
+                  </div>
                 </div>
-                <br>
-
-
-                <div class="pt-3 text-center">
-                  <button type="submit" name="UpdateGradInfo" role="button" class="btn btn-outline-success">
-                    <i class="fa fa-fw fa-lg fa-check-circle"></i>
-                    Update Profile
-                  </button>
-                </div>
-
               </div>
             </div>
           </div>
-
         </form>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="container-fluid">
-  <div class="row d-flex justify-content-center">
-    <div class="col-lg-12">
-      <div class=" card border-0 d-flex text-white justify-content-center mt-lg-4 mb-lg-4 ml-4 mr-4 bg-c-lite-green">
-        <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="row">
-              <div class="col-md-3 border-right">
-                  <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <div class="col-lg-12 mt-4 profile-pic-div">
-                      <img class="img-custom-border" src="{{request.user.profile_picture.url}}" id="photo">
-                      <input type="file" id="file" name="profile" hidden>
-                      <label for="file" id="uploadBtn">Choose Profile</label>
-                    </div>
-                    <span class="font-weight-bold">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</span><span
-                    class="text-black-50">{{user.email}}</span><span> </span>
-                  </div>
-              </div>
-              <div class="col-md-6 border-right">
-                  <div class="p-2 py-5">
-                      <div class="d-flex justify-content-between align-items-center mb-4">
-                          <h4 class="text-right">Profile Settings</h4>
-                      </div>
-                      <div class="row mt-2">
-                          <div class="col-md-4">
-                            <label class="labels">First Name</label>
-                            {{grad_info.first_name}}
-                          </div>
-                          <div class="col-md-4">
-                            <label class="labels">Middle Name</label>
-                            {{grad_info.middle_name}}
-                          </div>
-                          <div class="col-md-4">
-                            <label class="labels">Last Name</label>
-                            {{grad_info.last_name}}
-                      </div>
-                      <div class="row mt-3">
-                          <div class="col-md-6">
-                            <label class="labels">Address</label>
-                            {{grad_info.address}}
-                          </div>
-                          <div class="col-md-6">
-                            <label class="labels">Birth Date</label>
-                            {{grad_info.birth_date}}
-                          </div>
-                      </div>
-                      <div class="row mt-3">
-                          <div class="col-md-3"><label class="labels">Age</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                          <div class="col-md-3"><label class="labels">Gender</label><input type="text" class="form-control" value="" placeholder="surname"></div>
-                          <div class="col-md-6"><label class="labels">Contact Number</label><input type="text" class="form-control" value="" placeholder="surname"></div>
-                      </div>
-                      <div class="row mt-3">
-                          <div class="col-md-6"><label class="labels">School</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                          <div class="col-md-6"><label class="labels">Course</label><input type="text" class="form-control" value="" placeholder="surname"></div>
-                      </div>
-
-                      <div class="row mt-3">
-                          <div class="col-md-6"><label class="labels">Year Graduated</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                          <div class="col-md-6"><label class="labels">Employment Status</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                      </div>
-                      <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="p-3 py-5">
-                      <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                      <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                      <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
-                  </div>
-              </div>
-          </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
 <script src="{% static '/js/user/profile.js' %}"></script>
-
-
-
 {% endblock %}

@@ -9724,11 +9724,11 @@ button.bg-dark:focus {
   font-style: italic !important;
 }
 
-.text-white {
+.text-black {
   color: #000;
 }
 
-.text-black {
+.text-white {
   color: white;
 }
 

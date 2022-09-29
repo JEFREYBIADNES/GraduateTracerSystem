@@ -1,89 +1,138 @@
 {% extends 'tracer/user/template.html'%}
 {% load static %}
 {% block content %}
+<link href="{% static 'css/Display.css' %}" rel="stylesheet">
+  <div class="sec-title">
+   <div class="pg-sub-title">Home</div>
+     <div class="pg-title">My Profile</div>
+   </div>
+<div class="container">
+ <div class="row">
+   <div class="col-md-4">
+<div class="profile-card-2"><img src="{{user.profile_picture.url}}" class="img img-responsive">
+<div class="profile-name">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
+<div class="profile-username">{{user.email}}</div>
+</div>
+</div>
 
+
+</div>
+<a href="{% url 'UpdateGradInfo' user.id %}" button class="button-24" role="button">Edit Profile</a>
+
+</div>
 <div class="container-fluid mt-0 h-100 ">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 mt-5 mb-5">
-            <div class="card pt-0 pr-0 pl-0 pb-2 bg-gradient-light ">
+
             <form method="POST" action="{% url 'DisplayGradInfo' %}">
                 {% csrf_token %}
-                    <div class="card-header bg-c-lite-green text-black ">
-                        <div class="row">
-                            <div class="col-lg-12 mt-2 ml-4 text-center profile-pic-div">
-                                <img class="img-profile rounded-circle shadow-sm" src="{{user.profile_picture.url}}" width=" 100" height="100" alt="User-Profile-Image" id="photo">
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-lg-8">
-                                <p class="pt-3">Email Address: {{user.email}}</p>
-                                <h6>Date Created: {{user.timestamp}}</h6>
-                            </div>
-                            <div class="col-lg-4">
-                              <div class="text-right pt-5">
-                                <a href="{% url 'UpdateGradInfo' user.id %}" button type="button" class="btn btn-outline-warning btn-sm text-dark "><i class="fas fa-user-edit"></i> Edit Information </a>
-                              </div>
-                            </div>
-                        </div>
+            <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                      <h6 class="mb-0">Name</h6>
                     </div>
-                    <div class="card-body pl-4">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p>Contact Number: {{user.contact_number}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p>Name: {{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
-                            </div>
-                            <div class="col-lg-7 ">
-                                <p>Course Graduated: {{user.course_type}}</p>
-                            </div>
-                            <div class="col-lg-7 ">
-                                <p>School: {{user.school}}</p>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p>Gender: {{user.gender}}</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p>Year Graduated: {{user.date_graduated}}</p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p>Birth Date: {{user.birth_date}}</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p>Job Description: {{user.job_description}}</p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p>Age: {{user.age}}</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p>Status: {{user.employment_status}}</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p>Address: {{user.address}}</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p>Skills: {{user.skill}}</p>
-                            </div>
-                        </div>
-
+                    <div class="col-sm-9 text-secondary">
+                     {{user.first_name}} {{user.middle_name}} {{user.last_name}}
                     </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.contact_number}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">ID Numbber</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.IDNum}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Age</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.age}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Gender</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.gender}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.address}}
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Course</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.course_type}}
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Status</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.employment_status}}
+                    </div>
+                  </div>
+                      <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Job Description</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.job_description}}
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Skill</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{user.skill}}
+                    </div>
+                  </div>
+
 
             </form>
             </div>
 
         </div>
-    </div>
 </div>
-    {% endblock %}
+
+{% endblock %}

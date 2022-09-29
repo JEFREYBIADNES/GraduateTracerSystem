@@ -9,6 +9,30 @@
   .th-w-10{
     width:10% !important;
   }
+  .btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  }
+
+  .btn2 {
+    background-color: white;
+    color: black;
+    border: 2px solid #0074ff;
+  }
+
+  .btn2:hover {
+    background-color: #1f3bd6;
+    color: white;
+  }
 </style>
 
 
@@ -28,7 +52,7 @@
         </div> -->
 
       <div class="align-self-end ml-auto">
-        <a href="{% url 'AddJobExperience'%}" class="btn btn-primary">Add Job Experience </a>
+        <a href="{% url 'AddJobExperience'%}" class="btn btn2">Add Job Experience </a>
       </div>
    </div>
 
@@ -61,11 +85,11 @@
                 <td style="white-space: nowrap">{{JobExperiences.description}}</td>
                 <td style="white-space: nowrap">{{JobExperiences.experienceStartDate}}</td>
                 <td style="white-space: nowrap">{{JobExperiences.experienceEndDate}}</td>
-                <td><a href ="{% url 'edit_experience' JobExperiences.id %}" title="Edit" class='fa fa-edit btn btn-success btn-sm'></a></td>
+                <td><a href ="{% url 'edit_experience' JobExperiences.id %}" title="Edit" class='fa fa-edit btn-success btn-sm'></a></td>
                 <td><a href="{% url 'delete_experience' JobExperiences.id %}" class="fas fa-trash-alt btn-danger btn-sm"></a></td>
               </tr>
               {% endfor %}
-            </tbody>  
+            </tbody>
         </table>
        </div>
       </div>
