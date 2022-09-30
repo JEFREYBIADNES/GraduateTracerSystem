@@ -49,3 +49,6 @@ body{
     z-index: 30;
     min-width: max-content;
 }
+ul#sidebnav-wrapper {
+    margin-top: 70px;
+}
