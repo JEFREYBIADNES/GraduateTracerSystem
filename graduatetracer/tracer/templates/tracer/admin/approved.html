@@ -1,88 +1,137 @@
-{% extends 'tracer/admin/template.html' %}
+{%  extends 'tracer/admin/template.html' %}
+{% load static %}
+{% load humanize %}
+
 {% block content %}
+<!-- Datatables -->
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 bg-c-lite-green">
-            <h6 class="m-0 font-weight-bold text-black">APPROVED ACCOUNTS</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="datatables" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th class="th-w-20" style="white-space: nowrap">ID Number</th>
-                            <th class="th-w-20" style="white-space: nowrap">Name</th>
-                            <th class="th-w-20" style="white-space: nowrap">Email</th>
-                            <th class="th-w-20" style="white-space: nowrap">School</th>
-                            <th class="th-w-20" style="white-space: nowrap">Course</th>
-                            <th class="th-w-20" style="white-space: nowrap">Date Graduated</th>
+  <style media="screen">
+    .none{
+      display:none;
+    }
 
-                        </tr>
-                    </thead>
+    .dataTables_wrapper{
+      z-index: 0;
+    }
+    .dataTables_length{
+      z-index: 2;
+    }
 
-                    <tbody>
-                      {% for gradAcct in gradAccts %}
-                        {% if gradAcct.approved %}
-                          {% if gradAcct.school == request.user.school %}
-                            <tr>
-                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.IDNum}}</td>
-                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.first_name}} {{gradAcct.middle_name}} {{gradAcct.last_name}}</td>
-                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.email}}</td>
-                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.school}}</td>
-                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.course_type}}</td>
-                                <td class="th-w-20" style="white-space: nowrap">{{gradAcct.date_graduated}}</td>
-                            </tr>
-                          {% endif %}
-                        {% endif %}
-                      {% endfor %}
-                    </tbody>
+    .dropdown-filter{
+      top: 33px !important;
+      position: relative;
+      z-index: 1;
+    }
 
-                </table>
+    .dataTables_length{
+      padding-bottom: 10px;
+    }
 
-            </div>
-        </div>
-    </div>
+    label {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .th-w-20{
+      width:20% !important;
+    }
+    .th-w-10{
+      width:10% !important;
+    }
+  </style>
+  <!-- End -->
+  <div class="card-header py-3 bg-c-lite-green">
+      <h6 class="m-0 font-weight-bold text-black">APPROVED ACCOUNTS</h6>
+  </div>
+<div class="container-fluid bg-white pr-4 pl-4 pb-2">
+    <table id="jobs" class="display table table-bordered table-responsive w-100">
+        <thead>
+            <tr>
+              <th class="th-w-20" style="white-space: nowrap">ID Number</th>
+              <th class="th-w-20" style="white-space: nowrap">Name</th>
+              <th class="th-w-20" style="white-space: nowrap">Email</th>
+              <th class="th-w-20" style="white-space: nowrap">School</th>
+              <th class="th-w-20" style="white-space: nowrap">Employment Status</th>
+              <th class="th-w-20" style="white-space: nowrap">Course</th>
+              <th class="th-w-20" style="white-space: nowrap">Date Graduated</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for gradAcct in gradAccts %}
+              {% if gradAcct.pending %}
+                {% if gradAcct.school == request.user.school %}
+            <tr>
+              <td class="th-w-20" style="white-space: nowrap">
+                  {{gradAcct.IDNum}}
+              </td>
+                <td class="th-w-20" style="white-space: nowrap">
+                  {{gradAcct.first_name}} {{gradAcct.middle_name}} {{gradAcct.last_name}}
+                </td>
+                <td class="th-w-20" style="white-space: nowrap">
+                  {{gradAcct.email}}
+                </td>
+                <td class="th-w-20" style="white-space: nowrap">
+                  {{gradAcct.school}}
+                </td>
+                <td class="th-w-20" style="white-space: nowrap">
+                    {{gradAcct.employment_status}}
+                </td>
+                <td class="th-w-20" style="white-space: nowrap">
+                    {{gradAcct.course_type}}
+                </td>
+                <td class="th-w-20" style="white-space: nowrap">
+                  {{gradAcct.date_graduated}}
+                </td>
+            </tr>
+            {% endif %}
+        {% endif %}
+      {% endfor %}
+      </tbody>
+  </table>
 </div>
 
-<!-- /.container-fluid -->
 
+<!-- Datatables -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 
-<!-- End of Main Content -->
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+  {% for message in messages %}
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '{{message}}',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  {% endfor %}
+</script>
 
+<script>
+  $(document).ready(function() {
+    var table = $('#jobs').DataTable( {
+      stateSave: false,
+      "ordering": true,
+      "columnDefs" : [{"targets":3, "type":"date-eu"}],
+      order: [],
 
+    } );
+    $('#query0').on('change', function(){
+       table.columns(0).search(this.value).draw();
+    });
+    $('#query1').on('change', function(){
+       table.columns(4).search(this.value).draw();
+    });
+    $('#query2').on('change', function(){
+       table.columns(5).search(this.value).draw();
+    });
+} );
+</script>
 
-<!-- End of Content Wrapper -->
-
-
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Logout</a>
-            </div>
-        </div>
-    </div>
-
-</div>
 {% endblock %}

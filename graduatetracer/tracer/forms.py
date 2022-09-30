@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 User = get_user_model()
+SystemUser = get_user_model()
 
 
 class UserAdminCreationForm(forms.ModelForm):
@@ -17,10 +18,10 @@ class UserAdminCreationForm(forms.ModelForm):
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('profile_picture',
                   'email',
-                  'IDNum',
+                  'IDNum',       
                   'first_name',
                   'middle_name',
                   'last_name',
@@ -49,8 +50,8 @@ class UserAdminCreationForm(forms.ModelForm):
                   'sanfranciscoCampus',
                   'tuburanCampus',
                   'user_type',
-                  'admin_sao',
-                  'system_admin',
+                  'admin_sao', 'graduate',
+                  'system_admin','dean','campus_director','university_pres',
                   'job_description',
                   'skill',
                   'employment_status',
@@ -88,7 +89,7 @@ class UserAdminChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('profile_picture',
                   'IDNum',
                   'first_name',
@@ -118,7 +119,7 @@ class UserAdminChangeForm(forms.ModelForm):
                   'sanfernandoExt',
                   'sanfranciscoCampus',
                   'tuburanCampus',
-                  'user_type', 'admin_sao', 'system_admin',
+                  'user_type', 'graduate', 'admin_sao', 'system_admin','dean','campus_director','university_pres',
                   'job_description',
                   'skill',
                   'employment_status',
@@ -198,7 +199,6 @@ class RegisterForm(forms.ModelForm):
                    'last_name': forms.TextInput(attrs={'class': 'form-control'}),
                    'course_type': forms.Select(attrs={'class': 'form-control'}),
                    'school': forms.Select(attrs={'class': 'form-control'}),
-                   'user_type': forms.Select(attrs={'class': 'form-control'}),
                    'date_graduated': forms.Select(attrs={'class': 'form-control'}),
                    'employment_status': forms.Select(attrs={'class': 'form-control'}),
                    'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
@@ -230,17 +230,16 @@ class RegisterAdminForm(forms.ModelForm):
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
-
     password1 = forms.CharField(
         label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('email', 'first_name', 'middle_name', 'last_name',
-                   'school', 'password1', 'password2', 'user_type',
-                   'admin_sao', 'system_admin',
+                   'school', 'password1', 'password2','user_type',
+                   'admin_sao', 'system_admin','dean','campus_director','university_pres',
                    'argaoCampus',
                    'bariliCampus',
                    'carmenCampus',

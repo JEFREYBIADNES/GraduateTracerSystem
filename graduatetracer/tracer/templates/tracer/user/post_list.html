@@ -1,6 +1,6 @@
 {% extends 'tracer/user/template.html' %}
 {% load crispy_forms_tags %}
-
+{% load static %}
 {% block content %}
 
 <div class="row">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-        </div>
+        	</div>
         </div>
     </div>
     <div class="row mt-3 w-100 m-auto">
@@ -92,22 +92,110 @@
         </div>
             <div class="col-lg-3">
                 <div class="row justify-content-center  text-content" style="height:100% !important; padding-bottom:none !important;">
-                    <ul class=" bg-gradient-light sidebar sidebar-dark accordion" id="sidebnav-wrapper" style="height:100% !important; text-color:black;" >
+                    <ul class="w-100 bg-gradient-light sidebar sidebar-dark accordion" id="sidebnav-wrapper" style="height:100% !important; text-color:black;" >
                         <div class="body">
                             <li class="sidnav-brand">
                                 <strong>YOUR FRIENDS</strong>
-                                <li>example rani</li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{% url 'friendlist' %}">
-                                        <img class="img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
-                                        <span>Dashboard</span></a>
-                                </li>
-                            </li>
+																{% for grad_info in grad_infos %}
+														      {% if grad_info.approved %}
+														        {% if grad_info.email != request.user.email %}
+			                                <li class="nav-item active">
+			                                    <a class="nav-link">
+																						<img class="img-profile rounded-circle shadow-sm" data-toggle="modal" data-target=".bd-example-modal-lg1" src="{{grad_info.profile_picture.url}} " width=" 50" height="50" alt="User-Profile-Image">
+			                                        <span class="mr-2 d-none d-lg-inline text-gray-700 small" data-toggle="modal" data-target=".bd-example-modal-lg1"><strong>{{grad_info.email}}</strong></span>
+																					</a>
+			                                </li>
+																		{% endif %}
+																{% endif %}
+															{% endfor %}
                         </div>
                     </ul>
                 </div>
             </div>
 
-    </div>
+						<!-- basic modal -->
+						<div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+														<form method="POST" action="">
+															{% csrf_token %}
+															<div class="card-header bg-c-lite-green text-white">
+
+																<div class="row">
+																		{% if users_info.profile_picture %}
+																			<div class="col-lg-2">
+																				<img class="img-profile rounded-circle shadow-sm" src="{{user_info.profile_picture.url}}" width=" 50" height="50" alt="User-Profile-Image">
+																			</div>
+																		{% endif %}
+																		<div class="col-lg-10">
+																			<p class="pt-3">{{grad_info.first_name}} {{grad_info.middle_name}} {{grad_info.last_name}}</p>
+																		</div>
+
+																</div>
+															</div>
+															<div class="card-body">
+																{% for grad_info in grad_infos %}
+														      {% if grad_info.approved %}
+														        {% if grad_info.email != request.user.email %}
+																			<div class="row">
+																				<div class="col-lg-12">
+																					<p>Email Address: {{grad_info.email}}</p>
+																				</div>
+																			</div>
+
+																				<div class="row">
+																					<div class="col-lg-6">
+																						<p>Address: {{grad_info.address}}</p>
+																					</div>
+																					<div class="col-lg-6">
+																						<p>Contact Number: {{grad_info.contactnum}}</p>
+																					</div>
+																				</div>
+																				<div class="row">
+																					<div class="col-lg-6">
+																						<p>Birth Date: {{grad_info.bdate}}</p>
+																					</div>
+																					<div class="col-lg-6">
+																						<p>Age: {{grad_info.age}}</p>
+																					</div>
+																				</div>
+																				<div class="row">
+																					<div class="col-lg-6">
+																						<p>Gender: {{grad_info.gender}}</p>
+																					</div>
+																					<div class="col-lg-6">
+																						<p>Year Graduated: {{grad_info.year_graduated}}</p>
+																					</div>
+																				</div>
+																				<div class="row">
+																					<div class="col-lg-6">
+																						<p>Skills: {{grad_info.skill}}</p>
+																					</div>
+																					<div class="col-lg-6">
+																						<p>Job Description: {{grad_info.job_description}}</p>
+																					</div>
+
+																				</div>
+																				<div class="row">
+																					<div class="col-lg-6">
+																						<p>Work Experiences: {{grad_info.workExperiences}}</p>
+																					</div>
+																					<div class="col-lg-6">
+																						<p></p>
+																					</div>
+
+																				</div>
+																				<div class="modal-footer">
+																        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+																      </div>
+																		</div>
+																	{% endif %}
+																{% endif %}
+															{% endfor %}
+															</form>
+													</div>
+
+                </div>
+        	</div>
 </div>
 {% endblock content %}

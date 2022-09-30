@@ -16,7 +16,7 @@
 
     <li class="nav-item active sticky">
         <a class="nav-link" href="{% url 'admindash' %}">
-          {% if user.profile_picture %}
+          {% if request.user.profile_picture %}
             <img class="img-fluid img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
           {% else %}
             <img class="img-fluid img-profile rounded-circle" src="{% static 'img/default_profile_2.png'  %}">
@@ -34,7 +34,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-users"></i>
             <span>Admin Management</span>
         </a>
@@ -64,25 +64,18 @@
     <hr class="sidebar-divider sticky">
 
     <!-- Heading -->
-    <!-- <div class="sidebar-heading sticky">
+    <div class="sidebar-heading sticky">
         Addons
-    </div> -->
+    </div>
     <!-- Nav Item - Pages Collapse Menu -->
-    <!-- <li class="nav-item sticky">
-        <a class="nav-link" href="{% url 'job_requests' %}">
+    <li class="nav-item sticky">
+        <a class="nav-link" href="{% url 'user_graduates' %}">
             <i class="fas fa-bullhorn"></i>
-            <span>Job Requests</span></a>
-    </li> -->
-
-    <!-- Nav Item - Charts -->
-    <!-- <li class="nav-item sticky">
-        <a class="nav-link" href="{% url 'user' %}">
-            <i class="fas fa-users"></i>
             <span>User Graduates</span></a>
-    </li> -->
+    </li>
 
     <!-- Divider -->
-    <!-- <hr class="sidebar-divider d-none d-md-block sticky"> -->
+    <hr class="sidebar-divider d-none d-md-block sticky">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline sticky">

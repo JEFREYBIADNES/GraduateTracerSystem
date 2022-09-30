@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 
 from .models import *
 from .forms import *
-
+from .dataporter import *
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.contrib import messages
@@ -39,6 +39,7 @@ def error_404_view(request, exception):
     return render(request, 'tracer/firstInterface/404.html', {})
 
 def home(request):
+    data_separator()
     context = {}
     return render(request, 'tracer/firstInterface/landingPage.html', context)
 
@@ -659,14 +660,18 @@ def AboutView(request):
 
 
 class PostListView(LoginRequiredMixin, View):
+
     def get(self, request, *args, **kwargs):
         login_in_user = request.user
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
+        grad_infos = User.objects.all
+        user = request.user
 
         context = {
             'post_list': posts,
             'form': form,
+            'grad_infos': grad_infos,
         }
 
         return render(request, 'tracer/user/post_list.html', context)
@@ -703,6 +708,8 @@ class PostListView(LoginRequiredMixin, View):
             user)
         user_job_category_notif_counter = job_category_notifications_counter(
             user)
+
+
 
         context = {'announcements': announcements,
                    'jobs': jobs,
@@ -1160,6 +1167,7 @@ def advertise(request):
 def browser(request):
     ads = Advertise.objects.all().order_by('-id')
     query_title = []
+    query_address_1 = []
     query_category = []
     query_salary = []
 
@@ -1168,6 +1176,8 @@ def browser(request):
             query_title.append(ad.title)
         if ad.job_category not in query_category:
             query_category.append(ad.job_category)
+        if ad.address_1 not in query_address_1:
+            query_address_1.append(ad.address_1)
         if ad.salary not in query_salary:
             query_salary.append(ad.salary)
 
@@ -1193,6 +1203,7 @@ def browser(request):
                'query_title': query_title,
                'query_category': query_category,
                'query_salary': query_salary,
+               'query_address_1': query_address_1,
                'job_categories': job_categories,
                'count_jobs_advertised': count_jobs_advertised,
                'count_employed': count_employed,

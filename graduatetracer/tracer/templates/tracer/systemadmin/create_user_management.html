@@ -55,22 +55,22 @@
 
               {% render_field adform.school class="form-control" onchange="School()" id="id_school" %}
 
-              {% render_field adform.argaoCampus style="display:none;" %}
-              {% render_field adform.bariliCampus style="display:none;" %}
-              {% render_field adform.carmenCampus style="display:none;" %}
-              {% render_field adform.CCMECampus style="display:none;"%}
-              {% render_field adform.daanbantayanCampus style="display:none;"%}
-              {% render_field adform.danaoCampus style="display:none;"%}
-              {% render_field adform.dumanjugExt style="display:none;"%}
-              {% render_field adform.ginatilanExt style="display:none;"%}
-              {% render_field adform.mainCampus style="display:none;"%}
-              {% render_field adform.moalboalCampus style="display:none;"%}
-              {% render_field adform.nagaExt style="display:none;"%}
-              {% render_field adform.oslobExt style="display:none;"%}
-              {% render_field adform.pinamungajanExt style="display:none;"%}
-              {% render_field adform.sanfernandoExt style="display:none;"%}
-              {% render_field adform.sanfranciscoCampus style="display:none;"%}
-              {% render_field adform.tuburanCampus style="display:none;"%}
+              {% render_field adform.argaoCampus  style="display:none;" %}
+              {% render_field adform.bariliCampus  style="display:none;" %}
+              {% render_field adform.carmenCampus  style="display:none;" %}
+              {% render_field adform.CCMECampus style="display:none;" %}
+              {% render_field adform.daanbantayanCampus style="display:none;" %}
+              {% render_field adform.danaoCampus style="display:none;" %}
+              {% render_field adform.dumanjugExt style="display:none;" %}
+              {% render_field adform.ginatilanExt style="display:none;" %}
+              {% render_field adform.mainCampus style="display:none;" %}
+              {% render_field adform.moalboalCampus style="display:none;" %}
+              {% render_field adform.nagaExt style="display:none;" %}
+              {% render_field adform.oslobExt style="display:none;" %}
+              {% render_field adform.pinamungajanExt style="display:none;" %}
+              {% render_field adform.sanfernandoExt style="display:none;" %}
+              {% render_field adform.sanfranciscoCampus style="display:none;" %}
+              {% render_field adform.tuburanCampus style="display:none;" %}
             </div>
           </div>
           <div class="row g-3">
@@ -79,8 +79,11 @@
 
               {% render_field adform.user_type class="form-control" onchange="User_Type()" id="id_user_type" %}
 
-              {% render_field adform.admin_sao style="display:none;"%}
-              {% render_field adform.approver_admin style="display:none;"%}
+              {% render_field adform.admin_sao  style="display:none;" %}
+              {% render_field adform.system_admin  style="display:none;" %}
+              {% render_field adform.dean  style="display:none;" %}
+              {% render_field adform.campus_director  style="display:none;" %}
+              {% render_field adform.university_pres  style="display:none;" %}
             </div>
           </div>
           <div class="row g-3">
@@ -131,8 +134,8 @@
   		}
       function User_Type() {
   		  var user_type_value = document.getElementById("id_user_type").value;
-  		  const array_of_user_type_value = ["AdminSao","AdminAppprover"];
-        const array_of_user_type_id = ["id_admin_sao","id_approver_admin"];
+  		  const array_of_user_type_value = ["AdminSao","SystemAdmin", "DEAN", "Campus Director", "University President"];
+        const array_of_user_type_id = ["id_admin_sao","id_system_admin", "id_dean", "id_campus_director", "id_university_pres"];
   		  var i = 0;
   			while(i != array_of_user_type_value.length){
   		    	if(i != array_of_user_type_value.length){
