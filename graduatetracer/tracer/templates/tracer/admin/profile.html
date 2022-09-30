@@ -18,8 +18,13 @@
         <div class="row mb-4">
           <div class="col-lg-5 mt-4 mb-4">
             <div class="col-lg-12 mt-4 image-field">
+<<<<<<< HEAD
               {% if user_info.profile_picture %}
                 <img class="img-custom-border" src="{{request.user.profile_picture.url}}" id="photo">
+=======
+              {% if user.profile_picture %}
+                <img class="img-fluid img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
+>>>>>>> 9eac8e2bb04836d46d870d0efe240b37386e39db
               {% else %}
                 <img class="img-fluid img-profile rounded-circle" src="{% static 'img/default_profile_2.png'  %}">
               {% endif %}

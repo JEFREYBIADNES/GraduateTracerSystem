@@ -9724,11 +9724,11 @@ button.bg-dark:focus {
   font-style: italic !important;
 }
 
-.text-white {
+.text-black {
   color: #000;
 }
 
-.text-black {
+.text-white {
   color: white;
 }
 
@@ -10065,8 +10065,17 @@ a:focus {
 }
 
 .bg-gradient-warning {
+<<<<<<< HEAD
   background-color: whitesmoke;
+=======
+   background-color: whitesmoke;
+>>>>>>> 9eac8e2bb04836d46d870d0efe240b37386e39db
    background-size: cover;
+}
+
+.bg-c-tile {
+  background-color: #f77d2c;
+  background: linear-gradient(to right, #ffa82d, #e65a5a)
 }
 
 .bg-gradient-danger {

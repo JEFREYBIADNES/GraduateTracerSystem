@@ -21,7 +21,7 @@ class UserAdminCreationForm(forms.ModelForm):
         model = SystemUser
         fields = ('profile_picture',
                   'email',
-                  'IDNum',       
+                  'IDNum',
                   'first_name',
                   'middle_name',
                   'last_name',
@@ -52,6 +52,7 @@ class UserAdminCreationForm(forms.ModelForm):
                   'user_type',
                   'admin_sao', 'graduate',
                   'system_admin','dean','campus_director','university_pres',
+
                   'job_description',
                   'skill',
                   'employment_status',
@@ -119,7 +120,9 @@ class UserAdminChangeForm(forms.ModelForm):
                   'sanfernandoExt',
                   'sanfranciscoCampus',
                   'tuburanCampus',
+
                   'user_type', 'graduate', 'admin_sao', 'system_admin','dean','campus_director','university_pres',
+
                   'job_description',
                   'skill',
                   'employment_status',
@@ -238,8 +241,10 @@ class RegisterAdminForm(forms.ModelForm):
     class Meta:
         model = SystemUser
         fields = ('email', 'first_name', 'middle_name', 'last_name',
+
                    'school', 'password1', 'password2','user_type',
                    'admin_sao', 'system_admin','dean','campus_director','university_pres',
+
                    'argaoCampus',
                    'bariliCampus',
                    'carmenCampus',

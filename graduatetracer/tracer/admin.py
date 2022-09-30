@@ -62,8 +62,10 @@ class UserAdmin(BaseUserAdmin):
                                  'sanfranciscoCampus',
                                  'tuburanCampus',)}),
         ('Permissions', {'fields': ('admin', 'staff', 'is_active')}),
+
         ('Types of User', {'fields': ('user_type','graduate', 'admin_sao','system_admin','dean','campus_director','university_pres')}),
         ('Graduate Status', {'fields': ('employment_status','employed', 'unemployed')}),
+
 
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin

@@ -36,7 +36,9 @@ class UserManager(BaseUserManager):
                     is_employed=False,
                     is_unemployed=False,
                     is_staff=False, is_admin=False, is_active=True,
+
                     is_graduate=False, is_system_admin=False, is_admin_sao=False,is_dean=False,is_campus_director=False,is_university_pres=False):
+
         if not email:
             raise ValueError("Users must have an email address")
         if not password:
@@ -62,10 +64,10 @@ class UserManager(BaseUserManager):
 
         user_obj.system_admin = is_system_admin
         user_obj.admin_sao = is_admin_sao
+
         user_obj.dean = is_dean
         user_obj.campus_director = is_campus_director
         user_obj.university_pres = is_university_pres
-
         user_obj.argaoCampus = is_argaoCampus
         user_obj.bariliCampus = is_bariliCampus
         user_obj.carmenCampus = is_carmenCampus
@@ -327,6 +329,10 @@ class User(AbstractBaseUser):
     sanfranciscoCampus= models.BooleanField(default=False)
     tuburanCampus= models.BooleanField(default=False)
 
+    graduate = models.BooleanField(default=False)
+    admin_sao = models.BooleanField(default=False)
+    system_admin = models.BooleanField(default=False)
+
     pending = models.BooleanField(default=True)
     approved = models.BooleanField(default=False)
 
@@ -419,6 +425,7 @@ class User(AbstractBaseUser):
     @property
     def is_system_admin(self):
         return self.system_admin
+
     @property
     def is_dean(self):
         return self.dean
@@ -430,6 +437,7 @@ class User(AbstractBaseUser):
     @property
     def is_university_pres(self):
         return self.university_pres
+
 
     @property
     def is_staff(self):

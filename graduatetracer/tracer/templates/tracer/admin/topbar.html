@@ -1,5 +1,9 @@
 {% load humanize %}
 {% load static %}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9eac8e2bb04836d46d870d0efe240b37386e39db
 <style>
   .custom-badge{
     font-size:90%;
@@ -23,6 +27,7 @@
 
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
+<<<<<<< HEAD
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</span>
@@ -32,6 +37,17 @@
                   <img class="img-profile rounded-circle" src="{% static 'img/default_profile_2.png'  %}">
                 {% endif %}
             </a>
+=======
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</span>
+                  {% if user.profile_picture %}
+                    <img class="img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
+                  {% else %}
+                    <img class="img-profile rounded-circle" src="{% static 'img/default_profile_2.png'  %}">
+                  {% endif %}
+              </a>
+>>>>>>> 9eac8e2bb04836d46d870d0efe240b37386e39db
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                   aria-labelledby="userDropdown">
