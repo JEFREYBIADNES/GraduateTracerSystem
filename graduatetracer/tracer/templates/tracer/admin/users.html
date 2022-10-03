@@ -44,7 +44,7 @@
   </style>
   <!-- End -->
   <div class="card-header py-3 bg-c-lite-green">
-      <h6 class="m-0 font-weight-bold text-black">User Graduates</h6>
+      <h6 class="m-0 font-weight-bold text-white">USER GRADUATES</h6>
   </div>
 <div class="container-fluid bg-white pr-4 pl-4 pb-2">
     <table id="jobs" class="display table table-bordered table-responsive w-100">
@@ -62,7 +62,7 @@
         </thead>
         <tbody>
           {% for user_info in user_infos %}
-              {% if user_info.pending %}
+              {% if user_info.approved %}
                 {% if user_info.school == request.user.school %}
                 <tr>
                   <td class="th-w-20" style="white-space: nowrap">

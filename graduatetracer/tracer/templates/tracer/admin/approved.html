@@ -44,7 +44,7 @@
   </style>
   <!-- End -->
   <div class="card-header py-3 bg-c-lite-green">
-      <h6 class="m-0 font-weight-bold text-black">APPROVED ACCOUNTS</h6>
+      <h6 class="m-0 font-weight-bold text-white">APPROVED ACCOUNTS</h6>
   </div>
 <div class="container-fluid bg-white pr-4 pl-4 pb-2">
     <table id="jobs" class="display table table-bordered table-responsive w-100">
@@ -61,7 +61,7 @@
         </thead>
         <tbody>
           {% for gradAcct in gradAccts %}
-              {% if gradAcct.pending %}
+              {% if gradAcct.approved %}
                 {% if gradAcct.school == request.user.school %}
             <tr>
               <td class="th-w-20" style="white-space: nowrap">

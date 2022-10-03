@@ -111,6 +111,12 @@ def user_graduates(request):
                 }
     return render(request, 'tracer/adminreal/user_graduates.html', context)
 
+def usergrad_informations(request, pk):
+    user_info = User.objects.get(id=pk)
+
+    context = {'user_info': user_info}
+    return render(request, 'tracer/adminreal/usergrad_info.html', context)
+
 def adprof(request, pk):
     user = User.objects.get(id=pk)
     user_info = ProfileForm(instance=user)
