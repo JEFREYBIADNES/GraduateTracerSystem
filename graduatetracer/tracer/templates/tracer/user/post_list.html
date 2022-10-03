@@ -101,8 +101,8 @@
 														        {% if grad_info.email != request.user.email %}
 			                                <li class="nav-item active">
 			                                    <a class="nav-link">
-																						<img class="img-profile rounded-circle shadow-sm" data-toggle="modal" data-target=".bd-example-modal-lg1" src="{{grad_info.profile_picture.url}} " width=" 50" height="50" alt="User-Profile-Image">
-			                                        <span class="mr-2 d-none d-lg-inline text-gray-700 small" data-toggle="modal" data-target=".bd-example-modal-lg1"><strong>{{grad_info.email}}</strong></span>
+																						<img class="img-profile rounded-circle shadow-sm" src="{{grad_info.profile_picture.url}} " width=" 50" height="50" alt="User-Profile-Image">
+			                                        <span id="{{ grad_info.id}}" class="mr-2 d-none d-lg-inline text-gray-700 small" data-toggle="modal" data-target=".bd-example-modal-lg1"><strong>{{grad_info.email}}</strong></span>
 																					</a>
 			                                </li>
 																		{% endif %}
@@ -114,7 +114,7 @@
             </div>
 
 						<!-- basic modal -->
-						<div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div id="{{ grad_info.id}}" class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
 														<form method="POST" action="">
