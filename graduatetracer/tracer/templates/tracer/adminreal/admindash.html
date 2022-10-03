@@ -4,8 +4,18 @@
 {% load widget_tweaks %}
 
 {% block content %}
+<style>
+      div.sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      padding: 50px;
+      font-size: 20px;
+    }
 
-      <div class="row">
+</style>
+
+      <div style="margin-top: 100px;" class="row">
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-info shadow-sm h-100 py-2">
                 <div class="card-body">
@@ -110,9 +120,7 @@
                       <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
                           src="{% static 'img/visualizer.svg'  %}" alt="Dashboard-Visualizer">
                   </div>
-                  <p>Recommender System aims to lessen unemployment among college graduates with its
-                     easy to navigate features and wide array of available jobs ranging from information
-                     technology to industrial technology related work.</p>
+
 
                   <p>Hunting for jobs has never been this easy. No more transportation costs
                     and walking under the heat of the sun to look for companies looking for
@@ -123,7 +131,6 @@
               </div>
           </div>
         </div>
-
             <!-- Voting System -->
             <div class="col-lx-6 col-lg-6">
                 <!-- Help -->
@@ -132,24 +139,9 @@
                         <h6 class="m-0 font-weight-bold text-black"><i class="mr-2 fas fa-question-circle"></i>Guide</h6>
                     </div>
                     <div class="card-body">
-                      <p>To help lessen unemployment among college graduates, you can give them job opportunities
-                        by adding available jobs at <a target="_blank" rel="nofollow" href="{% url 'advertise' %}">advertise</a> and
-                        to view all the jobs available you can view it on <a target="_blank" rel="nofollow" href="{% url 'browser' %}">browse</a> jobs.
-                        You can also view the preferred jobs of graduates in <a target="_blank" rel="nofollow" href="#">job requests</a>.</p>
-                        POST and GET /<a target="_blank" rel="nofollow" href="{% url 'advertise' %}"> Advertise </a>and
-                        <a target="_blank" rel="nofollow" href="{% url 'browser' %}"> Browse Jobs &rarr;</a> <br>
-                        Graduates<a target="_blank" rel="nofollow" href="{% url 'job_requests' %}"> Job Requests &rarr;</a>
+                    
                     </div>
                 </div>
             </div>
-
           </div>
-
-
-
-
-
-
-
-
 {% endblock %}
