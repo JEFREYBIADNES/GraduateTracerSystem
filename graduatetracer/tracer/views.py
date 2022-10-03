@@ -140,7 +140,6 @@ def DashboardUser(request):
 def available_jobs(request):
     ads = Advertise.objects.all().order_by('-id')
     query_title = []
-    query_address_1 = []
     query_category = []
     query_salary = []
 
@@ -149,8 +148,6 @@ def available_jobs(request):
             query_title.append(ad.title)
         if ad.job_category not in query_category:
             query_category.append(ad.job_category)
-        if ad.address_1 not in query_address_1:
-            query_address_1.append(ad.address_1)
         if ad.salary not in query_salary:
             query_salary.append(ad.salary)
 
@@ -176,7 +173,6 @@ def available_jobs(request):
                'query_title': query_title,
                'query_category': query_category,
                'query_salary': query_salary,
-               'query_address_1': query_address_1,
                'job_categories': job_categories,
                'count_jobs_advertised': count_jobs_advertised,
                'count_employed': count_employed,
