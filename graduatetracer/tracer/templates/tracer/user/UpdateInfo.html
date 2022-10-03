@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<style>
+<!--<style>
     .profile-pic-div {
         float: right;
         max-height: 200px;
@@ -41,7 +41,7 @@
     display: none!important
     }
 
-</style>
+</style>-->
 
 <div class="container-fluid">
   <div class="row d-flex justify-content-center">
@@ -128,13 +128,13 @@
 
                   <div class="col-md-12 pb-3">
                     <label class="labels">Course</label>
-                    {% render_field grad_info.course_type class="form-control" disabled="disabled" %}
+                    {{ grad_info.course_type }}
                   </div>
                   <br>
 
                   <div class="col-md-12 pb-3">
                     <label class="labels">School</label>
-                    {% render_field grad_info.school class="form-control" disabled="disabled" %}
+                   {{grad_info.school}}
                   </div>
                   <br>
 
