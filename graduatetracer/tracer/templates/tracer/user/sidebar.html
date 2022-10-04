@@ -1,112 +1,115 @@
 {% load static %}
-<ul class="navbar-nav bg-c-lite-green sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'DashboardUser' %}">
-      <div class="sidebar-brand-icon">
-        <img class= "w3-round" src="{% static 'img/GradTracerLogo.png' %}" style="width: 85px; height:75px;">
-      </div>
-    </a>
+<div class="sidebar">
+  <ul style="position: sticky; z-index: 2; top: 0;" class="navbar-nav bg-c-lite-green sidebar sidebar-dark accordion " id="accordionSidebar">
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link" id="{% url 'DashboardUser' %}" href="{% url 'DashboardUser' %}">
-        {% if user.profile_picture %}
-          <img class="img-fluid img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
-        {% else %}
-          <img class="img-fluid img-profile rounded-circle" src="{% static 'img/default_profile_2.png'  %}">
-        {% endif %}
-        <span>Dashboard</span>
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'DashboardUser' %}">
+        <div class="sidebar-brand-icon">
+          <img class= "w3-round" src="{% static 'img/GradTracerLogo.png' %}" style="width: 85px; height:75px;">
+        </div>
       </a>
-    </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Heading -->
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-      <a class="nav-link" id="{% url 'available_jobs' %}" href="{% url 'available_jobs' %}">
-        <i id="jobs_available_icon" class="fa fa-ad"></i>
-        <span>Jobs available</span>
-      </a>
-    </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" id="{% url 'DashboardUser' %}" href="{% url 'DashboardUser' %}">
+          {% if user.profile_picture %}
+            <img class="img-fluid img-profile rounded-circle" src="{{request.user.profile_picture.url}}">
+          {% else %}
+            <img class="img-fluid img-profile rounded-circle" src="{% static 'img/default_profile_2.png'  %}">
+          {% endif %}
+          <span>Dashboard</span>
+        </a>
+      </li>
 
-    <!-- <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSideNav1"
-              aria-expanded="true" aria-controls="collapseSideNav1">
-              <i class="fa fa-user"></i>
-              <span>Personal Info</span>
-          </a>
-          <div id="collapseSideNav1" class="collapse" aria-labelledby="headingTwo" data-parent=>
-              <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item" href="{% url 'DisplayGradInfo' %}">
-                    <i class="fas fa-user-graduate"></i> View</a>
-              </div>
-          </div>
-    </li> -->
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
 
-    <li class="nav-item">
-      <a class="nav-link" id="{% url 'HomeJobExperience' %}" href="{% url 'HomeJobExperience' %}">
-        <i id="job_experience_icon" class="fas fa-user-edit"></i>
-        <span>Job Experiences</span>
-      </a>
-    </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" id="{% url 'available_jobs' %}" href="{% url 'available_jobs' %}">
+          <i id="jobs_available_icon" class="fa fa-ad"></i>
+          <span>Jobs available</span>
+        </a>
+      </li>
 
-    <hr class="sidebar-divider">
-
-    <li class="nav-item">
-      <a class="nav-link" id="{% url 'post-list' %}" href="{% url 'post-list' %}">
-        <i id="news_feed_icon" class="fa fa-comments"></i>
-        <span>News Feeds</span>
-      </a>
-    </li>
-
-    <hr class="sidebar-divider">
-
-    <li class="nav-item">
-      <a class="nav-link" id="{% url 'friendlist' %}" href="{% url 'friendlist' %}">
-        <i id="friend_list_icon" class="fas fa-users"></i>
-        <span>Friends</span>
-      </a>
-    </li>
-
-       <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-              <i class="fas fa-users"></i>
-              <span>Friends</span>
-          </a>
-          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                  <h6 class="collapse-header">You May See:</h6>
-                  <a class="collapse-item" href="{% url 'friendlist' %}">
-                    <i class="fa fa-th-list"></i> Friends List</a>
-              </div>
-          </div>
+      <!-- <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSideNav1"
+                aria-expanded="true" aria-controls="collapseSideNav1">
+                <i class="fa fa-user"></i>
+                <span>Personal Info</span>
+            </a>
+            <div id="collapseSideNav1" class="collapse" aria-labelledby="headingTwo" data-parent=>
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{% url 'DisplayGradInfo' %}">
+                      <i class="fas fa-user-graduate"></i> View</a>
+                </div>
+            </div>
       </li> -->
 
-      <!-- <hr class="sidebar-divider"> -->
+      <li class="nav-item">
+        <a class="nav-link" id="{% url 'HomeJobExperience' %}" href="{% url 'HomeJobExperience' %}">
+          <i id="job_experience_icon" class="fas fa-user-edit"></i>
+          <span>Job Experiences</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" id="{% url 'post-list' %}" href="{% url 'post-list' %}">
+          <i id="news_feed_icon" class="fa fa-comments"></i>
+          <span>News Feeds</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" id="{% url 'friendlist' %}" href="{% url 'friendlist' %}">
+          <i id="friend_list_icon" class="fas fa-users"></i>
+          <span>Friends</span>
+        </a>
+      </li>
+
+         <!-- <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-users"></i>
+                <span>Friends</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">You May See:</h6>
+                    <a class="collapse-item" href="{% url 'friendlist' %}">
+                      <i class="fa fa-th-list"></i> Friends List</a>
+                </div>
+            </div>
+        </li> -->
+
+        <!-- <hr class="sidebar-divider"> -->
 
 
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-      <a class="nav-link" id="{% url 'about' %}" href="{% url 'about' %}">
-        <i id="about_icon" class="fa fa-info-circle"></i>
-        <span>About</span>
-      </a>
-    </li>
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" id="{% url 'about' %}" href="{% url 'about' %}">
+          <i id="about_icon" class="fa fa-info-circle"></i>
+          <span>About</span>
+        </a>
+      </li>
 
 
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-</ul>
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+  </ul>
+</div>

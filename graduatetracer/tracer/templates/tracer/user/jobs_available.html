@@ -314,7 +314,7 @@
     var table = $('#jobs').DataTable( {
       stateSave: false,
       "ordering": true,
-      "columnDefs" : [{"targets":3, "type":"date-eu"}],
+      "columnDefs" : [{"targets":4, "type":"date-eu"}],
       order: [],
 
     } );
@@ -326,6 +326,9 @@
     });
     $('#query2').on('change', function(){
        table.columns(3).search(this.value).draw();
+    });
+    $('#query3').on('change', function(){
+       table.columns(4).search(this.value).draw();
     });
 } );
 </script>

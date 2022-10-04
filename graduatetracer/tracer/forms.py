@@ -21,7 +21,7 @@ class UserAdminCreationForm(forms.ModelForm):
         model = SystemUser
         fields = ('profile_picture',
                   'email',
-                  'IDNum',       
+                  'IDNum',
                   'first_name',
                   'middle_name',
                   'last_name',
@@ -313,7 +313,7 @@ class GraduateForm(forms.ModelForm):
     gender = forms.CharField(max_length=6, widget=forms.Select(choices=GENDER)),
 
     class Meta:
-        model = User
+        model = User 
         fields = ('IDNum',
                   'profile_picture',
                   'first_name',

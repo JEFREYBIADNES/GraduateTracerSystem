@@ -27,7 +27,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Users</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{count_users}}</div>
                         </div>
@@ -40,11 +40,11 @@
         </div>
           <!-- Percentage of Employed Users -->
           <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow-sm h-100 py-2">
+              <div class="card border-left-success shadow-sm h-100 py-2">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Employed
+                              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Employed
                               </div>
                               <div class="row no-gutters align-items-center">
                                   <div class="col-auto">
@@ -52,7 +52,7 @@
                                   </div>
                                   <div class="col">
                                       <div class="progress progress-sm mr-2">
-                                          <div class="progress-bar bg-warning" role="progressbar"
+                                          <div class="progress-bar bg-success" role="progressbar"
                                               style="width: {% widthratio count_approved count_users 100 %}%" aria-valuenow="{% widthratio count_employed count_users 100 %}" aria-valuemin="0"
                                               aria-valuemax="100"></div>
                                       </div>
@@ -60,7 +60,7 @@
                               </div>
                           </div>
                           <div class="col-auto">
-                              <i class="fas fa-user-clock fa-2x text-gray-800"></i>
+                              <i class="fas fa-user-check fa-2x text-gray-800"></i>
                           </div>
                       </div>
                   </div>
@@ -69,11 +69,11 @@
 
           <!-- Percentage of Unemployed Users -->
           <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow-sm h-100 py-2">
+              <div class="card border-left-warning shadow-sm h-100 py-2">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Unemployed
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Unemployed
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-success" role="progressbar"
+                                        <div class="progress-bar bg-warning" role="progressbar"
                                             style="width: {% widthratio count_approved count_users 100 %}%" aria-valuenow="{% widthratio count_unemployed count_users 100 %}" aria-valuemin="0"
                                             aria-valuemax="100"></div>
                                     </div>
@@ -89,7 +89,7 @@
                             </div>
                           </div>
                           <div class="col-auto">
-                              <i class="fas fa-user-check fa-2x text-gray-800"></i>
+                              <i class="fas fa-user-clock fa-2x text-gray-800"></i>
                           </div>
                       </div>
                   </div>
