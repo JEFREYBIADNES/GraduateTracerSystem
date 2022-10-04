@@ -50,7 +50,7 @@ def admindash(request):
                 'count_approved': count_approved,
                 'count_pending': count_pending,
                 }
-    return render(request, 'tracer/adminreal/admindash.html', context)
+    return render(request, 'tracer/systemadmin/admindash.html', context)
 
 
 def create_user_management(request):
@@ -67,14 +67,14 @@ def create_user_management(request):
                 request, 'The email you used is taken already.')
 
     context = {'adform': adform}
-    return render(request, 'tracer/adminreal/create_user_management.html', context)
+    return render(request, 'tracer/systemadmin/create_user_management.html', context)
 
 def display_user_management(request):
     ad_info = User.objects.all
     context = {
                'ad_info': ad_info
                }
-    return render(request, 'tracer/adminreal/display_user_management.html', context)
+    return render(request, 'tracer/systemadmin/display_user_management.html', context)
 
 
 def user_graduates(request):
@@ -109,13 +109,13 @@ def user_graduates(request):
                 'query_school': query_school,
                 'query_employment_status': query_employment_status,
                 }
-    return render(request, 'tracer/adminreal/user_graduates.html', context)
+    return render(request, 'tracer/systemadmin/user_graduates.html', context)
 
 def usergrad_informations(request, pk):
     user_info = User.objects.get(id=pk)
 
     context = {'user_info': user_info}
-    return render(request, 'tracer/adminreal/usergrad_info.html', context)
+    return render(request, 'tracer/systemadmin/usergrad_info.html', context)
 
 def adprof(request, pk):
     user = User.objects.get(id=pk)
@@ -137,13 +137,13 @@ def adprof(request, pk):
                 return redirect('admindash')
 
     context = {'user': user, 'user_info': user_info, 'full_name': full_name}
-    return render(request, 'tracer/adminreal/adprof.html', context)
+    return render(request, 'tracer/systemadmin/adprof.html', context)
 
 def school_report(request):
     context = {}
-    return render(request, 'tracer/adminreal/school_report.html', context)
+    return render(request, 'tracer/systemadmin/school_report.html', context)
 
 
 def school_record(request):
     context = {}
-    return render(request, 'tracer/adminreal/school_record.html', context)
+    return render(request, 'tracer/systemadmin/school_record.html', context)
