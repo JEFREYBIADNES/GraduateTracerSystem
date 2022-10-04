@@ -141,3 +141,7 @@ def adprof(request, pk):
 def school_report(request):
     context = {}
     return render(request, 'tracer/systemadmin/school_report.html', context)
+
+def displaycoursesArgao(request):
+    context = {}
+    return render(request, 'tracer/systemadmin/courses.html', context)
