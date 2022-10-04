@@ -1602,7 +1602,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #858796;
+  color: #3a3b45;
 }
 
 .table th,
@@ -1627,7 +1627,7 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #e3e6f0;
+  border: 1px solid #3a3b45;
 }
 
 .table-bordered th,
