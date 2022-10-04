@@ -100,11 +100,12 @@
             {% for grad_info in grad_infos %} 
             {% if grad_info.approved %}
              {% if grad_info.email != request.user.email %}
+
           </li>
 
           <li class="nav-item active">
             <a class="nav-link">
-              <img class="img-profile rounded-circle shadow-sm" src="{{grad_info.profile_picture.url}} " width=" 50" height="50" alt="User-Profile-Image"/>
+              <img class="img-profile rounded-circle shadow-sm" src="{{grad_info.profile_picture.url }} " width=" 50" height="50" alt="User-Profile-Image"/>
               <span id="{{ grad_info.IDNum}}" class="mr-2 d-none d-lg-inline text-gray-700 small" data-toggle="modal" data-target=".bd-example-modal-lg1"><strong>{{grad_info.email}}</strong></span>
             </a>
           </li>
@@ -115,7 +116,7 @@
       </ul>
     </div>
   </div>
-
+ 
   <!-- basic modal -->
   <div id="{{ grad_info.IDNum}}" class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -124,11 +125,11 @@
           {% csrf_token %}
           <div class="card-header text-white">
             <div class="row">
-              {% if users_info.profile_picture %}
+              <!--{% if users_info.profile_picture %}
               <div class="col-lg-2">
                 <img class="img-profile rounded-circle shadow-sm" src="{{user_info.profile_picture.url}}" width=" 50" height="50" alt="User-Profile-Image"/>
               </div>
-              {% endif %}
+              {% endif %}-->
               <div class="col-lg-10">
                 <p class="pt-3">
                   {{grad_info.first_name}} {{grad_info.middle_name}} {{grad_info.last_name}}
@@ -136,62 +137,136 @@
               </div>
             </div>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <p>Email Address: {{grad_info.email}}</p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-lg-6">
-                <p>Address: {{grad_info.address}}</p>
-              </div>
-              <div class="col-lg-6">
-                <p>Contact Number: {{grad_info.contactnum}}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p>Birth Date: {{grad_info.bdate}}</p>
-              </div>
-              <div class="col-lg-6">
-                <p>Age: {{grad_info.age}}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p>Gender: {{grad_info.gender}}</p>
-              </div>
-              <div class="col-lg-6">
-                <p>Year Graduated: {{grad_info.year_graduated}}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p>Skills: {{grad_info.skill}}</p>
-              </div>
-              <div class="col-lg-6">
-                <p>Job Description: {{grad_info.job_description}}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <p>Work Experiences: {{grad_info.workExperiences}}</p>
-              </div>
-              <div class="col-lg-6">
-                <p></p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">
-                Close
-              </button>
+          {% if grad_info.email == grad_info.email %}
+          <div id="user.id" class="card-body">
+            {% for grad_info in grad_infos %} 
+            {% if grad_info.approved %}
+             {% if grad_info.email != request.user.email %}
+          
+          
+              <div class="row">
+                <div class="col-sm-3">
+                      <h6 class="mb-0">Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{grad_info.first_name}} {{grad_info.middle_name}} {{grad_info.last_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{grad_info.email}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{grad_info.contact_number}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">ID Numbber</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{grad_info.IDNum}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Age</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.age}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Birthdate</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.birth_date}} 
+                    </div>
+                  </div>
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Gender</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.gender}} 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.address}} 
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Course</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.course_type}} 
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Status</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.employment_status}} 
+                    </div>
+                  </div>
+                      <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Job Description</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.job_description}} 
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Skill</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{grad_info.skill}} 
+                    </div>
+                  </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                       Close
+                    </button>
             </div>
           </div>
+          {% endif %}
+          {% endif %}
+
+           {% endfor %}
         </form>
+        {% endif %}
       </div>
     </div>
+    
   </div>
 </div>
 {% endblock content %}
