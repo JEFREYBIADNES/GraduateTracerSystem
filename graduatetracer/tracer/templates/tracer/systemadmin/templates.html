@@ -23,7 +23,6 @@
 
     <!-- Chatbot Css -->
     <link href="{% static 'css/chatbot.css' %}" rel="stylesheet">
-
     <!-- Charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
@@ -38,11 +37,14 @@
       <!-- Main Content -->
       <div id="content">
         <!-- Topbar -->
-        {% include 'tracer/systemadmin/topbar.html' %}
+        <div id="navbar">
+          {% include 'tracer/systemadmin/topbar.html' %}
+        </div>
+
   				<!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="container-fluid">
+          <div style="margin-top: 100px;"class="container-fluid">
             {% block content %}
 
 
@@ -107,17 +109,6 @@
   	  });
   </script>
 
-  <script>
-   function side_bar_active(){
-     current_url = window.location.href;
-     dashboard = document.getElementById("{% url 'admindash' %}");
-
-       if (current_url == dashboard){
-         dashboard.style.background = "black";
-         dashboard.style.color = "white";
-       }
-   }
- </script>
 </body>
 
 </html>

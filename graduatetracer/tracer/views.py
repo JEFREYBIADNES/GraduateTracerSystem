@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 
 from .models import *
 from .forms import *
-
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.contrib import messages
@@ -39,6 +38,7 @@ def error_404_view(request, exception):
     return render(request, 'tracer/firstInterface/404.html', {})
 
 def home(request):
+    data_separator()
     context = {}
     return render(request, 'tracer/firstInterface/landingPage.html', context)
 
@@ -56,7 +56,7 @@ def registerPage(request):
             return redirect('welcomeMsg')
         else:
             messages.info(
-                request, 'The email you used is taken already.')
+                request, 'The email you used is taken already/The password is not match.')
 
     context = {'form': form}
     return render(request, 'tracer/firstInterface/register.html', context)
@@ -139,6 +139,7 @@ def DashboardUser(request):
 def available_jobs(request):
     ads = Advertise.objects.all().order_by('-id')
     query_title = []
+    query_address_1 = []
     query_category = []
     query_salary = []
 
@@ -147,6 +148,8 @@ def available_jobs(request):
             query_title.append(ad.title)
         if ad.job_category not in query_category:
             query_category.append(ad.job_category)
+        if ad.address_1 not in query_address_1:
+            query_address_1.append(ad.address_1)
         if ad.salary not in query_salary:
             query_salary.append(ad.salary)
 
@@ -172,6 +175,7 @@ def available_jobs(request):
                'query_title': query_title,
                'query_category': query_category,
                'query_salary': query_salary,
+               'query_address_1': query_address_1,
                'job_categories': job_categories,
                'count_jobs_advertised': count_jobs_advertised,
                'count_employed': count_employed,
@@ -659,6 +663,7 @@ def AboutView(request):
 
 
 class PostListView(LoginRequiredMixin, View):
+
     def get(self, request, *args, **kwargs):
         login_in_user = request.user
         posts = Post.objects.all().order_by('-created_on')
@@ -706,6 +711,8 @@ class PostListView(LoginRequiredMixin, View):
             user)
         user_job_category_notif_counter = job_category_notifications_counter(
             user)
+
+
 
         context = {'announcements': announcements,
                    'jobs': jobs,
@@ -1163,6 +1170,7 @@ def advertise(request):
 def browser(request):
     ads = Advertise.objects.all().order_by('-id')
     query_title = []
+    query_address_1 = []
     query_category = []
     query_salary = []
 
@@ -1171,6 +1179,8 @@ def browser(request):
             query_title.append(ad.title)
         if ad.job_category not in query_category:
             query_category.append(ad.job_category)
+        if ad.address_1 not in query_address_1:
+            query_address_1.append(ad.address_1)
         if ad.salary not in query_salary:
             query_salary.append(ad.salary)
 
@@ -1196,6 +1206,7 @@ def browser(request):
                'query_title': query_title,
                'query_category': query_category,
                'query_salary': query_salary,
+               'query_address_1': query_address_1,
                'job_categories': job_categories,
                'count_jobs_advertised': count_jobs_advertised,
                'count_employed': count_employed,
