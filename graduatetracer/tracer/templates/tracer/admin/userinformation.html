@@ -59,7 +59,7 @@
                           </form>
                       </div>
                       <div class="col-lg-6 mb-2">
-                          <form method="POST" action="{% url 'approvedUser' user_info.id %}">
+                          <form method="POST" action="{% url 'disapprovedUser' user_info.id %}">
                               {% csrf_token %}
                               <button class="btn btn-block text-white bg-danger active" role="button" aria-pressed="true" type="submit"><i class="fas fa-times"> DisApproved</i></button>
                           </form>

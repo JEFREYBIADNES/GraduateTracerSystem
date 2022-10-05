@@ -42,7 +42,7 @@
             <h6 class="m-0 font-weight-bold text-white">SCHOOL REPORTS</h6>
         </div>
         <div class="card-body">
-          <div style="position: right;"class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <div style="position: right;"class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 p-1">
             <select id="query0" class="form-control" name="">
               <option value="">Job Name</option>
             {% for query in query_title %}
@@ -68,7 +68,7 @@
                       <tr>
 
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Argao Campus</a>
+                            <a href="{% url 'school_record' %}">Argao Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -76,7 +76,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Barali Campus</a>
+                            <a href="{% url 'school_record' %}">Barali Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -84,7 +84,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Carmen Campus</a>
+                            <a href="{% url 'school_record' %}">Carmen Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -92,7 +92,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Cebu City Mountain Extension Campus</a>
+                            <a href="{% url 'school_record' %}">Cebu City Mountain Extension Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -100,7 +100,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Daanbantayan Campus</a>
+                            <a href="{% url 'school_record' %}">Daanbantayan Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -108,7 +108,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Danao Campus</a>
+                            <a href="{% url 'school_record' %}">Danao Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -116,7 +116,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Dumanjug Extension Campus</a>
+                            <a href="{% url 'school_record' %}">Dumanjug Extension Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -124,7 +124,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Ginatilan Extension Campus</a>
+                            <a href="{% url 'school_record' %}">Ginatilan Extension Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -132,7 +132,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Main Campus</a>
+                            <a href="{% url 'school_record' %}">Main Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -140,7 +140,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Moalboal Campus</a>
+                            <a href="{% url 'school_record' %}">Moalboal Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -148,7 +148,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Naga Extension Campus</a>
+                            <a href="{% url 'school_record' %}">Naga Extension Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -156,7 +156,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Oslob Extension Campus</a>
+                            <a href="{% url 'school_record' %}">Oslob Extension Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -164,7 +164,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Pinamungajan Extension Campuss</a>
+                            <a href="{% url 'school_record' %}">Pinamungajan Extension Campuss</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -172,7 +172,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">San Fernando Extension Campus</a>
+                            <a href="{% url 'school_record' %}">San Fernando Extension Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -180,7 +180,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">San Fernando Campus</a>
+                            <a href="{% url 'school_record' %}">San Fernando Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
@@ -188,7 +188,7 @@
                       </tr>
                       <tr>
                           <td class="th-w-20" style="white-space: nowrap">
-                            <a href="url">Tuburan Campus</a>
+                            <a href="{% url 'school_record' %}">Tuburan Campus</a>
                           </td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
                           <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>

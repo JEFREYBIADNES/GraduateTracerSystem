@@ -667,7 +667,7 @@ class PostListView(LoginRequiredMixin, View):
         login_in_user = request.user
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
-        grad_infos = User.objects.all
+        grad_infos = User.objects.all().order_by('-id')
         user = request.user
 
         context = {
@@ -1263,11 +1263,8 @@ def update_ad(request, pk):
 
 def delete_ad(request, pk):
     delete_ad = Advertise.objects.get(id=pk)
-
-    if request.method == 'POST':
-        delete_ad = Advertise.objects.get(id=pk)
-        delete_ad.delete()
-        return redirect('browser')
+    delete_ad.delete()
+    return redirect('browser')
 
 
 # Recommeder System - SAO User
