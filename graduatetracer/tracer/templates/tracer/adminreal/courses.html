@@ -9,25 +9,33 @@
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
   <div class="row">
   <div class="col-sm-8">
-    <div style= "margin-top: 30px; margin-left:30px"class="container">
+    <div style= "margin-top: 40px; margin-left:30px"class="container">
            <!-- Trigger the modal with a button -->
-           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Courses</button>
+
 
            <!-- Modal -->
-           <div class="modal fade" id="myModal" role="dialog">
-             <div class="modal-dialog">
-
-               <!-- Modal content-->
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Course</button>
+           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog" role="document">
                <div class="modal-content">
                  <div class="modal-header">
-                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                   <h4 class="modal-title">Add Course</h4>
+                   <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                   </button>
                  </div>
                  <div class="modal-body">
-                   <p>Some text in the modal.</p>
+                   <form>
+
+                     <div class="form-group">
+                       <label for="message-text" class="col-form-label">Course:</label>
+                       <textarea class="form-control" id="message-text"></textarea>
+                     </div>
+                   </form>
                  </div>
                  <div class="modal-footer">
-                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   <button type="button" class="btn btn-primary">Save</button>
                  </div>
                </div>
              </div>
