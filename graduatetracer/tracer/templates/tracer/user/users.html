@@ -12,9 +12,14 @@
                   <img class="img-profile rounded-circle shadow-sm" src="{{user_info.profile_picture.url}}" width=" 50" height="50" alt="User-Profile-Image">
                 </div>
               {% endif %}
+
               <div class="col-lg-10">
                 <p class="pt-3">{{request.user.first_name}} {{request.user.middle_name}} {{request.user.last_name}}</p>
               </div>
+              <div class="col-lg-10">
+                <p class="pt-3">Bio: {{request.user.bio}} </p>
+              </div>
+
 
           </div>
         </div>
