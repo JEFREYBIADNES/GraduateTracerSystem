@@ -1,8 +1,147 @@
 {% extends 'tracer/user/template.html'%}
 {% load static %}
 {% block content %}
+<div class="sec-title">
+  <div class="pg-sub-title">Alumni</div>
+    <div class="pg-title">My Profile</div>
+  </div>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-2 mb-1">                
+                  <div class="container">
+                    <div class="profile-card-2"><img src="{{user.profile_picture.url}}" class="img img-responsive">
+                      <div class="profile-name">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
+                      <div class="profile-username">{{user.email}}</div>
+                      </div>
+                </div>
+              <a href="{% url 'UpdateGradInfo' user.id %}" button class="button-24" role="button">Edit Profile</a>
+          </div>
+          <div class="col-lg-10 mb-8">
+              <div class="card">
+                  
+  <form method="POST" action="{% url 'DisplayGradInfo' %}">
+                    {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                            <h6 class="mb-0">Name</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.first_name}} {{user.middle_name}} {{user.last_name}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.email}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">School</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.school}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.contact_number}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">ID Numbber</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.IDNum}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Age</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.age}}
+                          </div>
+                        </div>
+                        <hr>
+      
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Gender</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.gender}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Address</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.address}}
+                          </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Course</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.course_type}}
+                          </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Status</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.employment_status}}
+                          </div>
+                        </div>
+                            <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Job Description</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.job_description}}
+                          </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Skill</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.skill}}
+                          </div>
+                        </div>
+      
+      
+                  </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+  
 <link href="{% static 'css/Display.css' %}" rel="stylesheet">
-  <div class="sec-title">
+  <!--<div class="sec-title">
    <div class="pg-sub-title">Alumni</div>
      <div class="pg-title">My Profile</div>
    </div>
@@ -142,5 +281,5 @@
 
         </div>
     </div>
-</div>
+</div>-->
     {% endblock %}
