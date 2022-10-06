@@ -1,4 +1,5 @@
 <!-- Topbar -->
+{% load static %}
 {% load humanize %}
 <style>
   .custom-badge{
@@ -7,7 +8,14 @@
   }
 </style>
 
-  <nav style="position: fixed; z-index: 1; top: 0; width: 90%;" class="navbar navbar-expand navbar-light bg-gradient-warning topbar mb-4 static-top shadow">
+  <nav style="position: fixed; z-index: 1; top: 0; width: 100% !important; left:0; right:0;" class="navbar navbar-expand navbar-light bg-gradient-warning topbar mb-4 static-top shadow">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+      <div class="sidebar-brand-icon">
+        <img class= "w3-round" src="{% static 'img/ctu_logo.png' %}" style="width: 75px; height:70px;">
+      </div>
+      <div class="sidebar-brand-text mx-3"></div>
+    </a>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -133,16 +141,16 @@
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
-              <!-- <div class="modal-header">
+              <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">×</span>
                       </button>
-              </div> -->
-              <div class="modal-body">Are you sure you want to leave?</div>
+              </div>
+              <div class="modal-body">Select "Logout" below if you are ready to end your currenr session.</div>
               <div class="modal-footer">
-                  <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
-                  <a class="btn btn-primary" href="{% url 'logout' %}">Yes</a>
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
               </div>
           </div>
       </div>

@@ -9725,11 +9725,11 @@ button.bg-dark:focus {
 }
 
 .text-white {
-  color: #000;
+  color: white;
 }
 
 .text-black {
-  color: white;
+  color: #000;
 }
 
 .text-primary {

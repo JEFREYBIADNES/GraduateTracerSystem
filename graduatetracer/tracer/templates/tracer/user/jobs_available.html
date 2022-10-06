@@ -1,4 +1,5 @@
 {%  extends 'tracer/user/template.html' %}
+{% block title %}Jobs Available{% endblock %}
 {% load static %}
 {% load humanize %}
 
@@ -41,7 +42,7 @@
     .th-w-10{
       width:10% !important;
     }
-    .btn {
+    .btns {
       background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
       background: linear-gradient(to right, #ee5a6f, #f29263);
       border: none !important;
@@ -53,9 +54,19 @@
       transition: 0.3s !important;
       font-weight: 600 !important;
     }
-    .btn:hover {
+    .btns:hover {
       background-color: #f29263 !important;
       color: white !important;
+    }
+
+    .eye{
+      border: none !important;
+      color: black !important;
+      transition: 0.5s !important;
+    }
+
+    .eye:hover {
+      background-color: #009fff !important;
     }
   </style>
 
@@ -72,10 +83,10 @@
 
 <div class="row">
   <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto m-auto pb-4">
-    <a href="#" class="btn bg-c-tile text-black shadow-lg" onclick="return show('Page1','Page2');">List View</a>
+    <a href="#" class="btns bg-c-tile text-black shadow-lg" onclick="return show('Page1','Page2');">List View</a>
   </div>
   <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto m-auto pb-4">
-    <a href="#" class="btn bg-c-tile text-black shadow-lg" onclick="return show('Page2','Page1');">Tile View</a>
+    <a href="#" class="btns bg-c-tile text-black shadow-lg" onclick="return show('Page2','Page1');">Tile View</a>
   </div>
 </div>
 
@@ -166,26 +177,80 @@
                 {% endif %}
               </td>
               <td option-table-wid>
-                <div class="row w-100 m-auto p-0">
-                  <div style="width:33.333%;" class="text-center pr-0">
-                    <a class href="{% url 'view_ad' ad.id %}"><i class="fas fa-eye"></i></a>
-                  </div>
-                  <div style="width:33.333%;" class="text-center">
-                    <a class="dropdown-item text-info p-0" href="{% url 'update_ad' ad.id %}"><i class="fas fa-wrench"></i></a>
-                  </div>
-                  <div style="width:33.333%;" class="text-center pl-0">
-                    <form method="post" action="{% url 'delete_ad' ad.id %}" >
-                      {% csrf_token %}
-                      <button type="submit" class="dropdown-item text-danger p-0"><i class="fas fa-trash-alt"></i></button>
-                    </form>
-                  </div>
+                <div class="text-center pr-0">
+                  <a class="eye"  data-toggle="modal" data-target="#bd-example-modal-lg1{{ ad.id }}" ><i class="fas fa-eye"></i></a>
                 </div>
               </td>
+              <div class="modal fade" id="bd-example-modal-lg1{{ ad.id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <div class="card-header bg-c-ads text-white pb-3">
+                        <div class="card-title h1 row pb-1">
+                          <div class="col-12 h2 pl-2 pt-1">
+                            {{ad.name}}{% if ad.job_category %} - {{ad.job_category}}{% endif %}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <span class="col-6 text-left p text-gray-200">{{ad.address_1}}, {% if ad.address_2 %}{{ ad.address_2 }}, {% endif %}{{ ad.city }}</span>
+                          <span class="col-6 text-right p text-gray-200">Contact us: +63{{ad.phone_number}} / {{ad.email_address}}</span>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="card-title">
+                          <div class="mb-4">
+                            <span class="h4 font-weight-bold"><u>{{ad.title}} | Up to PHP{{ad.salary|intcomma}}</u></span>
+                          </div>
+                          <!-- <div class="col-sm-6 col-md-6 col-lg-6 mb-4">
+                            <span class="h5"><span class="font-weight-bold">Salary: </span>{{ad.salary}}</span>
+                          </div> -->
+                        </div>
+
+                          {% if ad.image %}
+                          <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                              <div class="">
+                                <div class="h5 font-weight-bold mb-1">
+                                  Description
+                                </div>
+                                <p>{{ad.description}}</p>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                              <div class="text-center">
+                                <img class="img-fluid img-custom-border p-4" src="{{ad.image.url}}" alt="advertisement image">
+                              </div>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="pt-2 pl-2">
+                            <div class="h5 font-weight-bold mb-1">
+                              Description
+                            </div>
+                            <p>{{ad.description}}</p>
+                          </div>
+                          {% endif %}
+                      </div>
+                      {% if ad.personal_website%}
+                      <div class="card-footer bg-white">
+                        <div class="card-title text-center ">
+                          <span>For more information and inquiries please visit our website</span>
+                            <cite class="blockquote-footer"><a href="{{ad.personal_website}}">{{ad.personal_website}}</a>
+                            </cite>
+                        </div>
+                      </div>
+                      {% endif %}
+                  </div>
+                </div>
+              </div>
           </tr>
         {% endfor %}
       </tbody>
   </table>
 </div>
+
 <div id="Page2" class="none">
 
   <div class="row">
@@ -247,7 +312,7 @@
     <div class="leftcolumn">
       {% for ad in ads %}
       <div class="card mb-4 mt-4 mr-2 ml-2 shadow-sm">
-        <div class="card-header pl-3 pr-4 pt-3 pb-0 m-0 bg-c-lite-green text-white">
+        <div class="card-header pl-3 pr-4 pt-3 pb-0 m-0 bg-c-ads text-white">
           <div class="card-title">
             <div class="row">
               <div class="col-11">

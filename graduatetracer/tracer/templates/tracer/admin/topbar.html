@@ -5,10 +5,19 @@
     font-size:90%;
     top: 22px;
   }
+  .sidebar-brands-text{
+    overflow: hidden !important;
+  }
 </style>
 <!-- Topbar -->
-<form class="" action="" method="GET">
-  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+  <nav style="position: fixed; z-index: 1; top: 0; width: 100% !important; left: 0; right: 0;" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+      <div class="sidebar-brand-icon">
+        <img class= "w3-round" src="{% static 'img/ctu_logo.png' %}" style="width: 75px; height:70px;">
+      </div>
+      <div class="sidebar-brand-text mx-3"></div>
+    </a>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -53,5 +62,4 @@
 
   </nav>
 
-</form>
   <!-- End of Topbar -->

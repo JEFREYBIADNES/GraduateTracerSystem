@@ -19,9 +19,6 @@
       z-index: 2;
     }
 
-    .dataTables_filter{
-      display: none;
-    }
 
     .dropdown-filter{
       top: 33px !important;
@@ -65,11 +62,10 @@
   <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto m-auto pb-4">
     <a href="#" class="btn bg-c-lite-green text-black shadow-lg" onclick="return show('Page2','Page1');">Tile View</a>
   </div>
-
 </div>
 
 
-<div id="Page1" class="container bg-white pr-4 pl-4 pb-3">
+<div id="Page1" class="container-fluid bg-white pr-4 pl-4 pb-3">
   <div class="row ">
 
     <div class="row w-20">
@@ -89,6 +85,16 @@
       </div>
       <div class="col-xs-6 col-sm-9 col-md-9 col-lg-3 col-xl-3 p-1">
         <select id="query1" class="form-control" name="">
+          <option value="">Address</option>
+        {% for query in query_address_1 %}
+          {% if query %}
+          <option value="{{query}}">{{query}}</option>
+          {% endif %}
+        {% endfor %}
+        </select>
+      </div>
+      <div class="col-xs-6 col-sm-9 col-md-9 col-lg-3 col-xl-3 p-1">
+        <select id="query2" class="form-control" name="">
           <option value="">Category</option>
         {% for query in query_category %}
           {% if query %}
@@ -98,7 +104,7 @@
         </select>
       </div>
       <div class="col-xs-6 col-sm-9 col-md-9 col-lg-3 col-xl-3 p-1">
-        <select id="query2" class="form-control" name="">
+        <select id="query3" class="form-control" name="">
           <option value="">Salary</option>
         {% for query in query_salary %}
           {% if query %}
@@ -114,10 +120,10 @@
           <tr>
             <th class="th-w-20" style="white-space: nowrap">Company</th>
             <th class="th-w-20" style="white-space: nowrap">Job Name</th>
+            <th class="th-w-20" style="white-space: nowrap">Address</th>
             <th class="th-w-20" style="white-space: nowrap">Category</th>
             <th class="th-w-20" style="white-space: nowrap">Salary</th>
-            <th class="th-w-10" style="white-space: nowrap">Date Created</th>
-            <th class="th-w-10" style="white-space: nowrap">Option</th>
+            <th class="th-w-20" style="white-space: nowrap">Option</th>
           </tr>
       </thead>
       <tbody>
@@ -129,7 +135,12 @@
                 {% endif %}
               </td>
               <td class="th-w-20" style="white-space: nowrap">{{ad.title}}</td>
-              <td>
+              <td class="th-w-20" style="white-space: nowrap">
+                {% if ad.address_1 %}
+                  {{ad.address_1}}
+                {% endif %}
+              </td>
+              <td class="th-w-20" style="white-space: nowrap">
                   {% if ad.job_category %}
                     {{ad.job_category}}
                   {% endif %}
@@ -139,23 +150,99 @@
                   {{ad.salary}}
                 {% endif %}
               </td>
-              <td>{{ad.date_created|naturalday}}</td>
               <td option-table-wid>
-                <div class="row">
-                  <div class="col-lg-4 text-center pr-0">
-                    <a class href="{% url 'view_ad' ad.id %}"><i class="fas fa-eye"></i></a>
+                <div class="row w-100 m-auto p-0">
+                  <div style="width:33.333%;" class="text-center pr-0">
+                    <a class  data-toggle="modal" data-target="#bd-example-modal-lg1{{ ad.id }}" ><i class="fas fa-eye"></i></a>
                   </div>
-                  <div class="col-lg-4 text-center">
-                    <a class="dropdown-item text-info p-0" href="{% url 'update_ad' ad.id %}"><i class="mr-2 fas fa-wrench"></i></a>
+                  <div style="width:33.333%;" class="text-center">
+                    <a class="dropdown-item text-info p-0" href="{% url 'update_ad' ad.id %}"><i class="fas fa-wrench"></i></a>
                   </div>
-                  <div class="col-lg-4 text-center pl-0">
-                    <form method="post" action="{% url 'delete_ad' ad.id %}" >
-                      {% csrf_token %}
-                      <button type="submit" class="dropdown-item text-danger p-0"><i class="mr-2 fas fa-trash-alt"></i></button>
-                    </form>
+                  <div style="width:33.333%;" class="text-center pl-0">
+                    <a class="dropdown-item text-danger p-0" data-toggle="modal" data-target="#exampleModalCenter{{ ad.id }}" ><i class="fas fa-trash-alt"></i></a>
                   </div>
                 </div>
               </td>
+              <!-- view modal -->
+              <div class="modal fade" id="bd-example-modal-lg1{{ ad.id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="card">
+                      <div class="card-header bg-c-lite-green text-white pb-3">
+                        <div class="card-title h1 row pb-1">
+                          <div class="col-12 h2 pl-2 pt-1">
+                            {{ad.name}}{% if ad.job_category %} - {{ad.job_category}}{% endif %}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <span class="col-6 text-left p text-gray-200">{{ad.address_1}}, {% if ad.address_2 %}{{ ad.address_2 }}, {% endif %}{{ ad.city }}</span>
+                          <span class="col-6 text-right p text-gray-200">Contact us: +63{{ad.phone_number}} / {{ad.email_address}}</span>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="card-title">
+                          <div class="mb-4">
+                            <span class="h4 font-weight-bold"><u>{{ad.title}} | Up to PHP{{ad.salary|intcomma}}</u></span>
+                          </div>
+                          <!-- <div class="col-sm-6 col-md-6 col-lg-6 mb-4">
+                            <span class="h5"><span class="font-weight-bold">Salary: </span>{{ad.salary}}</span>
+                          </div> -->
+                        </div>
+
+                          {% if ad.image %}
+                          <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                              <div class="">
+                                <div class="h5 font-weight-bold mb-1">
+                                  Description
+                                </div>
+                                <p>{{ad.description}}</p>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                              <div class="text-center">
+                                <img class="img-fluid img-custom-border p-4" src="{{ad.image.url}}" alt="advertisement image">
+                              </div>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="pt-2 pl-2">
+                            <div class="h5 font-weight-bold mb-1">
+                              Description
+                            </div>
+                            <p>{{ad.description}}</p>
+                          </div>
+                          {% endif %}
+                      </div>
+                      {% if ad.personal_website%}
+                      <div class="card-footer bg-white">
+                        <div class="card-title text-center ">
+                          <span>For more information and inquiries please visit our website</span>
+                            <cite class="blockquote-footer"><a href="{{ad.personal_website}}">{{ad.personal_website}}</a>
+                            </cite>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModalCenter{{ ad.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <h3><span>Are you sure you want to DELETE this Job Advertise ?</span></h3>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <a href="{% url 'delete_ad' ad.id %}" class="btn btn-danger">Confirm Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </tr>
         {% endfor %}
       </tbody>
@@ -236,23 +323,6 @@
 
                 </div>
               </div>
-              <!-- <div class="ml-auto">
-                <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-white"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Options</div>
-                        <a class="dropdown-item text-info" href="{% url 'update_ad' ad.id %}"><i class="mr-2 fas fa-wrench"></i>Update</a>
-                        <form method="post" action="{% url 'delete_ad' ad.id %}" >
-                          {% csrf_token %}
-                          <button type="submit" class="dropdown-item text-danger"><i class="mr-2 fas fa-trash-alt"></i>Delete</button>
-                        </form>
-                    </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -302,13 +372,14 @@
 
 <script>
   {% for message in messages %}
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: '{{message}}',
-    showConfirmButton: false,
-    timer: 3000
-  })
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: '{{message}}',
+      showConfirmButton: false,
+      timer: 3000
+    })
+
   {% endfor %}
 </script>
 
@@ -317,7 +388,7 @@
     var table = $('#jobs').DataTable( {
       stateSave: false,
       "ordering": true,
-      "columnDefs" : [{"targets":3, "type":"date-eu"}],
+      "columnDefs" : [{"targets":4, "type":"date-eu"}],
       order: [],
 
     } );
@@ -329,6 +400,9 @@
     });
     $('#query2').on('change', function(){
        table.columns(3).search(this.value).draw();
+    });
+    $('#query3').on('change', function(){
+       table.columns(4).search(this.value).draw();
     });
 } );
 </script>

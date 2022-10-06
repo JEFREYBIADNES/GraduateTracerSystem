@@ -38,7 +38,6 @@ def error_404_view(request, exception):
     return render(request, 'tracer/firstInterface/404.html', {})
 
 def home(request):
-    data_separator()
     context = {}
     return render(request, 'tracer/firstInterface/landingPage.html', context)
 
@@ -668,7 +667,7 @@ class PostListView(LoginRequiredMixin, View):
         login_in_user = request.user
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
-        grad_infos = User.objects.all
+        grad_infos = User.objects.all().order_by('-id')
         user = request.user
 
         context = {
