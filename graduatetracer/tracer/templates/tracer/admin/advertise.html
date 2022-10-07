@@ -1,5 +1,5 @@
 {%  extends 'tracer/admin/template.html' %}
-
+{% block title %}Job Advertise{% endblock %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
@@ -137,11 +137,17 @@
             </div>
           </div>
           <div class="mb-2">
-            <h6 class="text-dark">Job Description</h6>
-            {% render_field ads.description class="form-control" cols="70" rows="6" placeholder="Job Description" name="ads_description" %}
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <h6 class="text-dark">Job Description</h6>
+              {% render_field ads.description class="form-control" cols="70" rows="6" placeholder="Job Description" name="ads_description" %}
+            </div>
           </div>
           <div class="mb-2">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <h6 class="text-dark">Image</h6>
               {% render_field ads.image name="image" %}
+            </div>
+
           </div>
           <div class="mb-2">
             <div class="row">
@@ -170,7 +176,7 @@
           <tr>
             <th class="th-w-20" style="white-space: nowrap" >Title</th>
             <th class="th-w-20" style="white-space: nowrap">Description</th>
-            <th class="th-w-20" style="white-space: nowrap"colspan="2">Settings</th> 
+            <th class="th-w-20" style="white-space: nowrap"colspan="2">Settings</th>
           </tr>
         </thead>
         <tbody class="text-center">

@@ -1134,7 +1134,7 @@ def advertise(request):
                                 'job_category': job_category,
                                 'job_date_created': job_date_created,
                                 'domain': '127.0.0.1:8000',
-                                'site_name': 'CTU-Ginatilan Recommender System',
+                                'site_name': 'CTU Recommender System',
                                 "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                                 "user": user,
                                 'token': default_token_generator.make_token(user),

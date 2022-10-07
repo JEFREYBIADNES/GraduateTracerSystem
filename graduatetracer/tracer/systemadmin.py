@@ -140,6 +140,8 @@ def adprof(request, pk):
     return render(request, 'tracer/systemadmin/adprof.html', context)
 
 def school_report(request):
+
+    # school[]
     context = {}
     return render(request, 'tracer/systemadmin/school_report.html', context)
 
