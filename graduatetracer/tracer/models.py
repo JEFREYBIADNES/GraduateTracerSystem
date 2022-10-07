@@ -135,6 +135,7 @@ class User(AbstractBaseUser):
         ('DEAN', 'DEAN'),
         ('Campus Director', 'Campus Director'),
         ('University President', 'University President'),
+
     )
     Course_Type = (
         ('Bachelor of Science in Information Technology', 'Bachelor of Science in Information Technology'),
