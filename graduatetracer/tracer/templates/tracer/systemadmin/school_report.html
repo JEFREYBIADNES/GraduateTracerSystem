@@ -56,103 +56,15 @@
                     </thead>
 
                     <tbody>
+                      {% for t in table %}
                       <tr>
 
-                          <td class="th-w-20" style="white-space: nowrap"><a href={% url 'school_record' %}>Argao Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
+                          <td class="th-w-20" style="white-space: nowrap"><a href={% url 'school_record' %}>{{t.school_list}}</a></td>
+                          <td class="th-w-20" style="white-space: nowrap">{{t.graduate}}</td>
+                          <td class="th-w-20" style="white-space: nowrap">{{t.employed}}</td>
+                          <td class="th-w-20" style="white-space: nowrap">{{t.unemployed}}</td>
                       </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Barili Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Carmen Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Cebu City Mountain Extension Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Daanbantayan Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Danao Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Dumanjug Extension Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Ginatilan Extension Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Main Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Moalboal Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Naga Extension Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Oslob Extension Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Pinamungajan Extension Campuss</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">San Fernando Extension Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">San Fernando Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap"><a href="url">Tuburan Campus</a></td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
+                      {% endfor %}
                     </tbody>
 
                 </table>
