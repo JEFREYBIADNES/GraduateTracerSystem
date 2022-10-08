@@ -1,4 +1,5 @@
 {% extends 'tracer/user/template.html' %}
+{% block title %}NewsFeed{% endblock %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
@@ -125,22 +126,23 @@
 												<div class="row">
 														{% if grad_info.profile_picture %}
 															<div class="col-lg-2">
-																<img class="img-profile rounded-circle shadow-sm" src="{{grad_info.profile_picture.url}}" width=" 50" height="50" alt="User-Profile-Image">
+																<img class="img-profile rounded-circle shadow-sm" src="{{grad_info.profile_picture.url}}" width="70" height="70" alt="User-Profile-Image">
 															</div>
 														{% endif %}
 														<div class="col-lg-10">
 															<p class="pt-3">{{grad_info.first_name}} {{grad_info.middle_name}} {{grad_info.last_name}}</p>
 														</div>
-
 												</div>
 											</div>
 											<div class="card-body">
 														<div class="row">
-															<div class="col-lg-12">
+															<div class="col-lg-6">
 																<p>Email Address: {{grad_info.email}}</p>
 															</div>
+                              <div class="col-lg-6">
+																<p>ID Number: {{grad_info.IDNum}}</p>
+															</div>
 														</div>
-
 														<div class="row">
 															<div class="col-lg-6">
 																<p>Address: {{grad_info.address}}</p>
@@ -173,14 +175,6 @@
 																<p>Job Description: {{grad_info.job_description}}</p>
 															</div>
 														</div>
-														<div class="row">
-															<div class="col-lg-6">
-																<p>Work Experiences: {{grad_info.workExperiences}}</p>
-															</div>
-															<div class="col-lg-6">
-																<p></p>
-															</div>
-														</div>
 														<div class="modal-footer">
 										        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 										      </div>
@@ -190,5 +184,5 @@
                 </div>
           	</div>
           {% endfor %}
-    </div>           
+    </div>
 {% endblock content %}

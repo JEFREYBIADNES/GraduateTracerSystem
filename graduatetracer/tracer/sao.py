@@ -236,6 +236,8 @@ def ApprovedUser(request, pk):
         user.pending = False
         user.approved = True
         user.save()
+        messages.success(
+            request, 'Graduate Successfully Approved')
 
         template = render_to_string(
                 'tracer/firstInterface/emailConfirm_template.html',
@@ -260,6 +262,8 @@ def DisapprovedUser(request, pk):
     if request.method == 'POST':
         user_delete = User.objects.get(id=pk)
         user_delete.delete()
+        messages.success(
+            request, 'Graduate Successfully DisApproved')
         return redirect('pendingaccounts')
 
 def users(request):

@@ -1,4 +1,5 @@
 {% extends 'tracer/user/template.html'%}
+{% block title %}Update Profile Information{% endblock %}
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
@@ -46,18 +47,14 @@
 <div class="container-fluid">
   <div class="row d-flex justify-content-center">
     <div class="col-lg-12">
-      <div class=" d-flex text-black justify-content-center mt-lg-4 mb-lg-4 ml-4 mr-4">
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <div class="row mb-1 " style="
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 3%;
-            ">
+          <div class="row mb-2 " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 3%;">
             <div class="col-sm 12 col-md-12 col-lg-4">
               <div class="d-flex flex-column align-items-center text-center pt-2 pb-4">
                 <div class="col-lg-0 mt-4 mb-4">
                   <div class="col-lg-12 mt-4 profile-pic-div">
-                    <img class="img-custom-border mb-1" src="{{request.user.profile_picture.url}}" id="photo">
+                    <img class="img-custom-border mb-4" src="{{request.user.profile_picture.url}}" id="photo">
                     <input type="file" id="file" name="profile" hidden>
                     <label for="file" id="uploadBtn">Choose Profile</label>
                   </div>
@@ -134,7 +131,7 @@
 
                   <div class="col-md-12 pb-3">
                     <label class="labels">School</label>
-                    {% render_field grad_info.school class="form-control" %}
+                    {% render_field grad_info.school class="form-control"%}
                   </div>
                   <div class="col-md-12 pb-3">
                     <label class="labels">Employment Status</label>
@@ -161,9 +158,22 @@
             </div>
           </div>
         </form>
-      </div>
     </div>
   </div>
 </div>
 <script src="{% static '/js/user/profile.js' %}"></script>
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  {% for message in messages %}
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '{{message}}',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  {% endfor %}
+</script>
 {% endblock %}
