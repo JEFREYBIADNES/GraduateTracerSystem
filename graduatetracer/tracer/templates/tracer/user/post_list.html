@@ -81,8 +81,11 @@
                             <input type="hidden" name="next" value="{{ request.path }}">
                             <button style="background-color: lightgray;color: info; border-bottom-color: none; box-shadow: none;" type="submit">
                                 <i class="small fas fa-thumbs-down"><span> {{ post.dislikes.all.count }} </span></i>
+                                
                             </button>
+                            <i class="small fas fa-thumbs-down"><span> {{ post.dislikes.all.count }} </span></i>
                         </form>
+
                     </div>
                 </div>
             </div>

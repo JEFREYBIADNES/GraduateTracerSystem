@@ -1188,7 +1188,12 @@ def browser(request):
             ads = Advertise.objects.all().order_by('-id')
     else:
         ads = Advertise.objects.all().order_by('-id')
-
+        
+    jobs = "test"
+    for ad in ads:
+        jobs += str(ad) + ", " 
+    print(jobs)
+        
     context = {'ads': ads,
                'query_title': query_title,
                'query_category': query_category,
