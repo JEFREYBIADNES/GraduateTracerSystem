@@ -113,8 +113,12 @@ def user_graduates(request):
 
 def usergrad_informations(request, pk):
     user_info = User.objects.get(id=pk)
+    JobExperience = WorkExperiences.objects.filter(graduateUser=pk)
 
-    context = {'user_info': user_info}
+    context = {
+               'JobExperience': JobExperience,
+               'user_info': user_info
+               }
     return render(request, 'tracer/systemadmin/usergrad_info.html', context)
 
 def adprof(request, pk):

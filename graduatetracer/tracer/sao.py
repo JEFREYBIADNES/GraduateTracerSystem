@@ -298,6 +298,10 @@ def userinformation(request, pk):
 
 def user_informations(request, pk):
     user_info = User.objects.get(id=pk)
+    JobExperience = WorkExperiences.objects.filter(graduateUser=pk)
 
-    context = {'user_info': user_info}
+    context = {
+               'JobExperience': JobExperience,
+               'user_info': user_info
+               }
     return render(request, 'tracer/admin/user_infos.html', context)
