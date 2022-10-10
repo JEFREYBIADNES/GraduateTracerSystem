@@ -92,8 +92,8 @@ DATABASES = {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'trackingsys',
          'USER': 'root',
-         'PASSWORD': 'database2021',
-         'PORT': 3306,
+         'PASSWORD': 'graduatetracer',
+         'PORT': 3307,
          'HOST': '127.0.0.1'
      }
  }
