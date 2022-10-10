@@ -45,6 +45,30 @@
       margin-bottom: 0.5rem;
       margin-top: 1.5rem;
     }
+
+    .btn {
+      border: none;
+      color: white;
+      padding: 10px px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      }
+
+      .btn2 {
+       background-color: white;
+       color: black;
+       border: 2px solid #0074ff;
+      }
+
+      .btn2:hover {
+       background-color: #1f3bd6;
+       color: white;
+      }
   </style>
 
   <!-- Page increment -->
@@ -66,7 +90,7 @@
 
 <div class="container-fluid bg-white card shadow mb-4 pr-4 pl-4 pb-3">
   <div class="align-self-end ml-auto mt-5">
-    <a href="{% url 'AddJobExperience'%}" class="btn btn-primary">Add Job Experience </a>
+     <a href="{% url 'AddJobExperience'%}" class="btn btn2">Add Job Experience </a>
   </div>
   <table id="jobs" class="display table table-bordered table-responsive w-100">
       <thead>
