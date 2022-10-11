@@ -179,10 +179,14 @@ def profile_picture(request, pk):
                 user.profile_picture = fs.save(
                     profile_picture.name, profile_picture)
                 user_info.save()
+                messages.success(
+                    request, 'Your Profile Updated Successfully')
                 return redirect('DashboardAdmin')
         else:
             if user_info.is_valid():
                 user_info.save()
+                messages.success(
+                    request, 'Your Profile Updated Successfully')
                 return redirect('DashboardAdmin')
 
     context = {'user': user, 'user_info': user_info, 'full_name': full_name}
