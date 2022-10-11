@@ -100,7 +100,7 @@ urlpatterns = [
     path('pendingaccounts/', sao.pendingaccounts, name='pendingaccounts'),
     path('approved/user/<int:pk>/', sao.ApprovedUser, name='approvedUser'),
     path('disapproved/user/<int:pk>/', sao.DisapprovedUser, name='disapprovedUser'),
-         path('userinformation/<int:pk>', sao.userinformation, name='userinformation'),
+    path('userinformation/<int:pk>', sao.userinformation, name='userinformation'),
 
 
 
@@ -147,19 +147,16 @@ urlpatterns = [
 
     #admindashboard
      path('admindash/', systemadmin.admindash, name='admindash'),
-
-
      path('create-user-management', systemadmin.create_user_management, name="create_user_management"),
      path('display-user-management', systemadmin.display_user_management, name="display_user_management"),
 
-
-
      #School Reports
      path('school-report/', systemadmin.school_report, name='school_report'),
-
+     path('school-record/', systemadmin.school_record, name='school_record'),
      #users
-     path('user/', systemadmin.user, name='user'),
-     path('userinformations/<int:pk>', systemadmin.userinformations, name='userinformations'),
+     path('user-graduates/', systemadmin.user_graduates, name='user_graduates'),
+     path('usergrad-info/<int:pk>/', systemadmin.usergrad_informations, name="usergrad_informations"),
+
      path('adprof/<int:pk>', systemadmin.adprof, name='adprof'),
 
     ]

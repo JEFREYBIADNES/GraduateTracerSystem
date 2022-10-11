@@ -1,12 +1,18 @@
 {%  extends 'tracer/admin/template.html' %}
+{% block title %}Update Job Category{% endblock %}
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="container">
   <form method="POST" enctype="multipart/form-data">
-    <h4 class="mb-4">Update Job Category</h4>
       {% csrf_token %}
-      <div class="card shadow mb-4">
+      <div class="card o-hidden mt-3 border-0 shadow-sm ">
+        <div class="card-header  h3 bg-c-lite-green text-white">
+          <div class="card-title">
+            Update Job Category
+          </div>
+        </div>
         <div class="card-body">
           <div class="mb-4">
             <h6 class="text-dark">Title</h6>
@@ -18,24 +24,25 @@
             </div>
           <div class="row">
             <div class="col-lg-6 mt-2">
-              <button type="submit" class="btn bg-c-lite-green btn-block">
-                  <span class="icon text-white-50">
-                      <i class="fas fa-check"></i>
-                  </span>
-                  <span class="text text-white">Save Changes</span>
-              </button>
-            </div>
-            <div class="col-lg-6 mt-2">
-              <a href="{% url 'advertise' %}" class="btn btn-warning btn-block">
-                  <span class="icon text-white-50">
+              <a href="{% url 'advertise' %}" class="btn btn-warning text-white btn-block">
+                  <span class="icon text-white">
                       <i class="fas fa-exclamation-triangle"></i>
                   </span>
                   <span class="text">Cancel</span>
               </a>
             </div>
+            <div class="col-lg-6 mt-2">
+              <button type="submit" class="btn bg-c-lite-green text-white btn-block">
+                  <span class="icon text-white">
+                      <i class="fas fa-check"></i>
+                  </span>
+                  <span class="text">Save Changes</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
   </form>
+</div>
 
 {% endblock %}

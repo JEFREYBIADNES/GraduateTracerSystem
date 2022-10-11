@@ -214,7 +214,9 @@ def add_announcements(request):
 def pendingaccounts(request):
     gradAccts = User.objects.all()
 
-    context = {'gradAccts': gradAccts}
+    context = {
+                'gradAccts': gradAccts
+                }
     return render(request, 'tracer/admin/pending.html', context)
 
 @login_required(login_url='login')
@@ -234,6 +236,8 @@ def ApprovedUser(request, pk):
         user.pending = False
         user.approved = True
         user.save()
+        messages.success(
+            request, 'Graduate Successfully Approved')
 
         template = render_to_string(
                 'tracer/firstInterface/emailConfirm_template.html',
@@ -258,6 +262,8 @@ def DisapprovedUser(request, pk):
     if request.method == 'POST':
         user_delete = User.objects.get(id=pk)
         user_delete.delete()
+        messages.success(
+            request, 'Graduate Successfully DisApproved')
         return redirect('pendingaccounts')
 
 def users(request):
@@ -292,6 +298,10 @@ def userinformation(request, pk):
 
 def user_informations(request, pk):
     user_info = User.objects.get(id=pk)
+    JobExperience = WorkExperiences.objects.filter(graduateUser=pk)
 
-    context = {'user_info': user_info}
+    context = {
+               'JobExperience': JobExperience,
+               'user_info': user_info
+               }
     return render(request, 'tracer/admin/user_infos.html', context)

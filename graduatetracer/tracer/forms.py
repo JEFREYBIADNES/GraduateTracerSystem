@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 User = get_user_model()
-# SystemUser = get_user_model()
+SystemUser = get_user_model()
 
 
 class UserAdminCreationForm(forms.ModelForm):
@@ -18,7 +18,7 @@ class UserAdminCreationForm(forms.ModelForm):
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('profile_picture',
                   'email',
                   'IDNum',
@@ -89,7 +89,7 @@ class UserAdminChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('profile_picture',
                   'IDNum',
                   'first_name',
@@ -192,17 +192,17 @@ class RegisterForm(forms.ModelForm):
                   'tuburanCampus')
 
         widgets = {
-                   'email': forms.EmailInput(attrs={'class': 'form-control'}),
-                   'IDNum': forms.NumberInput(attrs={'class': 'form-control'}),
-                   'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-                   'middle_name': forms.TextInput(attrs={'class': 'form-control'}),
-                   'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-                   'course_type': forms.Select(attrs={'class': 'form-control'}),
-                   'school': forms.Select(attrs={'class': 'form-control'}),
-                   'date_graduated': forms.Select(attrs={'class': 'form-control'}),
-                   'employment_status': forms.Select(attrs={'class': 'form-control'}),
-                   'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
-                   'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+                   'email': forms.EmailInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'IDNum': forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'first_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'middle_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'last_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'course_type': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+                   'school': forms.Select(attrs={'class': 'form-control','required': 'true'}),
+                   'date_graduated': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+                   'employment_status': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+                   'password1': forms.PasswordInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'password2': forms.PasswordInput(attrs={'class': 'form-control', 'required': 'true'}),
         }
 
     def clean_password2(self):
@@ -236,7 +236,7 @@ class RegisterAdminForm(forms.ModelForm):
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = SystemUser
         fields = ('email', 'first_name', 'middle_name', 'last_name',
                    'school', 'password1', 'password2','user_type',
                    'admin_sao', 'system_admin','dean','campus_director','university_pres',
@@ -258,14 +258,14 @@ class RegisterAdminForm(forms.ModelForm):
                    'tuburanCampus',)
 
         widgets = {
-                   'email': forms.EmailInput(attrs={'class': 'form-control'}),
-                   'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-                   'middle_name': forms.TextInput(attrs={'class': 'form-control'}),
-                   'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-                   'school': forms.Select(attrs={'class': 'form-control'}),
-                   'user_type': forms.Select(attrs={'class': 'form-control'}),
-                   'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
-                   'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+                   'email': forms.EmailInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'first_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'middle_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'last_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'school': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+                   'user_type': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+                   'password1': forms.PasswordInput(attrs={'class': 'form-control', 'required': 'true'}),
+                   'password2': forms.PasswordInput(attrs={'class': 'form-control', 'required': 'true'}),
                     }
 
     def clean_password2(self):
@@ -331,22 +331,22 @@ class GraduateForm(forms.ModelForm):
                   'job_description',
                   'skill',)
         widgets = {
-         'IDNum': forms.NumberInput(attrs={'class': 'form-control'}),
-         'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
-         'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-         'middle_name': forms.TextInput(attrs={'class': 'form-control'}),
-         'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-         'birth_date': forms.DateInput(attrs={'class': 'form-control'}),
-         'age': forms.NumberInput(attrs={'class': 'form-control'}),
-         'gender': forms.Select(attrs={'class': 'form-control'}),
-         'address': forms.TextInput(attrs={'class': 'form-control'}),
-         'contact_number': forms.NumberInput(attrs={'class': 'form-control'}),
-         'date_graduated': forms.DateInput(attrs={'class': 'form-control'}),
-         'course_type': forms.Select(attrs={'class': 'form-control'}),
-         'school': forms.Select(attrs={'class': 'form-control'}),
-         'employment_status': forms.Select(attrs={'class': 'form-control'}),
-         'job_description': forms.TextInput(attrs={'class': 'form-control'}),
-         'skill': forms.TextInput(attrs={'class': 'form-control'}),
+         'IDNum': forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'profile_picture': forms.FileInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'first_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'middle_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'last_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'birth_date': forms.DateInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'age': forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'gender': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+         'address': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'contact_number': forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'date_graduated': forms.DateInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'course_type': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+         'school': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+         'employment_status': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
+         'job_description': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'skill': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
             }
 
     def clean_password(self):

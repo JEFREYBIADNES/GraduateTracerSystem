@@ -1,5 +1,5 @@
 {%  extends 'tracer/admin/template.html' %}
-
+{% block title %}Recommender System Dashboard{% endblock %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -7,7 +7,7 @@
 
       <div class="row">
 
-        <div class="col-xl-6 col-md-6 mb-4">
+          <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border-left-info shadow-sm h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -23,24 +23,25 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow-sm h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Users</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{count_users}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-800"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
           <!-- Jobs Advertised / Posted -->
-          <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow-sm h-100 py-2">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                    USERS(graduates)</div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">{{count_jobs_advertised}}</div>
-                          </div>
-                          <div class="col-auto">
-                              <i class="fas fa-ad fa-2x text-gray-800"></i>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          
+
           <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow-sm h-100 py-2">
                 <div class="card-body">
@@ -118,20 +119,21 @@
                   </div>
               </div>
           </div> -->
+
       </div>
       <div class="row">
         <div class="col-lx-6 col-lg-6">
           <!-- Analytics -->
           <div class="card shadow-sm mb-4">
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-success">
-                
-                  <h6 class="m-0 font-weight-bold text-black"><i class="fas fa-fw fa-chart-area mr-2"></i>Registered Graduates: {{count_approved}}</h6>
+
+                  <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-fw fa-chart-area mr-2"></i>Registered Graduates: {{count_approved}}</h6>
               </div>
               <div class="card-body">
                   <canvas id="analyticsChart" style="width:100%;max-width:600px"></canvas>
                   <script>
-                  var xValues = ["Employed","Unemployed"];
-                  var yValues = [{{count_employed}},{{count_unemployed}}];
+                  var xValues = ["Employed","Unemployed", "Approved", "Pending"];
+                  var yValues = [{{count_employed}},{{count_unemployed}},{{count_approved}},{{count_pending}}];
 
                   var barColors = ["#1E90FF", "#FFC0CB", "#00FF7F", "#FF6347",];
 
@@ -165,11 +167,14 @@
  <!-- Help -->
           <div class="card shadow-sm mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-secondary">
-                <h6 class="m-0 font-weight-bold text-black"><i class="mr-2 fas fa-question-circle"></i>Guide</h6>
+
+                <h6 class="m-0 font-weight-bold text-white"><i class="mr-2 fas fa-question-circle"></i>Guide</h6>
+
             </div>
             <div class="card-body">
               <p>To help lessen unemployment among college graduates, you can give them job opportunities
                 by adding available jobs at <a target="_blank" rel="nofollow" href="{% url 'advertise' %}">advertise</a> and
+
                 to view all the jobs available you can view it on <a target="_blank" rel="nofollow" href="{% url 'browser' %}">browse</a> jobs.</p>
                 POST and GET /<a target="_blank" rel="nofollow" href="{% url 'advertise' %}"> Advertise </a>and
                 <a target="_blank" rel="nofollow" href="{% url 'browser' %}"> Browse Jobs &rarr;</a> <br>
@@ -177,50 +182,11 @@
             </div>
         </div>
          
-        </div>
 
-          <!-- Pie Chart -->
-          <!-- <div class="col-lx-6 col-lg-6">
-                <div class="card shadow mb-4"> -->
-                    <!-- Card Header - Dropdown -->
-                    <!-- <div
-                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Card Body -->
-                    <!-- <div class="card-body">
-                        <div class="chart-pie pt-4 pb-2">
-                            <canvas id="myPieChart"></canvas>
-                        </div>
-                        <div class="mt-4 text-center small">
-                            <span class="mr-2">
-                                <i class="fas fa-circle text-primary"></i> Direct
-                            </span>
-                            <span class="mr-2">
-                                <i class="fas fa-circle text-success"></i> Social
-                            </span>
-                            <span class="mr-2">
-                                <i class="fas fa-circle text-info"></i> Referral
-                            </span>
-                        </div>
-                    </div>
-                </div> -->
+        </div>
             <!-- Voting System -->
             <div class="col-lx-6 col-lg-6">
+
              <!-- <div class="card shadow-sm mb-4">
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
                       <h6 class="m-0 font-weight-bold text-black"><i class="mr-2 fas fa-vote-yea"></i>Voting Progress</h6>
@@ -267,31 +233,33 @@
               </div>
                
                  <!-- About Recommender System -->
-          <div class="card shadow-sm mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-info">
-                <h6 class="m-0 font-weight-bold text-black"><i class="mr-2 fas fa-info-circle"></i>About</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'img/visualizer.svg'  %}" alt="Dashboard-Visualizer">
-                </div>
-                <p>Recommender System aims to lessen unemployment among college graduates with its
-                   easy to navigate features and wide array of available jobs ranging from Information
-                   Technology to Industrial Technology related work.</p>
+    
+                <!-- Help -->
+                <div class="card shadow-sm mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-info">
+                      <h6 class="m-0 font-weight-bold text-white"><i class="mr-2 fas fa-info-circle"></i>About</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="text-center">
+                          <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                              src="{% static 'img/visualizer.svg'  %}" alt="Dashboard-Visualizer">
+                      </div>
+                      <p>Recommender System aims to lessen unemployment among college graduates with its
+                         easy to navigate features and wide array of available jobs ranging from information
+                         technology to industrial technology related work.</p>
 
-                <p>Hunting for jobs has never been this easy. No more transportation costs
-                  and walking under the heat of the sun to look for companies looking for
-                  qualified workers like you. Recommender System brings to you opportunities
-                  right in front of you at your own computer screens. You only have to be a college
-                  graduate to avail of these services.
-                </p>
+                      <p>Hunting for jobs has never been this easy. No more transportation costs
+                        and walking under the heat of the sun to look for companies looking for
+                        qualified workers like you. Recommender System brings to you opportunities
+                        right in front of you at your own computer screens. You only have to be a college
+                        graduate to avail of these services.
+                      </p>
+                  </div>
             </div>
         </div>
             </div>
 
           </div>
-            {% include 'tracer/admin/chatbot.html' %}
 
 
 

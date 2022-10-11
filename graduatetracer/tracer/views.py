@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 
 from .models import *
 from .forms import *
-
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.contrib import messages
@@ -139,6 +138,7 @@ def DashboardUser(request):
 def available_jobs(request):
     ads = Advertise.objects.all().order_by('-id')
     query_title = []
+    query_address_1 = []
     query_category = []
     query_salary = []
 
@@ -147,6 +147,8 @@ def available_jobs(request):
             query_title.append(ad.title)
         if ad.job_category not in query_category:
             query_category.append(ad.job_category)
+        if ad.address_1 not in query_address_1:
+            query_address_1.append(ad.address_1)
         if ad.salary not in query_salary:
             query_salary.append(ad.salary)
 
@@ -172,6 +174,7 @@ def available_jobs(request):
                'query_title': query_title,
                'query_category': query_category,
                'query_salary': query_salary,
+               'query_address_1': query_address_1,
                'job_categories': job_categories,
                'count_jobs_advertised': count_jobs_advertised,
                'count_employed': count_employed,
@@ -238,10 +241,14 @@ def UpdateGradInfo(request, pk):
                 fs = FileSystemStorage()
                 user.profile_picture = fs.save(profile_picture.name, profile_picture)
                 grad_info.save()
+                messages.success(
+                    request, 'Graduate Profile Successfully Updated')
                 return redirect('DisplayGradInfo')
         else:
             if grad_info.is_valid():
                 grad_info.save()
+                messages.success(
+                    request, 'Graduate Profile Successfully Updated')
                 return redirect('DisplayGradInfo')
 
     jobs = Advertise.objects.all().order_by('-date_created')
@@ -296,6 +303,8 @@ def GradProfilePicture(request):
            fs = FileSystemStorage()
            user.profile_pic = fs.save(profile_picture.name, profile_picture)
            grad_info.save()
+           messages.success(
+               request, 'Graduate Profile Successfully Updated')
            return redirect('DashboardUser')
 
    jobs = Advertise.objects.all().order_by('-date_created')
@@ -468,11 +477,11 @@ def AddJobExperience(request):
             messages.error(request, 'POSITION IS REQUIRED!!!')
             return render(request, 'tracer/user/JobExperience/AddExperience.html', context)
 
-# DESCRIPTION
+# Salary
     if request.method == 'POST':
-        description = request.POST['description']
+        salary = request.POST['salary']
 
-        if not description:
+        if not salary:
             messages.error(request, 'DESCRIPTION IS REQUIRED!!!')
             return render(request, 'tracer/user/JobExperience/AddExperience.html', context)
 
@@ -494,7 +503,7 @@ def AddJobExperience(request):
 
         WorkExperiences.objects.create(graduateUser=request.user, company_name=company_name,
                                        address=address, position=position,
-                                       description=description,
+                                       salary=salary,
                                        experienceStartDate=experienceStartDate,
                                        experienceEndDate=experienceEndDate)
 
@@ -548,7 +557,7 @@ def edit_experience(request, id):
         company_name = request.POST['company_name']
         address = request.POST['address']
         position = request.POST['position']
-        description = request.POST['description']
+        salary = request.POST['salary']
         experienceStartDate = request.POST['experienceStartDate']
         experienceEndDate = request.POST['experienceEndDate']
 
@@ -556,7 +565,7 @@ def edit_experience(request, id):
         JobExperiences.company_name = company_name
         JobExperiences.address = address
         JobExperiences.position = position
-        JobExperiences.description = description
+        JobExperiences.salary = salary
         JobExperiences.experienceStartDate = experienceStartDate
         JobExperiences.experienceEndDate = experienceEndDate
 
@@ -659,14 +668,18 @@ def AboutView(request):
 
 
 class PostListView(LoginRequiredMixin, View):
+
     def get(self, request, *args, **kwargs):
         login_in_user = request.user
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
+        grad_infos = User.objects.all().order_by('-id')
+        user = request.user
 
         context = {
             'post_list': posts,
             'form': form,
+            'grad_infos': grad_infos,
         }
 
         return render(request, 'tracer/user/post_list.html', context)
@@ -703,6 +716,8 @@ class PostListView(LoginRequiredMixin, View):
             user)
         user_job_category_notif_counter = job_category_notifications_counter(
             user)
+
+
 
         context = {'announcements': announcements,
                    'jobs': jobs,
@@ -1125,7 +1140,7 @@ def advertise(request):
                                 'job_category': job_category,
                                 'job_date_created': job_date_created,
                                 'domain': '127.0.0.1:8000',
-                                'site_name': 'CTU-Ginatilan Recommender System',
+                                'site_name': 'CTU Recommender System',
                                 "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                                 "user": user,
                                 'token': default_token_generator.make_token(user),
@@ -1160,6 +1175,7 @@ def advertise(request):
 def browser(request):
     ads = Advertise.objects.all().order_by('-id')
     query_title = []
+    query_address_1 = []
     query_category = []
     query_salary = []
 
@@ -1168,6 +1184,8 @@ def browser(request):
             query_title.append(ad.title)
         if ad.job_category not in query_category:
             query_category.append(ad.job_category)
+        if ad.address_1 not in query_address_1:
+            query_address_1.append(ad.address_1)
         if ad.salary not in query_salary:
             query_salary.append(ad.salary)
 
@@ -1198,6 +1216,7 @@ def browser(request):
                'query_title': query_title,
                'query_category': query_category,
                'query_salary': query_salary,
+               'query_address_1': query_address_1,
                'job_categories': job_categories,
                'count_jobs_advertised': count_jobs_advertised,
                'count_employed': count_employed,
@@ -1255,11 +1274,9 @@ def update_ad(request, pk):
 
 def delete_ad(request, pk):
     delete_ad = Advertise.objects.get(id=pk)
-
-    if request.method == 'POST':
-        delete_ad = Advertise.objects.get(id=pk)
-        delete_ad.delete()
-        return redirect('browser')
+    delete_ad.delete()
+    messages.success(request, 'Successfully Deleted')
+    return redirect('browser')
 
 
 # Recommeder System - SAO User

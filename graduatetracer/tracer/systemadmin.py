@@ -77,36 +77,53 @@ def display_user_management(request):
     return render(request, 'tracer/systemadmin/display_user_management.html', context)
 
 
-def user(request):
+def user_graduates(request):
+    user_info = User.objects.all().order_by('-id')
+    query_IDNum = []
+    query_school = []
+    query_employment_status = []
+
+    for user_info in user_info:
+        if user_info.IDNum not in query_IDNum:
+            query_IDNum.append(user_info.IDNum)
+        if user_info.school not in query_school:
+            query_school.append(user_info.school)
+        if user_info.employment_status not in query_employment_status:
+            query_employment_status.append(user_info.employment_status)
 
     if 'query' in request.GET:
         query = request.GET['query']
-        multiple_query = Q(Q(first_name__icontains=query) | Q(middle_name__icontains=query)
-                           | Q(last_name__icontains=query) | Q(job_description__icontains=query) | Q(skill__icontains=query)
-                           | Q(date_graduated__icontains=query) | Q(employed__icontains=query) | Q(unemployed__icontains=query))
-
+        multiple_query = Q(Q(first_name__icontains=query) | Q(middle_name__icontains=query)| Q(last_name__icontains=query)
+                           | Q(email__icontains=query))
         if query:
-            user_infos = User.objects.filter(multiple_query)
-        elif query == None:
-            user_infos = User.objects.all()
-        elif query == 'Employed' or query == 'employed':
-            user_infos = User.objects.filter(employed=True)
-        elif query == 'Unemployed' or query == 'unemployed':
-            user_infos = User.objects.filter(unemployed=True)
+            user_info = User.objects.filter(multiple_query)
+
         else:
-            user_infos = User.objects.all()
+            user_info = User.objects.all().order_by('-id')
     else:
-        user_infos = User.objects.all()
-    context = {'user_infos': user_infos}
-
-    return render(request, 'tracer/systemadmin/user.html', context)
+        user_info = User.objects.all().order_by('-id')
 
 
-def userinformations(request, pk):
+    context = {
+                'user_info': user_info,
+                'query_IDNum': query_IDNum,
+                'query_school': query_school,
+                'query_employment_status': query_employment_status,
+                }
+    return render(request, 'tracer/systemadmin/user_graduates.html', context)
+
+
+def usergrad_informations(request, pk):
     user_info = User.objects.get(id=pk)
+    JobExperience = WorkExperiences.objects.filter(graduateUser=pk)
 
-    context = {'user_info': user_info}
-    return render(request, 'tracer/systemadmin/userinformations.html', context)
+
+    context = {
+               'JobExperience': JobExperience,
+               'user_info': user_info
+               }
+    return render(request, 'tracer/systemadmin/usergrad_info.html', context)
+
 
 def adprof(request, pk):
     user = User.objects.get(id=pk)
@@ -131,5 +148,55 @@ def adprof(request, pk):
     return render(request, 'tracer/systemadmin/adprof.html', context)
 
 def school_report(request):
-    context = {}
+    table = []
+    class sr:
+        def __init__(self, school_list, graduate, employed, unemployed):
+            self.school_list = school_list
+            self.graduate = graduate
+            self.employed = employed
+            self.unemployed = unemployed
+    users = User.objects.all()
+    graduate_counter = []
+    employed_counter = []
+    unemployed_counter = []
+    school_list = ["Argao Campus", "Barili Campus", "Carmen Campus", "Cebu City Mountain Extension Campus", "Daanbantayan Campus", "Danao Campus", "Dumanjug Extension Campus", "Ginatilan Extension Campus", "Main Campus", "Moalboal Campus", "Naga Extension Campus", "Oslob Extension Campus", "Pinamungajan Extension Campus", "San Fernando Extension Campus", "San Francisco Campus", "Tuburan Campus"]
+
+    i = 0
+    j = 0
+    while i != len(school_list):
+        graduate_counter+=[0]
+        employed_counter+=[0]
+        unemployed_counter+=[0]
+        i+=1
+    for user in users:
+        if user.graduate:
+            while j != len(school_list):
+                if user.school == school_list[j]:
+                    graduate_counter[j]+=1
+                    if user.employed:
+                        employed_counter[j]+=1
+                    else:
+                        unemployed_counter[j]+=1
+                    j=0
+                    break
+                j+=1
+
+    print(graduate_counter)
+    print(employed_counter)
+    print(unemployed_counter)
+    for k in range(len(school_list)):
+        schools = school_list[k]
+        graduate = graduate_counter[k]
+        employed = employed_counter[k]
+        unemployed = unemployed_counter[k]
+        s = sr(schools, graduate, employed, unemployed)
+        table.append(s)
+
+    context = {'table':table}
     return render(request, 'tracer/systemadmin/school_report.html', context)
+
+
+def school_record(request):
+    context = {}
+
+    return render(request, 'tracer/systemadmin/school_record.html', context)

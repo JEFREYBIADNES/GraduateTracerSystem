@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import date
 from django.contrib.auth.models import (
-    AbstractBaseUser, BaseUserManager
+    AbstractBaseUser, AbstractUser, BaseUserManager
 )
 
 
@@ -444,170 +444,171 @@ class User(AbstractBaseUser):
     class Meta:
         db_table = "user"
 
-# class SystemUser(AbstractUser):
-#
-#     Type_of_User = (
-#         ('AdminSao', 'AdminSao'),
-#         ('SystemAdmin', 'SystemAdmin'),
-#         ('DEAN', 'DEAN'),
-#         ('Campus Director', 'Campus Director'),
-#         ('University President', 'University President'),
-#     )
-#     School = (
-#             ('Argao Campus', 'Argao Campus'),
-#             ('Barili Campus', 'Barili Campus'),
-#             ('Carmen Campus', 'Carmen Campus'),
-#             ('Cebu City Mountain Extension Campus', 'Cebu City Mountain Extension Campus'),
-#             ('Daanbantayan Campus', 'Daanbantayan Campus'),
-#             ('Danao Campus', 'Danao Campus'),
-#             ('Dumanjug Extension Campus', 'Dumanjug Extension Campus'),
-#             ('Ginatilan Extension Campus', 'Ginatilan Extension Campus'),
-#             ('Main Campus', 'Main Campus'),
-#             ('Moalboal Campus', 'Moalboal Campus'),
-#             ('Naga Extension Campus', 'Naga Extension Campus'),
-#             ('Oslob Extension Campus', 'Oslob Extension Campus'),
-#             ('Pinamungajan Extension Campus', 'Pinamungajan Extension Campus'),
-#             ('San Fernando Extension Campus', 'San Fernando Extension Campus'),
-#             ('San Francisco Campus', 'San Francisco Campus'),
-#             ('Tuburan Campus', 'Tuburan Campus'),
-#         )
-#     emailaddress = models.EmailField(primary_key=True, max_length=20)
-#     password = models.BinaryField(max_length=450, blank=True)
-#     firstname = models.CharField(max_length=45, blank=True)
-#     middlename = models.CharField(max_length=45, blank=True)
-#     lastname = models.CharField(max_length=45, blank=True)
-#
-#     school = models.CharField(max_length=100, blank=True, null=True, choices=School)
-#     argaoCampus= models.BooleanField(default=False)
-#     bariliCampus= models.BooleanField(default=False)
-#     carmenCampus= models.BooleanField(default=False)
-#     CCMECampus= models.BooleanField(default=False)
-#     daanbantayanCampus= models.BooleanField(default=False)
-#     danaoCampus= models.BooleanField(default=False)
-#     dumanjugExt= models.BooleanField(default=False)
-#     ginatilanExt= models.BooleanField(default=False)
-#     mainCampus= models.BooleanField(default=False)
-#     moalboalCampus= models.BooleanField(default=False)
-#     nagaExt= models.BooleanField(default=False)
-#     oslobExt= models.BooleanField(default=False)
-#     pinamungajanExt= models.BooleanField(default=False)
-#     sanfernandoExt= models.BooleanField(default=False)
-#     sanfranciscoCampus= models.BooleanField(default=False)
-#     tuburanCampus= models.BooleanField(default=False)
-#
-#     user_type = models.CharField(max_length=100, blank=True, null=True, choices=Type_of_User)
-#     admin_sao = models.BooleanField(default=False)
-#     system_admin = models.BooleanField(default=False)
-#     dean = models.BooleanField(default=False)
-#     campus_director = models.BooleanField(default=False)
-#     university_pres = models.BooleanField(default=False)
-#     profile_picture = models.ImageField(default="default_profile_2.png", null=True, blank=True)
-#
-#
-#     is_active = models.BooleanField(default=True)  # can login
-#     staff = models. BooleanField(default=False)  # staff user non superuser
-#     admin = models.BooleanField(default=False)  # superuser
-#     timestamp = models.DateTimeField(auto_now_add=True)
-#
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = []
-#
-#     objects = UserManager()
-#
-#     def __str__(self):
-#         return self.email
-#
-#     def get_full_name(self):
-#         return self.email
-#
-#     def get_short_name(self):
-#         return self.email
-#
-#     def has_perm(self, perm, obj=None):
-#         "Does the user have a specific permission?"
-#         # Simplest possible answer: Yes, always
-#         return True
-#
-#     def has_module_perms(self, app_label):
-#         "Does the user have permissions to view the app `app_label`?"
-#         # Simplest possible answer: Yes, always
-#         return True
-#
-#     @property
-#     def is_graduate(self):
-#         return self.graduate
-#
-#     @property
-#     def is_argaoCampus(self):
-#         return self.argaoCampus
-#     @property
-#     def is_bariliCampus(self):
-#         return self.bariliCampus
-#     @property
-#     def is_carmenCampus(self):
-#         return self.carmenCampus
-#     @property
-#     def is_CCMECampus(self):
-#         return self.CCMECampus
-#     @property
-#     def is_daanbantayanCampus(self):
-#         return self.daanbantayanCampus
-#     @property
-#     def is_danaoCampus(self):
-#         return self.danaoCampus
-#     @property
-#     def is_dumanjugExt(self):
-#         return self.dumanjugExt
-#     @property
-#     def is_ginatilanExt(self):
-#         return self.ginatilanExt
-#     @property
-#     def is_mainCampus(self):
-#         return self.mainCampus
-#     @property
-#     def is_moalboalCampus(self):
-#         return self.moalboalCampus
-#     @property
-#     def is_nagaExt(self):
-#         return self.nagaExt
-#     @property
-#     def is_oslobExt(self):
-#         return self.oslobExt
-#     @property
-#     def is_pinamungajanExt(self):
-#         return self.pinamungajanExt
-#     @property
-#     def is_sanfernandoExts(self):
-#         return self.sanfernandoExts
-#     @property
-#     def is_sanfranciscoCampus(self):
-#         return self.sanfranciscoCampus
-#     @property
-#     def is_tuburanCampus(self):
-#         return self.tuburanCampus
-#
-#     @property
-#     def is_dean(self):
-#         return self.dean
-#
-#     @property
-#     def is_campus_director(self):
-#         return self.campus_director
-#
-#     @property
-#     def is_university_pres(self):
-#         return self.university_pres
-#
-#     @property
-#     def is_staff(self):
-#         return self.staff
-#
-#     @property
-#     def is_admin(self):
-#         return self.admin
-#
-#     class Meta:
-#         db_table = "systemuser"
+class SystemUser(AbstractUser):
+
+    Type_of_User = (
+        ('AdminSao', 'AdminSao'),
+        ('SystemAdmin', 'SystemAdmin'),
+        ('DEAN', 'DEAN'),
+        ('Campus Director', 'Campus Director'),
+        ('University President', 'University President'),
+    )
+    School = (
+            ('Argao Campus', 'Argao Campus'),
+            ('Barili Campus', 'Barili Campus'),
+            ('Carmen Campus', 'Carmen Campus'),
+            ('Cebu City Mountain Extension Campus', 'Cebu City Mountain Extension Campus'),
+            ('Daanbantayan Campus', 'Daanbantayan Campus'),
+            ('Danao Campus', 'Danao Campus'),
+            ('Dumanjug Extension Campus', 'Dumanjug Extension Campus'),
+            ('Ginatilan Extension Campus', 'Ginatilan Extension Campus'),
+            ('Main Campus', 'Main Campus'),
+            ('Moalboal Campus', 'Moalboal Campus'),
+            ('Naga Extension Campus', 'Naga Extension Campus'),
+            ('Oslob Extension Campus', 'Oslob Extension Campus'),
+            ('Pinamungajan Extension Campus', 'Pinamungajan Extension Campus'),
+            ('San Fernando Extension Campus', 'San Fernando Extension Campus'),
+            ('San Francisco Campus', 'San Francisco Campus'),
+            ('Tuburan Campus', 'Tuburan Campus'),
+        )
+    userid = models.CharField(max_length=45,primary_key = True)
+    username = models.CharField(primary_key=False,max_length=45, blank=True, null=True)
+    email = models.EmailField(null = True)
+    first_name = models.CharField(max_length=45, blank=True)
+    middle_name = models.CharField(max_length=45, blank=True)
+    last_name = models.CharField(max_length=45, blank=True)
+
+    school = models.CharField(max_length=100, blank=True, null=True, choices=School)
+    argaoCampus= models.BooleanField(default=False)
+    bariliCampus= models.BooleanField(default=False)
+    carmenCampus= models.BooleanField(default=False)
+    CCMECampus= models.BooleanField(default=False)
+    daanbantayanCampus= models.BooleanField(default=False)
+    danaoCampus= models.BooleanField(default=False)
+    dumanjugExt= models.BooleanField(default=False)
+    ginatilanExt= models.BooleanField(default=False)
+    mainCampus= models.BooleanField(default=False)
+    moalboalCampus= models.BooleanField(default=False)
+    nagaExt= models.BooleanField(default=False)
+    oslobExt= models.BooleanField(default=False)
+    pinamungajanExt= models.BooleanField(default=False)
+    sanfernandoExt= models.BooleanField(default=False)
+    sanfranciscoCampus= models.BooleanField(default=False)
+    tuburanCampus= models.BooleanField(default=False)
+
+    user_type = models.CharField(max_length=100, blank=True, null=True, choices=Type_of_User)
+    admin_sao = models.BooleanField(default=False)
+    system_admin = models.BooleanField(default=False)
+    dean = models.BooleanField(default=False)
+    campus_director = models.BooleanField(default=False)
+    university_pres = models.BooleanField(default=False)
+    profile_picture = models.ImageField(default="default_profile_2.png", null=True, blank=True)
+
+
+    is_active = models.BooleanField(default=True)  # can login
+    staff = models. BooleanField(default=False)  # staff user non superuser
+    admin = models.BooleanField(default=False)  # superuser
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.email
+
+    def get_full_name(self):
+        return self.email
+
+    def get_short_name(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_graduate(self):
+        return self.graduate
+
+    @property
+    def is_argaoCampus(self):
+        return self.argaoCampus
+    @property
+    def is_bariliCampus(self):
+        return self.bariliCampus
+    @property
+    def is_carmenCampus(self):
+        return self.carmenCampus
+    @property
+    def is_CCMECampus(self):
+        return self.CCMECampus
+    @property
+    def is_daanbantayanCampus(self):
+        return self.daanbantayanCampus
+    @property
+    def is_danaoCampus(self):
+        return self.danaoCampus
+    @property
+    def is_dumanjugExt(self):
+        return self.dumanjugExt
+    @property
+    def is_ginatilanExt(self):
+        return self.ginatilanExt
+    @property
+    def is_mainCampus(self):
+        return self.mainCampus
+    @property
+    def is_moalboalCampus(self):
+        return self.moalboalCampus
+    @property
+    def is_nagaExt(self):
+        return self.nagaExt
+    @property
+    def is_oslobExt(self):
+        return self.oslobExt
+    @property
+    def is_pinamungajanExt(self):
+        return self.pinamungajanExt
+    @property
+    def is_sanfernandoExts(self):
+        return self.sanfernandoExts
+    @property
+    def is_sanfranciscoCampus(self):
+        return self.sanfranciscoCampus
+    @property
+    def is_tuburanCampus(self):
+        return self.tuburanCampus
+
+    @property
+    def is_dean(self):
+        return self.dean
+
+    @property
+    def is_campus_director(self):
+        return self.campus_director
+
+    @property
+    def is_university_pres(self):
+        return self.university_pres
+
+    @property
+    def is_staff(self):
+        return self.staff
+
+    @property
+    def is_admin(self):
+        return self.admin
+
+    class Meta:
+        db_table = "systemuser"
 
 class Post(models.Model):
     body = models.TextField()
@@ -637,7 +638,7 @@ class WorkExperiences(models.Model):
     company_name = models.CharField(max_length=100, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     position = models.CharField(max_length=100, blank=True, null=True)
-    description = models.CharField(max_length=300, blank=True, null=True)
+    salary = models.PositiveIntegerField(null=True, blank=True)
     graduateUser = models.ForeignKey(User, on_delete=models.CASCADE)
     experienceStartDate = models.DateField(blank=True, null=True)
     experienceEndDate = models.DateField(blank=True, null=True)

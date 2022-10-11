@@ -1,5 +1,5 @@
 {%  extends 'tracer/admin/template.html' %}
-
+{% block title %}View User Information{% endblock %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -12,7 +12,7 @@
       <div class="row m-l-0 m-r-0">
           <div class="col-sm-12 col-md-12 col-lg-4 bg-c-lite-green user-profile">
             <div class="col-lg-1 mr-auto">
-                <a class="btn bg-gradient-info text-black shadow-lg" href="{% url 'pendingaccounts' %}">Back</a>
+                <a class="btn bg-gradient-info text-white shadow-lg" href="{% url 'pendingaccounts' %}">Back</a>
             </div>
             <div class="card-block text-center text-white">
                 <div class="m-b-25">{% if user_info.profile_picture %}<img  src="{{user_info.profile_picture.url}}" width="120" height="110" class="img-profile rounded-circle shadow-lg" alt="User-Profile-Image">{% endif %}</div>
@@ -55,13 +55,13 @@
                       <div class="col-lg-6 mb-2">
                           <form method="POST" action="{% url 'approvedUser' user_info.id %}">
                               {% csrf_token %}
-                              <button class="btn btn-block text-black bg-success active" role="button" aria-pressed="true" type="submit"><i class="fas fa-check"> Approved</i></button>
+                              <button class="btn btn-block text-white bg-success active" role="button" aria-pressed="true" type="submit"><i class="fas fa-check"> Approved</i></button>
                           </form>
                       </div>
                       <div class="col-lg-6 mb-2">
-                          <form method="POST" action="{% url 'approvedUser' user_info.id %}">
+                          <form method="POST" action="{% url 'disapprovedUser' user_info.id %}">
                               {% csrf_token %}
-                              <button class="btn btn-block text-black bg-danger active" role="button" aria-pressed="true" type="submit"><i class="fas fa-times"> DisApproved</i></button>
+                              <button class="btn btn-block text-white bg-danger active" role="button" aria-pressed="true" type="submit"><i class="fas fa-times"> DisApproved</i></button>
                           </form>
                       </div>
                   </div>
@@ -70,5 +70,21 @@
       </div>
   </div>
 </div>
+
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  {% for message in messages %}
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '{{message}}',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  {% endfor %}
+</script>
+
 
 {% endblock %}

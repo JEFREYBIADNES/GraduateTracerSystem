@@ -11,7 +11,7 @@
     <link rel="icon" href="{% static 'img/ctu_logo.png' %}" type="image/gif" sizes="16x16">
 
 
-    <title>Graduate User</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -45,7 +45,10 @@
   				<!-- End of Topbar -->
 
           <!-- Begin Page Content -->
+
           <div class="container-fluid"  style="margin-top:100px;">
+
+
             {% block content %}
 
 
