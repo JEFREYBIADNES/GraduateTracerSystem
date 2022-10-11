@@ -50,9 +50,9 @@
         <div style="border: 0!important; margin-bottom: 15px;" class="col-md-12 col-lg-12 col-sm-12 border-bottom position-relative">
             <div style="width: 50%; margin-right: auto; margin-left: auto; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;" class="shadow p-3 mb-2 mb-0 bg-white rounded">
                 <div class="card-header bg-trasparent border-none" style="background-color: #fff;">
-                    <a class="nav-link" id="{% url 'DisplayGradInfo' %}" href="{% url 'DisplayGradInfo' %}">
-                        <img class="img-profile1 rounded-circle" src="{{request.user.profile_picture.url}}" width=" 40" height="40" alt="User-Profile-Image">
-                        <span style="font-size: 14px;" class="mr-2 d-none d-lg-inline text-gray-700 small"><strong>{{user.first_name}} {{user.middle_name}} {{user.last_name}}</strong></span>
+                    <a class="nav-link">
+                        <img class="img-profile1 rounded-circle" src="{{post.author.profile_picture.url}}" width=" 40" height="40" alt="User-Profile-Image">
+                        <span style="font-size: 14px;" class="mr-2 d-none d-lg-inline text-gray-700 small"><strong>{{post.author.first_name}} {{post.author.middle_name}} {{post.author.last_name}}</strong></span>
                     </a>
                     <div class="mt-0 text-dark">
                         <font class="font1" size="">{{ post.created_on }}</font>
