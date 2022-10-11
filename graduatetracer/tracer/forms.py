@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 User = get_user_model()
-SystemUser = get_user_model()
 
 
 class UserAdminCreationForm(forms.ModelForm):
@@ -18,7 +17,7 @@ class UserAdminCreationForm(forms.ModelForm):
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = SystemUser
+        model = User
         fields = ('profile_picture',
                   'email',
                   'IDNum',
@@ -89,7 +88,7 @@ class UserAdminChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = SystemUser
+        model = User
         fields = ('profile_picture',
                   'IDNum',
                   'first_name',
@@ -236,7 +235,7 @@ class RegisterAdminForm(forms.ModelForm):
         label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = SystemUser
+        model = User
         fields = ('email', 'first_name', 'middle_name', 'last_name',
                    'school', 'password1', 'password2','user_type',
                    'admin_sao', 'system_admin','dean','campus_director','university_pres',
@@ -327,12 +326,28 @@ class GraduateForm(forms.ModelForm):
                   'date_graduated',
                   'course_type',
                   'school',
+                  'argaoCampus',
+                  'bariliCampus',
+                  'carmenCampus',
+                  'CCMECampus',
+                  'daanbantayanCampus',
+                  'danaoCampus',
+                  'dumanjugExt',
+                  'ginatilanExt',
+                  'mainCampus',
+                  'moalboalCampus',
+                  'nagaExt',
+                  'oslobExt',
+                  'pinamungajanExt',
+                  'sanfernandoExt',
+                  'sanfranciscoCampus',
+                  'tuburanCampus',
                   'employment_status',
                   'job_description',
                   'skill',)
         widgets = {
          'IDNum': forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}),
-         'profile_picture': forms.FileInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
          'first_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
          'middle_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
          'last_name': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
@@ -341,7 +356,7 @@ class GraduateForm(forms.ModelForm):
          'gender': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
          'address': forms.TextInput(attrs={'class': 'form-control', 'required': 'true'}),
          'contact_number': forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}),
-         'date_graduated': forms.DateInput(attrs={'class': 'form-control', 'required': 'true'}),
+         'date_graduated': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
          'course_type': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
          'school': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
          'employment_status': forms.Select(attrs={'class': 'form-control', 'required': 'true'}),
