@@ -148,6 +148,7 @@ urlpatterns = [
     #admindashboard
      path('admindash/', systemadmin.admindash, name='admindash'),
      path('create-user-management', systemadmin.create_user_management, name="create_user_management"),
+
      path('display-user-management', systemadmin.display_user_management, name="display_user_management"),
 
      #School Reports

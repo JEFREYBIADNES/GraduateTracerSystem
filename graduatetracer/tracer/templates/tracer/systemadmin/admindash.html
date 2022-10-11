@@ -147,7 +147,21 @@
 
 
 
+          <script src="{% static '/js/profile.js' %}"></script>
+          <!-- Sweet Alert -->
+          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+          <script>
+            {% for message in messages %}
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '{{message}}',
+              showConfirmButton: false,
+              timer: 3000
+            })
+            {% endfor %}
+          </script>
 
 
 

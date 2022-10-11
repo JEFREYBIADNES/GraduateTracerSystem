@@ -52,7 +52,8 @@ def admindash(request):
                 }
     return render(request, 'tracer/systemadmin/admindash.html', context)
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_system_admin'])
 def create_user_management(request):
     adform = RegisterAdminForm()
     if request.method == 'POST':
@@ -69,6 +70,8 @@ def create_user_management(request):
     context = {'adform': adform}
     return render(request, 'tracer/systemadmin/create_user_management.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_system_admin'])
 def display_user_management(request):
     ad_info = User.objects.all
     context = {
@@ -76,7 +79,8 @@ def display_user_management(request):
                }
     return render(request, 'tracer/systemadmin/display_user_management.html', context)
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_system_admin'])
 def user_graduates(request):
     user_info = User.objects.all().order_by('-id')
     query_IDNum = []
@@ -111,6 +115,8 @@ def user_graduates(request):
                 }
     return render(request, 'tracer/systemadmin/user_graduates.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_system_admin'])
 def usergrad_informations(request, pk):
     user_info = User.objects.get(id=pk)
     JobExperience = WorkExperiences.objects.filter(graduateUser=pk)
@@ -121,6 +127,8 @@ def usergrad_informations(request, pk):
                }
     return render(request, 'tracer/systemadmin/usergrad_info.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_system_admin'])
 def adprof(request, pk):
     user = User.objects.get(id=pk)
     user_info = ProfileForm(instance=user)
@@ -134,15 +142,22 @@ def adprof(request, pk):
                 user.profile_picture = fs.save(
                     profile_picture.name, profile_picture)
                 user_info.save()
+                messages.success(
+                    request, 'Your Profile Updated Successfully')
                 return redirect('admindash')
         else:
             if user_info.is_valid():
                 user_info.save()
+                messages.success(
+                    request, 'Your Profile Updated Successfully')
                 return redirect('admindash')
 
     context = {'user': user, 'user_info': user_info, 'full_name': full_name}
     return render(request, 'tracer/systemadmin/adprof.html', context)
 
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['is_system_admin'])
 def school_report(request):
     table = []
     class sr:

@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 from .models import Post, Comment, WorkExperiences
-SystemUser = get_user_model()
+User = get_user_model()
 
 
 class UserAdmin(BaseUserAdmin):
@@ -79,7 +79,7 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 
-admin.site.register(SystemUser, UserAdmin)
+admin.site.register(User, UserAdmin)
 admin.site.register(Post)
 admin.site.register(Comment)
 admin.site.register(WorkExperiences)
