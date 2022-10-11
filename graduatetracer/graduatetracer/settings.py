@@ -92,7 +92,7 @@ DATABASES = {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'trackingsys',
          'USER': 'root',
-         'PASSWORD': 'graduatetracer',
+         'PASSWORD': 'jazfer',
          'PORT': 3306,
          'HOST': '127.0.0.1'
      }
