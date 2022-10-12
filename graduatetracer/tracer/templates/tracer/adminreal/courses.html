@@ -1,12 +1,55 @@
-{% extends 'tracer/adminreal/templates.html' %}
-{% block content %}
+{%  extends 'tracer/adminreal/templates.html' %}
+{% block title %}User Graduates{% endblock %}
 {% load static %}
+{% load humanize %}
 
-<style>
-  h3 {text-align: center;}
+{% block content %}
+<!-- Datatables -->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+
+  <style media="screen">
+    .none{
+      display:none;
+    }
+
+    .dataTables_wrapper{
+      z-index: 0;
+    }
+    .dataTables_length{
+      z-index: 2;
+    }
+
+    .dropdown-filter{
+      top: 33px !important;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dataTables_length{
+      padding-bottom: 10px;
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .th-w-20{
+      width:20% !important;
+    }
+    .th-w-10{
+      width:10% !important;
+    }
+  </style>
+  <!-- End -->
+  <style>
+  h6 {text-align: center;}
 </style>
-<h3 class= 'mb-3'>ARGAO CAMPUS</h3>
-<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <div class="card-header py-3 bg-gradient-info">
+      <h6 class="m-0 font-weight-bold text-white">ARGAO CAMPUS</h6>
+  </div>
   <div class="row">
   <div class="col-sm-8">
     <div style= "margin-top: 40px; margin-left:30px"class="container">
@@ -41,13 +84,13 @@
              </div>
            </div>
 
-  </div>
-  </div>
+         </div>
+       </div>
 
 
 
   <div class="col-sm-4">
-    <select id="year" name="year" style="padding-right: 250px; margin-top: 100px;">
+    <select id="year" name="year" style="padding-right: 250px; margin-top: 50px;">
     <option style="align: center;">Year</option>
     <option value="1940">1940</option>
     <option value="1941">1941</option>
@@ -134,391 +177,432 @@
     <option value="2022">2022</option>
 </select>
 </div>
-  <thead>
-    <tr>
-      <th class="th-sm">COURSES
-      </th>
-      <th class="th-sm">TOTAL GRADUATES
-      </th>
-      <th class="th-sm">TOTAL EMPLOYED
-      </th>
-      <th class="th-sm">TOTAL UNEMPLOYED
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Bachelor of Science in Information Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology Major in Computer Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Elementary Education</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Drafting Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Electrical Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Electronics Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Automotive Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Food Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Garments Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Machine Shop Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Industrial Technology - Welding and Fabrication Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td> Bachelor in Secondary Education Major in Math</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Secondary Education Major in Science</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Secondary Education Major in English</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor in Secondary Education Major in Social Studies</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Technology and Livelihood Education</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Technology and Livelihood Education Major in Home Economics</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Technology and Livelihood Education Major in Information and Communications Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Arts in English</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Arts in English Major in Language Studies</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Arts in Literature</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Arts in Literature Major in Literature and Cultural Studies</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Bachelor of Early Childhood Education</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor in Elementary Education Major in Content Education</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Industrial Technology Major in Civil Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Industrial Technology Major in Cosmetology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Industrial Technology Major in Furniture and Cabinetmaking Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Industrial Technology Major in Interior Design Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Industrial Technology Major in Power Plant Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Industrial Technology Major in Refrigeration and and Air-Conditioning Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Public Administration</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in AgriBusiness</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Agricultural and Biosystems Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Agriculture</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Agriculture Major in Horticulture</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Agriculture - Animal Production</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Business Administration - MM</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Civil Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Computer Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Development Communication</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Electrical Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Electronic Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Fisheries</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Food Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Forestry</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Graphics and Designs</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Hospitality Management</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Industrial Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Marine Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Mathematics</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Mechanical Engineering</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Mechatronics Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Nursing</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Psychology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Statistics</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Technology Management</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Science in Tourism Management</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Special Needs Education Major in Generalist</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Special Needs Education Major in Teaching and Hard of Hearing Learners</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical and Vocational Teachers Education</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical Vocational Teacher Education Major in Automotive Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical Vocational Teacher Education Major in Drafting Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical Vocational Teacher Education Major in Electrical Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical Vocational Teacher Education Major in Electronics Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical Vocational Teacher Education Major in Food Service Management</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical Vocational Teacher Education Major in Garments Fashion and Design</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technical Vocational Teacher Education Major in Welding and Fabrication Technology</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Bachelor of Technology and Livelihood Education Major in Industrial Arts</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-      <td>Batsilyer ng Sining sa Filipino</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-  </tfoot>
-</table>
+<div class="container-fluid bg-white pr-4 pl-4 pb-2">
+    <table id="jobs" class="display table table-bordered table-responsive w-100">
+      <thead>
+          <tr>
+            <th class="th-sm">Courses
+            </th>
+            <th class="th-sm">Total Graduates
+            </th>
+            <th class="th-sm">Total Employed
+            </th>
+            <th class="th-sm">Total Unemployed
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+      <tr>
+        <td>Bachelor of Science in Information Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology Major in Computer Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Elementary Education</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Drafting Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Electrical Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Electronics Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Automotive Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Food Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Garments Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Machine Shop Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Industrial Technology - Welding and Fabrication Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td> Bachelor in Secondary Education Major in Math</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Secondary Education Major in Science</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Secondary Education Major in English</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor in Secondary Education Major in Social Studies</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Technology and Livelihood Education</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Technology and Livelihood Education Major in Home Economics</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Technology and Livelihood Education Major in Information and Communications Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Arts in English</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Arts in English Major in Language Studies</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Arts in Literature</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Arts in Literature Major in Literature and Cultural Studies</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Bachelor of Early Childhood Education</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor in Elementary Education Major in Content Education</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Industrial Technology Major in Civil Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Industrial Technology Major in Cosmetology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Industrial Technology Major in Furniture and Cabinetmaking Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Industrial Technology Major in Interior Design Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Industrial Technology Major in Power Plant Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Industrial Technology Major in Refrigeration and and Air-Conditioning Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Public Administration</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in AgriBusiness</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Agricultural and Biosystems Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Agriculture</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Agriculture Major in Horticulture</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Agriculture - Animal Production</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Business Administration - MM</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Civil Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Computer Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Development Communication</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Electrical Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Electronic Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Fisheries</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Food Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Forestry</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Graphics and Designs</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Hospitality Management</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Industrial Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Marine Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Mathematics</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Mechanical Engineering</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Mechatronics Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Nursing</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Psychology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Statistics</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Technology Management</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Science in Tourism Management</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Special Needs Education Major in Generalist</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Special Needs Education Major in Teaching and Hard of Hearing Learners</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical and Vocational Teachers Education</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical Vocational Teacher Education Major in Automotive Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical Vocational Teacher Education Major in Drafting Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical Vocational Teacher Education Major in Electrical Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical Vocational Teacher Education Major in Electronics Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical Vocational Teacher Education Major in Food Service Management</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical Vocational Teacher Education Major in Garments Fashion and Design</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technical Vocational Teacher Education Major in Welding and Fabrication Technology</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Bachelor of Technology and Livelihood Education Major in Industrial Arts</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <td>Batsilyer ng Sining sa Filipino</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Datatables -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  {% for message in messages %}
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '{{message}}',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  {% endfor %}
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#jobs').DataTable( {
+      stateSave: false,
+      "ordering": true,
+      "columnDefs" : [{"targets":3, "type":"date-eu"}],
+      order: [],
+
+    } );
+    $('#query0').on('change', function(){
+       table.columns(0).search(this.value).draw();
+    });
+    $('#query1').on('change', function(){
+       table.columns(4).search(this.value).draw();
+    });
+    $('#query2').on('change', function(){
+       table.columns(5).search(this.value).draw();
+    });
+} );
+</script>
 
 {% endblock %}
