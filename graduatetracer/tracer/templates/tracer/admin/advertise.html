@@ -54,7 +54,7 @@
             <div class="mb-2">
               {% render_field add_job_categories.title class="form-control" placeholder=add_job_categories.title.label name="job_category_title" %}
             </div>
-            <div class="mb-2" >
+            <div class="mb-2" style=" margin-left: 4px; margin-right: 4px;width: 99%;" >
               {% render_field add_job_categories.description class="form-control" cols="70" rows="7" placeholder=add_job_categories.description.label name="job_category_description" %}
             </div>
             <input type="hidden" name="form_type" value="add_job_category_form">
@@ -72,6 +72,7 @@
   <!-- End Modal -->
 
   <div class="container">
+    
     <div class="card o-hidden mt-3 border-0 shadow-sm ">
       <div class="card-header  h3 bg-c-lite-green text-white">
         <div class="card-title">
@@ -97,7 +98,7 @@
           </div>
 
           <div class="row mb-2">
-            <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-6 col-lg-6">  
               <h6 class="text-dark">Address 1</h6>
               {% render_field ads.address_1 class="form-control" placeholder="Current" name="company_address_1" %}
             </div>
@@ -136,11 +137,11 @@
               {% render_field ads.salary class="form-control" placeholder="Salary" name="company_salary" %}
             </div>
           </div>
-          <div class="mb-2">
-            <h6 class="text-dark">Job Description</h6>
+          <div class="mb-2" style="width:98.5%; margin:auto;">
+            <h6 class="text-dark" style=" margin-left:5px;">Job Description</h6>
             {% render_field ads.description class="form-control" cols="70" rows="6" placeholder="Job Description" name="ads_description" %}
           </div>
-          <div class="mb-2">
+          <div class="mb-2" style="margin-left:13px;">
               {% render_field ads.image name="image" %}
           </div>
           <div class="mb-2">
