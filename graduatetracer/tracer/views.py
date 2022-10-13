@@ -620,7 +620,6 @@ def FriendsList(request):
 def NewsFeeds(request):
     return render(request, 'tracer/user/dashboard.html')
 
-
 def AboutView(request):
     jobs = Advertise.objects.all().order_by('-date_created')
     job_categories = JobCategory.objects.all().order_by('-id')
