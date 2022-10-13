@@ -71,7 +71,8 @@
   </div>
   <!-- End Modal -->
 
-  <div class="container">  
+  <div class="container">
+   
     <div class="card o-hidden mt-3 border-0 shadow-sm ">
       <div class="card-header  h3 bg-c-lite-green text-white">
         <div class="card-title">
@@ -79,45 +80,40 @@
         </div>
       </div>
       <div class="card-body p-2">
+
         <form method="POST" name="advertise" enctype="multipart/form-data">
           {% csrf_token %}
-          <div class="row mb-2">
-            <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="row ">
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">Company Name</h6>
               {% render_field ads.name class="form-control" placeholder="Company Name" name="company_name" %}
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-5">
+            <div class="col-10 col-sm-10col-md-4 col-lg-5 mb-3">
                 <h6 class="text-dark">Job Category</h6>
                 {% render_field ads.job_category class="form-control" name="ads_job_category" %}
             </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <h6 class="text-dark">Add</h6>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1 mb-3" style=" display: flex;align-items: end;">   
               <button class="btn bg-c-lite-green text-white" type="button" data-toggle="modal" data-target="#exampleModalCenter" name="button"><i class="fas fa-plus"></i></button>
             </div>
-          </div>
-
-          <div class="row mb-2">
-            <div class="col-sm-12 col-md-6 col-lg-6">  
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">  
               <h6 class="text-dark">Address 1</h6>
               {% render_field ads.address_1 class="form-control" placeholder="Current" name="company_address_1" %}
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">Address 2</h6>
               {% render_field ads.address_2 class="form-control" placeholder="Permanent - Optional" name="company_address_2" %}
             </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-sm-12 col-md-6 col-lg-6">
+          
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">City</h6>
               {% render_field ads.city class="form-control" placeholder="City" name="company_city" %}
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">Phone Number</h6>
               {% render_field ads.phone_number class="form-control" placeholder="Phone Number" name="company_phone_number" %}
             </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-sm-12 col-md-6 col-lg-6">
+         
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">Email Address</h6>
               {% render_field ads.email_address class="form-control" placeholder="Email Address" name="company_email_address" %}
             </div>
@@ -125,19 +121,18 @@
               <h6 class="text-dark">Personal Website/Link</h6>
               {% render_field ads.personal_website class="form-control" placeholder="Personal Website/Link" name="company_personal_website" %}
             </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-sm-12 col-md-6 col-lg-6">
+          
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">Job Name</h6>
               {% render_field ads.title class="form-control" placeholder="Job Name" name="ads_title" %}
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">Salary</h6>
               {% render_field ads.salary class="form-control" placeholder="Salary" name="company_salary" %}
             </div>
           </div>
-          <div class="mb-2" style="width:98.5%; margin:auto;">
-            <h6 class="text-dark" style=" margin-left:5px;">Job Description</h6>
+          <div class="mb-2" style="padding-right: 0.75rem; padding-left: 0.75rem;">
+            <h6 class="text-dark">Job Description</h6>
             {% render_field ads.description class="form-control" cols="70" rows="6" placeholder="Job Description" name="ads_description" %}
           </div>
           <div class="mb-2" style="margin-left:13px;">
