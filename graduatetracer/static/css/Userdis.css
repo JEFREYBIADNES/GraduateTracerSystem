@@ -16,12 +16,7 @@
     padding: 12px 14px;
   
   }
-  .circular--square {
-     border-top-left-radius: 50% 50%;
-     border-top-right-radius: 50% 50%; 
-     border-bottom-right-radius: 50% 50%;
-     border-bottom-left-radius: 50% 50%; 
-  }
+  
   .button-24:hover,
   .button-24:active {
     background-color: initial;
@@ -219,7 +214,7 @@
   #profile-pic {
     width: 180px;
     height: 180px;
-    border-radius: 3px;
+    border-radius: 93px;
     margin-top: 28px;
     overflow: hidden;
     box-shadow: 0 0 0 5px #fff;
