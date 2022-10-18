@@ -1,25 +1,21 @@
 {%  extends 'tracer/admin/template.html' %}
-
+{% block title %}Update Advertise{% endblock %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
 {% block content %}
+<div class="container">
   <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-    <div class="container">
-      <div class="col-12">
+    {% csrf_token %}
         <div class="card shadow-sm">
-          <div class="card-header h3 bg-c-lite-green text-black pb-3">
+          <div class="card-header h3 bg-c-lite-green text-white pb-3">
             <div class="card-title h3 row">
               <div class="col-11 pl-2 pt-1">
                 Update Job
               </div>
-              <div class="col-1 pr-2 pt-1">
-                <a class="btn bg-gradient-info text-black shadow-lg" href="{% url 'browser' %}">Back</a>
-              </div>
             </div>
           </div>
           <div class="card-body p-2">
-            <div class="row mb-2">
+            <div class="row mb-4">
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <h6 class="text-dark">Company Name</h6>
                 {% render_field update_ad.name class="form-control" placeholder="Company Name" name="company_name" %}
@@ -71,14 +67,27 @@
               </div>
             </div>
             <div class="row mb-2">
-              <h6 class="text-dark">Job Description</h6>
-              {% render_field update_ad.description class="form-control" cols="70" rows="6" placeholder=update_ad.description.label name="ads_description" %}
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h6 class="text-dark">Job Description</h6>
+                {% render_field update_ad.description class="form-control" cols="70" rows="6" placeholder=update_ad.description.label name="ads_description" %}
+              </div>
             </div>
             <div class="mb-2">
+              <div class="col-sm-12 col-md-6 col-lg-6">
                 {% render_field update_ad.image name="image" %}
+              </div>
+
             </div>
             <div class="row justify-content-center">
-              <div class="col-lg-6">
+              <div class="col-lg-6 mt-2">
+                <a href="{% url 'browser' %}" class="btn btn-warning text-white btn-block">
+                    <span class="icon text-white">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                    <span class="text">Cancel</span>
+                </a>
+              </div>
+              <div class="col-lg-6 mt-2">
                 <button  type="submit" class="btn bg-c-lite-green text-white btn-block">
                     <span class="icon text-white">
                         <i class="fas fa-check"></i>
@@ -86,19 +95,10 @@
                     <span class="text">Save Changes</span>
                 </button>
               </div>
-              <!-- <div class="col-lg-6">
-                <a href="{% url 'browser' %}" class="btn text-white bg-gradient-warning btn-block">
-                    <span class="icon text-white">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </span>
-                    <span class="text">Cancel</span>
-                </a>
-              </div> -->
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </form>
+    </form>
+</div>
 
 {% endblock %}

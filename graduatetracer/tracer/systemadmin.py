@@ -103,16 +103,19 @@ def user_graduates(request):
     else:
         user_info = User.objects.all().order_by('-id')
 
+    context = {
+                'user_info': user_info,
+                'query_IDNum': query_IDNum,
+                'query_school': query_school,
+                'query_employment_status': query_employment_status,
+                }
+    return render(request, 'tracer/systemadmin/user_graduates.html', context)
 
-    return render(request, 'tracer/systemadmin/user.html', context)
-
-
-def userinformations(request, pk):
+def usergrad_informations(request, pk):
     user_info = User.objects.get(id=pk)
 
     context = {'user_info': user_info}
-    return render(request, 'tracer/systemadmin/userinformations.html', context)
-
+    return render(request, 'tracer/systemadmin/usergrad_info.html', context)
 
 def adprof(request, pk):
     user = User.objects.get(id=pk)
@@ -137,5 +140,12 @@ def adprof(request, pk):
     return render(request, 'tracer/systemadmin/adprof.html', context)
 
 def school_report(request):
+
+    # school[]
     context = {}
     return render(request, 'tracer/systemadmin/school_report.html', context)
+
+
+def school_record(request):
+    context = {}
+    return render(request, 'tracer/systemadmin/school_record.html', context)

@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 
 from .models import *
 from .forms import *
-from .dataporter import *
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.contrib import messages
@@ -39,7 +38,6 @@ def error_404_view(request, exception):
     return render(request, 'tracer/firstInterface/404.html', {})
 
 def home(request):
-    data_separator()
     context = {}
     return render(request, 'tracer/firstInterface/landingPage.html', context)
 
@@ -140,6 +138,7 @@ def DashboardUser(request):
 def available_jobs(request):
     ads = Advertise.objects.all().order_by('-id')
     query_title = []
+    query_address_1 = []
     query_category = []
     query_salary = []
 
@@ -148,6 +147,8 @@ def available_jobs(request):
             query_title.append(ad.title)
         if ad.job_category not in query_category:
             query_category.append(ad.job_category)
+        if ad.address_1 not in query_address_1:
+            query_address_1.append(ad.address_1)
         if ad.salary not in query_salary:
             query_salary.append(ad.salary)
 
@@ -173,6 +174,7 @@ def available_jobs(request):
                'query_title': query_title,
                'query_category': query_category,
                'query_salary': query_salary,
+               'query_address_1': query_address_1,
                'job_categories': job_categories,
                'count_jobs_advertised': count_jobs_advertised,
                'count_employed': count_employed,
@@ -665,7 +667,7 @@ class PostListView(LoginRequiredMixin, View):
         login_in_user = request.user
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
-        grad_infos = User.objects.all
+        grad_infos = User.objects.all().order_by('-id')
         user = request.user
 
         context = {
@@ -1132,7 +1134,7 @@ def advertise(request):
                                 'job_category': job_category,
                                 'job_date_created': job_date_created,
                                 'domain': '127.0.0.1:8000',
-                                'site_name': 'CTU-Ginatilan Recommender System',
+                                'site_name': 'CTU Recommender System',
                                 "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                                 "user": user,
                                 'token': default_token_generator.make_token(user),
@@ -1261,11 +1263,8 @@ def update_ad(request, pk):
 
 def delete_ad(request, pk):
     delete_ad = Advertise.objects.get(id=pk)
-
-    if request.method == 'POST':
-        delete_ad = Advertise.objects.get(id=pk)
-        delete_ad.delete()
-        return redirect('browser')
+    delete_ad.delete()
+    return redirect('browser')
 
 
 # Recommeder System - SAO User

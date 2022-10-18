@@ -1,4 +1,5 @@
-{%  extends 'tracer/adminreal/templates.html' %}
+{%  extends 'tracer/systemadmin/templates.html' %}
+{% block title %}User Graduates{% endblock %}
 {% load static %}
 {% load humanize %}
 
@@ -17,10 +18,6 @@
     }
     .dataTables_length{
       z-index: 2;
-    }
-
-    .dataTables_filter{
-      display: none;
     }
 
     .dropdown-filter{
@@ -46,100 +43,57 @@
       width:10% !important;
     }
   </style>
-
-  <!-- Page increment -->
-  <script>
-    function show(shown, hidden) {
-
-      document.getElementById(shown).style.display='block';
-      document.getElementById(hidden).style.display='none';
-      return false;
-    }
-  </script>
   <!-- End -->
-<div class="card-header py-3 bg-gradient-info">
-    <h6 class="m-0 font-weight-bold text-black">Graduates</h6>
-</div>
-<div class="container-fluid bg-white pr-4 pl-4 pb-2">
-  <div class="row ">
-
-    <div class="row w-20">
-
-    </div>
-    <div class="row w-80 justify-content-end dropdown-filter">
-
-      <div class="col-xs-6 col-sm-9 col-md-9 col-lg-6 col-xl-3 p-1">
-        <select id="query0" class="form-control" name="">
-          <option value="">ID Number</option>
-        {% for query in query_IDNum %}
-          {% if query %}
-          <option value="{{query}}">{{query}}</option>
-          {% endif %}
-        {% endfor %}
-        </select>
-      </div>
-      <div class="col-xs-6 col-sm-9 col-md-9 col-lg-6 col-xl-3 p-1">
-        <select id="query1" class="form-control" name="">
-          <option value="">School</option>
-        {% for query in query_school %}
-          {% if query %}
-          <option value="{{query}}">{{query}}</option>
-          {% endif %}
-        {% endfor %}
-        </select>
-      </div>
-      <div class="col-xs-6 col-sm-9 col-md-9 col-lg-6 col-xl-3 p-1">
-        <select id="query2" class="form-control" name="">
-          <option value="">Employment Status</option>
-        {% for query in query_employment_status %}
-          {% if query %}
-          <option value="{{query}}">{{query}}</option>
-          {% endif %}
-        {% endfor %}
-        </select>
-      </div>
-    </div>
+  <div class="card-header py-3 bg-gradient-info">
+      <h6 class="m-0 font-weight-bold text-white">USER GRADUATES</h6>
   </div>
-  <table id="jobs" class="display table table-bordered table-responsive w-100">
-      <thead>
-          <tr>
-            <th class="th-w-20" style="white-space: nowrap">Graduate Name</th>
-            <th class="th-w-20" style="white-space: nowrap">Email</th>
-            <th class="th-w-20" style="white-space: nowrap">ID Number</th>
-            <th class="th-w-20" style="white-space: nowrap">School</th>
-            <th class="th-w-20" style="white-space: nowrap">Employment Status</th>
-            <th class="th-w-20" style="white-space: nowrap">Option</th>
-          </tr>
-      </thead>
-      <tbody>
-        {% for user_info in user_info %}
-          <tr>
-              <td class="th-w-20" style="white-space: nowrap">
-                {{user_info.first_name}} {{user_info.middle_name}} {{user_info.last_name}}
-              </td>
-              <td class="th-w-20" style="white-space: nowrap">
-                {{user_info.email}}
-              </td>
-              <td class="th-w-20" style="white-space: nowrap">
-                {% if user_info.IDNum %}
-                  {{user_info.IDNum}}
-                {% endif %}
-              </td>
-              <td class="th-w-20" style="white-space: nowrap">
-                {% if user_info.school %}
-                  {{user_info.school}}
-                {% endif %}
-              </td>
-              <td class="th-w-20" style="white-space: nowrap">
-                {% if user_info.employment_status %}
-                  {{user_info.employment_status}}
-                {% endif %}
-              </td>
-              <td class="th-w-20" style="white-space: nowrap">
-                <a class href="#"><i class="fas fa-eye"></i></a>
-              </td>
-          </tr>
-        {% endfor %}
+<div class="container-fluid bg-white pr-4 pl-4 pb-2">
+    <table id="jobs" class="display table table-bordered table-responsive w-100">
+        <thead>
+            <tr>
+              <th class="th-w-20" style="white-space: nowrap">ID Number</th>
+              <th class="th-w-20" style="white-space: nowrap">Name</th>
+              <th class="th-w-20" style="white-space: nowrap">Email</th>
+              <th class="th-w-20" style="white-space: nowrap">School</th>
+              <th class="th-w-20" style="white-space: nowrap">Employment Status</th>
+              <th class="th-w-20" style="white-space: nowrap">Course</th>
+              <th class="th-w-20" style="white-space: nowrap">Date Graduated</th>
+              <th class="th-w-20" style="white-space: nowrap">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for user_info in user_info %}
+              {% if user_info.approved %}
+                <tr>
+                  <td class="th-w-20" style="white-space: nowrap">
+                      {{user_info.IDNum}}
+                  </td>
+                    <td class="th-w-20" style="white-space: nowrap">
+                      {{user_info.first_name}} {{user_info.middle_name}} {{user_info.last_name}}
+                    </td>
+                    <td class="th-w-20" style="white-space: nowrap">
+                      {{user_info.email}}
+                    </td>
+                    <td class="th-w-20" style="white-space: nowrap">
+                      {{user_info.school}}
+                    </td>
+                    <td class="th-w-20" style="white-space: nowrap">
+                        {{user_info.employment_status}}
+                    </td>
+                    <td class="th-w-20" style="white-space: nowrap">
+                        {{user_info.course_type}}
+                    </td>
+                    <td class="th-w-20" style="white-space: nowrap">
+                      {{user_info.date_graduated}}
+                    </td>
+                    <td class="text-center">
+                        <div class="pl-2 pr-2 pb-2 pt-1">
+                            <a class="btn btn-success" href="{% url 'usergrad_informations' user_info.id %}"><i class="fas fa-eye"></i></a>
+                        </div>
+                    </td>
+                </tr>
+        {% endif %}
+      {% endfor %}
       </tbody>
   </table>
 </div>
@@ -174,13 +128,13 @@
 
     } );
     $('#query0').on('change', function(){
-       table.columns(2).search(this.value).draw();
+       table.columns(0).search(this.value).draw();
     });
     $('#query1').on('change', function(){
-       table.columns(3).search(this.value).draw();
+       table.columns(4).search(this.value).draw();
     });
     $('#query2').on('change', function(){
-       table.columns(4).search(this.value).draw();
+       table.columns(5).search(this.value).draw();
     });
 } );
 </script>

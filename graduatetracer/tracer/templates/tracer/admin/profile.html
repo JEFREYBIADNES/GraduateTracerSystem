@@ -1,4 +1,5 @@
 {%  extends 'tracer/admin/template.html' %}
+{% block title %}SAO Profile{% endblock %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
@@ -10,7 +11,7 @@
     {% csrf_token %}
     <div class="page-content page-container shadow-sm" id="page-content">
       <div class="card user-card-full">
-        <div class="card-header bg-c-lite-green text-center text-black pt-3 pb-0">
+        <div class="card-header bg-c-lite-green text-center text-white pt-3 pb-0">
           <div class="card-title">
             <h4>Profile</h4>
           </div>

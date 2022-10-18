@@ -1,10 +1,11 @@
 {% load static %}
+{% load crispy_forms_tags %}
 {% load widget_tweaks %}
 <html>
 
 <head>
 	<link rel="icon" href="{% static 'img/ctu_logo.png' %}" type="image/gif" sizes="16x16">
-	<title>CTU-Ginatilan Register Page</title>
+	<title>CTU Register Page</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,7 +49,7 @@
                         {{ form.last_name }}
                       </div>
 											<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <label for="inputCourse" class="form-label" Required="IDNum">ID Number</label>
+                        <label for="inputIDNumber" class="form-label" Required="IDNum">ID Number</label>
 												{{form.IDNum}}
                       </div>
 											<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -83,11 +84,11 @@
 
                       </div>
                       <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <label for="inputYear" class="form-label" Required="date_graduated">Date Graduated</label>
+                        <label for="inputYear" class="form-label" Required name="date_graduated">Date Graduated</label>
 												{{ form.date_graduated }}
                       </div>
                       <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <label for="inputEmployment_Status" class="form-label" Required="employment_status">Employment Status</label>
+                        <label for="inputEmployment_Status" class="form-label" Required name="employment_status">Employment Status</label>
 
 												{% render_field form.employment_status class="form-control" onchange="Employment_Status()" id="id_employment_status" %}
 

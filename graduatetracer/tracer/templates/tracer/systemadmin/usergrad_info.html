@@ -1,5 +1,5 @@
-{%  extends 'tracer/admin/template.html' %}
-{% block title %}Display User Information{% endblock %}
+{%  extends 'tracer/systemadmin/templates.html' %}
+{% block title %}User Graduate Information{% endblock %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -10,9 +10,9 @@
 <div class="page-content page-container" id="page-content">
   <div class="card user-card-full">
       <div class="row m-l-0 m-r-0">
-          <div class="col-sm-12 col-md-12 col-lg-4 bg-c-lite-green user-profile">
+          <div class="col-sm-12 col-md-12 col-lg-4 bg-gradient-info user-profile">
             <div class="col-lg-1 mr-auto">
-                <a class="btn bg-gradient-info text-white shadow-lg" href="{% url 'users' %}">Back</a>
+                <a class="btn bg-c-lite-green text-white shadow-lg" href="{% url 'user_graduates' %}">Back</a>
             </div>
             <div class="card-block text-center text-white">
                 <div class="m-b-25">{% if user_info.profile_picture %}<img  src="{{user_info.profile_picture.url}}" width="120" height="110" class="img-profile rounded-circle shadow-lg" alt="User-Profile-Image">{% endif %}</div>

@@ -1,7 +1,7 @@
 {%  extends 'tracer/admin/template.html' %}
+{% block title %}Browse Job Advertise{% endblock %}
 {% load static %}
 {% load humanize %}
-
 {% block content %}
 <!-- Datatables -->
 
@@ -57,10 +57,10 @@
 
 <div class="row">
   <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto m-auto pb-4">
-    <a href="#" class="btn bg-c-lite-green text-black shadow-lg" onclick="return show('Page1','Page2');">List View</a>
+    <a href="#" class="btn bg-c-lite-green text-white shadow-lg" onclick="return show('Page1','Page2');">List View</a>
   </div>
   <div class="col-sm-auto col-md-auto col-lg-auto col-xl-auto m-auto pb-4">
-    <a href="#" class="btn bg-c-lite-green text-black shadow-lg" onclick="return show('Page2','Page1');">Tile View</a>
+    <a href="#" class="btn bg-c-lite-green text-white shadow-lg" onclick="return show('Page2','Page1');">Tile View</a>
   </div>
 </div>
 
@@ -153,19 +153,96 @@
               <td option-table-wid>
                 <div class="row w-100 m-auto p-0">
                   <div style="width:33.333%;" class="text-center pr-0">
-                    <a class href="{% url 'view_ad' ad.id %}"><i class="fas fa-eye"></i></a>
+                    <a class  data-toggle="modal" data-target="#bd-example-modal-lg1{{ ad.id }}" ><i class="fas fa-eye"></i></a>
                   </div>
                   <div style="width:33.333%;" class="text-center">
                     <a class="dropdown-item text-info p-0" href="{% url 'update_ad' ad.id %}"><i class="fas fa-wrench"></i></a>
                   </div>
                   <div style="width:33.333%;" class="text-center pl-0">
-                    <form method="post" action="{% url 'delete_ad' ad.id %}" >
-                      {% csrf_token %}
-                      <button type="submit" class="dropdown-item text-danger p-0"><i class="fas fa-trash-alt"></i></button>
-                    </form>
+                    <a class="dropdown-item text-danger p-0" data-toggle="modal" data-target="#exampleModalCenter{{ ad.id }}" ><i class="fas fa-trash-alt"></i></a>
                   </div>
                 </div>
               </td>
+              <!-- view modal -->
+              <div class="modal fade" id="bd-example-modal-lg1{{ ad.id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="card">
+                      <div class="card-header bg-c-lite-green text-white pb-3">
+                        <div class="card-title h1 row pb-1">
+                          <div class="col-12 h2 pl-2 pt-1">
+                            {{ad.name}}{% if ad.job_category %} - {{ad.job_category}}{% endif %}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <span class="col-6 text-left p text-gray-200">{{ad.address_1}}, {% if ad.address_2 %}{{ ad.address_2 }}, {% endif %}{{ ad.city }}</span>
+                          <span class="col-6 text-right p text-gray-200">Contact us: +63{{ad.phone_number}} / {{ad.email_address}}</span>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="card-title">
+                          <div class="mb-4">
+                            <span class="h4 font-weight-bold"><u>{{ad.title}} | Up to PHP{{ad.salary|intcomma}}</u></span>
+                          </div>
+                          <!-- <div class="col-sm-6 col-md-6 col-lg-6 mb-4">
+                            <span class="h5"><span class="font-weight-bold">Salary: </span>{{ad.salary}}</span>
+                          </div> -->
+                        </div>
+
+                          {% if ad.image %}
+                          <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                              <div class="">
+                                <div class="h5 font-weight-bold mb-1">
+                                  Description
+                                </div>
+                                <p>{{ad.description}}</p>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                              <div class="text-center">
+                                <img class="img-fluid img-custom-border p-4" src="{{ad.image.url}}" alt="advertisement image">
+                              </div>
+                            </div>
+                          </div>
+                          {% else %}
+                          <div class="pt-2 pl-2">
+                            <div class="h5 font-weight-bold mb-1">
+                              Description
+                            </div>
+                            <p>{{ad.description}}</p>
+                          </div>
+                          {% endif %}
+                      </div>
+                      {% if ad.personal_website%}
+                      <div class="card-footer bg-white">
+                        <div class="card-title text-center ">
+                          <span>For more information and inquiries please visit our website</span>
+                            <cite class="blockquote-footer"><a href="{{ad.personal_website}}">{{ad.personal_website}}</a>
+                            </cite>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModalCenter{{ ad.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <h3><span>Are you sure you want to DELETE this Job Advertise ?</span></h3>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <a href="{% url 'delete_ad' ad.id %}" class="btn btn-danger">Confirm Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </tr>
         {% endfor %}
       </tbody>
@@ -295,13 +372,14 @@
 
 <script>
   {% for message in messages %}
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: '{{message}}',
-    showConfirmButton: false,
-    timer: 3000
-  })
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: '{{message}}',
+      showConfirmButton: false,
+      timer: 3000
+    })
+
   {% endfor %}
 </script>
 

@@ -1,4 +1,5 @@
 {%  extends 'tracer/admin/template.html' %}
+{% block title %}View Job Advertise{% endblock %}
 {% load humanize %}
 
 {% block content %}
@@ -13,7 +14,7 @@
           {{ad.name}}{% if ad.job_category %} - {{ad.job_category}}{% endif %}
         </div>
         <div class="col-2 text-left pr-2 pt-1">
-          <a class="text-white btn btn-outline-warning text-black shadow-lg" href="{% url 'browser' %}"><i class="fas fa-arrow-left link"></i></a>
+          <a class="text-white btn btn-outline-warning text-white shadow-lg" href="{% url 'browser' %}"><i class="fas fa-arrow-left link"></i></a>
         </div>
       </div>
       <div class="row">
