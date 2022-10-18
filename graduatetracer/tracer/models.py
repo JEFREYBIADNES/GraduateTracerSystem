@@ -645,7 +645,7 @@ class WorkExperiences(models.Model):
     company_name = models.CharField(max_length=100, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     position = models.CharField(max_length=100, blank=True, null=True)
-    description = models.CharField(max_length=300, blank=True, null=True)
+    salary = models.PositiveIntegerField(null=True, blank=True)
     graduateUser = models.ForeignKey(User, on_delete=models.CASCADE)
     experienceStartDate = models.DateField(blank=True, null=True)
     experienceEndDate = models.DateField(blank=True, null=True)

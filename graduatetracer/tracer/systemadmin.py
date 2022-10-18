@@ -113,8 +113,12 @@ def user_graduates(request):
 
 def usergrad_informations(request, pk):
     user_info = User.objects.get(id=pk)
+    JobExperience = WorkExperiences.objects.filter(graduateUser=pk)
 
-    context = {'user_info': user_info}
+    context = {
+               'JobExperience': JobExperience,
+               'user_info': user_info
+               }
     return render(request, 'tracer/systemadmin/usergrad_info.html', context)
 
 def adprof(request, pk):
@@ -140,9 +144,51 @@ def adprof(request, pk):
     return render(request, 'tracer/systemadmin/adprof.html', context)
 
 def school_report(request):
+    table = []
+    class sr:
+        def __init__(self, school_list, graduate, employed, unemployed):
+            self.school_list = school_list
+            self.graduate = graduate
+            self.employed = employed
+            self.unemployed = unemployed
+    users = User.objects.all()
+    graduate_counter = []
+    employed_counter = []
+    unemployed_counter = []
+    school_list = ["Argao Campus", "Barili Campus", "Carmen Campus", "Cebu City Mountain Extension Campus", "Daanbantayan Campus", "Danao Campus", "Dumanjug Extension Campus", "Ginatilan Extension Campus", "Main Campus", "Moalboal Campus", "Naga Extension Campus", "Oslob Extension Campus", "Pinamungajan Extension Campus", "San Fernando Extension Campus", "San Francisco Campus", "Tuburan Campus"]
 
-    # school[]
-    context = {}
+    i = 0
+    j = 0
+    while i != len(school_list):
+        graduate_counter+=[0]
+        employed_counter+=[0]
+        unemployed_counter+=[0]
+        i+=1
+    for user in users:
+        if user.graduate:
+            while j != len(school_list):
+                if user.school == school_list[j]:
+                    graduate_counter[j]+=1
+                    if user.employed:
+                        employed_counter[j]+=1
+                    else:
+                        unemployed_counter[j]+=1
+                    j=0
+                    break
+                j+=1
+
+    print(graduate_counter)
+    print(employed_counter)
+    print(unemployed_counter)
+    for k in range(len(school_list)):
+        schools = school_list[k]
+        graduate = graduate_counter[k]
+        employed = employed_counter[k]
+        unemployed = unemployed_counter[k]
+        s = sr(schools, graduate, employed, unemployed)
+        table.append(s)
+
+    context = {'table':table}
     return render(request, 'tracer/systemadmin/school_report.html', context)
 
 

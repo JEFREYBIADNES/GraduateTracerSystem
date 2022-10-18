@@ -1,4 +1,5 @@
 {% extends 'tracer/user/template.html'%}
+{% block title %}Edit Experiences{% endblock %}
 {% load static %}
 {% block content %}
 <div class="container mt-6">
@@ -55,14 +56,13 @@
       </div>
 
       <div class="form-group">
-        <label for="">Description</label>
-        <textarea
-          name="description"
-          value="{{values.description}}"
-          rows="8"
-          cols="80"
-          class="form-control form-control-sm" >
-        </textarea>
+        <label for="">Salary</label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          name="salary"
+          value="{{values.salary}}"
+        />
       </div>
 
       <div class="form-group">
@@ -87,13 +87,33 @@
         >
       </div>
 
-      <input
-        type="submit"
-        value="SAVE"
-        class="btn btn-success btn-success-sm"
-      >
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <button type="submit" class="btn bg-gradient-info text-white btn-block">
+              <span class="icon text-white">
+                  <i class="fas fa-check"></i>
+              </span>
+              <span class="text">Save</span>
+          </button>
+        </div>
+      </div>
     </form>
   </div>
 </div>
+
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  {% for message in messages %}
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '{{message}}',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  {% endfor %}
+</script>
 
 {% endblock %}

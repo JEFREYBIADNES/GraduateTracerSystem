@@ -79,135 +79,15 @@
                     </thead>
 
                     <tbody>
+                      {% for t in table %}
                       <tr>
 
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Argao Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
+                          <td class="th-w-20" style="white-space: nowrap">{{t.school_list}}</td>
+                          <td class="th-w-20 text-center" style="white-space: nowrap">{{t.graduate}}</td>
+                          <td class="th-w-20 text-center" style="white-space: nowrap">{{t.employed}}</td>
+                          <td class="th-w-20 text-center" style="white-space: nowrap">{{t.unemployed}}</td>
                       </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Barali Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Carmen Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Cebu City Mountain Extension Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Daanbantayan Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Danao Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Dumanjug Extension Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Ginatilan Extension Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Main Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Moalboal Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Naga Extension Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Oslob Extension Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Pinamungajan Extension Campuss
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            San Fernando Extension Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            San Fernando Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
-                      <tr>
-                          <td class="th-w-20" style="white-space: nowrap">
-                            Tuburan Campus
-                          </td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.email}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                          <td class="th-w-20" style="white-space: nowrap">{{ad.school}}</td>
-                      </tr>
+                      {% endfor %}
                     </tbody>
 
                 </table>

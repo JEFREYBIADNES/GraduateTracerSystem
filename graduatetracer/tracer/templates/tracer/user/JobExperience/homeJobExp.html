@@ -1,4 +1,5 @@
 {%  extends 'tracer/user/template.html' %}
+{% block title %}Job Experiences{% endblock %}
 {% load static %}
 {% load humanize %}
 
@@ -21,10 +22,6 @@
     }
     .dataTables_length{
       z-index: 2;
-    }
-
-    .dataTables_filter{
-      display: none;
     }
 
     .dropdown-filter{
@@ -51,14 +48,6 @@
   </style>
 
   <!-- Page increment -->
-  <script>
-    function show(shown, hidden) {
-
-      document.getElementById(shown).style.display='block';
-      document.getElementById(hidden).style.display='none';
-      return false;
-    }
-  </script>
   <!-- End -->
   <div class="text-center pt-3">
       <h3>My Job Experiences</h3>
@@ -75,43 +64,64 @@
 
      </div>
 
-<div class="container bg-white card shadow mb-4 pr-4 pl-4 pb-3">
+<div class="container-fluid bg-white card shadow mb-4 pr-4 pl-4 pb-3">
   <div class="align-self-end ml-auto mt-5">
     <a href="{% url 'AddJobExperience'%}" class="btn btn-primary">Add Job Experience </a>
   </div>
-  <table id="jobs" class="display table table-bordered table-responsive w-100 pt-4">
+  <table id="jobs" class="display table table-bordered table-responsive w-100">
       <thead>
           <tr>
-              <th class="th-w-20" style="white-space: nowrap">Company Name</th>
-              <th class="th-w-20" style="white-space: nowrap">Address</th>
-              <th class="th-w-20" style="white-space: nowrap">Position</th>
-              <th class="th-w-20" style="white-space: nowrap">Description</th>
-              <th class="th-w-10" style="white-space: nowrap">Date Started</th>
-              <th class="th-w-10" style="white-space: nowrap">Date Leaved</th>
-              <th class="text-center" scope="col" colspan="2">Action</th>
+            <th class="th-w-20" style="white-space: nowrap">Company Name</th>
+            <th class="th-w-20" style="white-space: nowrap">Address</th>
+            <th class="th-w-20" style="white-space: nowrap">Position</th>
+            <th class="th-w-20" style="white-space: nowrap">Salary</th>
+            <th class="th-w-20" style="white-space: nowrap">Date Started</th>
+            <th class="th-w-20" style="white-space: nowrap">Date Leaved</th>
+            <th class="th-w-20 " style="white-space: nowrap">Option</th>
           </tr>
       </thead>
       <tbody>
-        {% for ad in ads %}
+        {% for JobExperiences in JobExperience %}
           <tr>
-              <td>
-                {% if ad.name%}
-                  {{ad.name}}
-                {% endif %}
+              <td class="th-w-20" style="white-space: nowrap">
+                {{JobExperiences.company_name}}
               </td>
-              <td>{{ad.title}}</td>
-              <td>
-                  {% if ad.job_category %}
-                    {{ad.job_category}}
-                  {% endif %}
+              <td class="th-w-20" style="white-space: nowrap">{{JobExperiences.address}}</td>
+              <td class="th-w-20" style="white-space: nowrap">
+                {{JobExperiences.position}}
               </td>
-              <td>
-                {% if ad.salary %}
-                  {{ad.salary}}
-                {% endif %}
+              <td class="th-w-20" style="white-space: nowrap">
+                  {{JobExperiences.salary}}
               </td>
-              <td>{{ad.date_created|naturalday}}</td>
-              <td class="text-center"><a href="{% url 'view_ads' ad.id %}"><i class="fas fa-eye"></i></a></td>
+              <td class="th-w-20" style="white-space: nowrap">
+                {{JobExperiences.experienceStartDate}}
+              </td>
+              <td class="th-w-20" style="white-space: nowrap">
+                {{JobExperiences.experienceEndDate}}
+              </td>
+              <td option-table-wid>
+                <div class="row w-100 m-auto p-0">
+                  <div style="width:50%;" class="text-center">
+                    <a class="dropdown-item text-info p-0" href="{% url 'edit_experience' JobExperiences.id %}"><i class="fas fa-wrench"></i></a>
+                  </div>
+                  <div style="width:50%;" class="text-center pl-0">
+                    <a class="dropdown-item text-danger p-0" data-toggle="modal" data-target="#exampleModalCenter{{ JobExperiences.id }}" ><i class="fas fa-trash-alt"></i></a>
+                  </div>
+                </div>
+              </td>
+              <div class="modal fade" id="exampleModalCenter{{ JobExperiences.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <h3><span>Are you sure you want to DELETE this Job Experiences ?</span></h3>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <a href="{% url 'delete_experience' JobExperiences.id %}" class="btn btn-danger">Confirm Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </tr>
         {% endfor %}
       </tbody>

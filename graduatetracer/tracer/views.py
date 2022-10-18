@@ -241,10 +241,14 @@ def UpdateGradInfo(request, pk):
                 fs = FileSystemStorage()
                 user.profile_picture = fs.save(profile_picture.name, profile_picture)
                 grad_info.save()
+                messages.success(
+                    request, 'Graduate Profile Successfully Updated')
                 return redirect('DisplayGradInfo')
         else:
             if grad_info.is_valid():
                 grad_info.save()
+                messages.success(
+                    request, 'Graduate Profile Successfully Updated')
                 return redirect('DisplayGradInfo')
 
     jobs = Advertise.objects.all().order_by('-date_created')
@@ -299,6 +303,8 @@ def GradProfilePicture(request):
            fs = FileSystemStorage()
            user.profile_pic = fs.save(profile_picture.name, profile_picture)
            grad_info.save()
+           messages.success(
+               request, 'Graduate Profile Successfully Updated')
            return redirect('DashboardUser')
 
    jobs = Advertise.objects.all().order_by('-date_created')
@@ -471,11 +477,11 @@ def AddJobExperience(request):
             messages.error(request, 'POSITION IS REQUIRED!!!')
             return render(request, 'tracer/user/JobExperience/AddExperience.html', context)
 
-# DESCRIPTION
+# Salary
     if request.method == 'POST':
-        description = request.POST['description']
+        salary = request.POST['salary']
 
-        if not description:
+        if not salary:
             messages.error(request, 'DESCRIPTION IS REQUIRED!!!')
             return render(request, 'tracer/user/JobExperience/AddExperience.html', context)
 
@@ -497,7 +503,7 @@ def AddJobExperience(request):
 
         WorkExperiences.objects.create(graduateUser=request.user, company_name=company_name,
                                        address=address, position=position,
-                                       description=description,
+                                       salary=salary,
                                        experienceStartDate=experienceStartDate,
                                        experienceEndDate=experienceEndDate)
 
@@ -551,7 +557,7 @@ def edit_experience(request, id):
         company_name = request.POST['company_name']
         address = request.POST['address']
         position = request.POST['position']
-        description = request.POST['description']
+        salary = request.POST['salary']
         experienceStartDate = request.POST['experienceStartDate']
         experienceEndDate = request.POST['experienceEndDate']
 
@@ -559,7 +565,7 @@ def edit_experience(request, id):
         JobExperiences.company_name = company_name
         JobExperiences.address = address
         JobExperiences.position = position
-        JobExperiences.description = description
+        JobExperiences.salary = salary
         JobExperiences.experienceStartDate = experienceStartDate
         JobExperiences.experienceEndDate = experienceEndDate
 
@@ -1264,6 +1270,7 @@ def update_ad(request, pk):
 def delete_ad(request, pk):
     delete_ad = Advertise.objects.get(id=pk)
     delete_ad.delete()
+    messages.success(request, 'Successfully Deleted')
     return redirect('browser')
 
 

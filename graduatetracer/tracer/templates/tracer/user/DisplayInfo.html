@@ -1,7 +1,9 @@
 {% extends 'tracer/user/template.html'%}
+{% block title %}Display Users' Information{% endblock %}
 {% load static %}
 {% block content %}
 <link href="{% static 'css/Display.css' %}" rel="stylesheet">
+
   <div class="sec-title">
    <div class="pg-sub-title">Home</div>
      <div class="pg-title">My Profile</div>
@@ -15,7 +17,7 @@
 </div>
 </div>
 
-<<<<<<< HEAD
+
 <style media="screen">
   body{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
@@ -114,115 +116,58 @@
                     <div class="col-md-4">
                       <div class="col-lg-12 mt-2 ml-4 text-center profile-pic-div">
                           <img class="img-profile rounded-circle shadow-sm" src="{{user.profile_picture.url}}" width=" 100" height="100" alt="User-Profile-Image" id="photo">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                        {{user.first_name}} {{user.middle_name}} {{user.last_name}}
-                                    </h5>
-                                    <h6>
-                                        {{user.email}}
-                                    </h6>
-                                    <br>
 
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Status</a>
-                                </li>
-                            </ul>
+<div class="sec-title">
+  <div class="pg-sub-title">Alumni</div>
+    <div class="pg-title">My Profile</div>
+  </div>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-2 mb-1">
+                  <div class="container">
+                    <div class="profile-card-2"><img src="{{user.profile_picture.url}}" class="img img-responsive">
+                      <div class="profile-name">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
+                      <div class="profile-username">{{user.email}}</div>
+
+                      </div>
+                </div>
+              <a href="{% url 'UpdateGradInfo' user.id %}" button class="button-24" role="button">Edit Profile</a>
+          </div>
+          <div class="col-lg-10 mb-8">
+              <div class="card">
+
+  <form method="POST" action="{% url 'DisplayGradInfo' %}">
+                    {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                            <h6 class="mb-0">Name</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.first_name}} {{user.middle_name}} {{user.last_name}}
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="{% url 'UpdateGradInfo' user.id %}" button type="button" class="btn btn-outline-warning btn-sm text-dark "><i class="fas fa-user-edit"></i> Edit Information </a>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.email}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">School</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.school}}
+                          </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>Name: &nbsp;&nbsp;{{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
-                            <p>Course Graduated: &nbsp;&nbsp;{{user.course_type}}</p>
-                            <p>School Graduated: &nbsp;&nbsp{{user.school}}</p>
-                            <p>ID Number: &nbsp;&nbsp{{user.IDNum}}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Gender</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.gender}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Birthdate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.birth_date}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Age</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.age}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Address</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.address}}</p>
-                                            </div>
-                                        </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Year Graduated</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.date_graduated}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Status</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.employment_status}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Skills</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.skill}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Job Description</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.job_description}}</p>
-                                            </div>
-                                        </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-=======
 
 </div>
 <a href="{% url 'UpdateGradInfo' user.id %}" button class="button-24" role="button">Edit Profile</a>
@@ -335,14 +280,117 @@
                      {{user.skill}}
                     </div>
                   </div>
-
-
->>>>>>> 9eac8e2bb04836d46d870d0efe240b37386e39db
             </form>
         </div>
-<<<<<<< HEAD
-=======
+
 </div>
 
->>>>>>> 9eac8e2bb04836d46d870d0efe240b37386e39db
+
 {% endblock %}
+
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.contact_number}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">ID Numbber</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.IDNum}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Age</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.age}}
+                          </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Gender</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.gender}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Address</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.address}}
+                          </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Course</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.course_type}}
+                          </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Status</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.employment_status}}
+                          </div>
+                        </div>
+                            <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Job Description</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.job_description}}
+                          </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Skill</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                           {{user.skill}}
+                          </div>
+                        </div>
+
+
+                  </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  {% for message in messages %}
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '{{message}}',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  {% endfor %}
+</script>
+    {% endblock %}
+

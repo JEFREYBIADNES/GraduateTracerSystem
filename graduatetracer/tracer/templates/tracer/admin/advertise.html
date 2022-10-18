@@ -182,7 +182,7 @@
         <tbody class="text-center">
           {% for job_category in job_categories %}
           <tr>
-            <th class="th-w-20" style="white-space: nowrap">{{job_category.title}}</th>
+            <td class="th-w-20" style="white-space: nowrap">{{job_category.title}}</td>
             <td class="th-w-20" style="white-space: nowrap">{{job_category.description}}</td>
             <td class="text-center"><a href="{% url 'update_job_category' job_category.id %}" class="btn btn-info " type="submit" name="button"><i class="fas fa-wrench"></i></a></td>
             <form method="post" action="{% url 'delete_job_category' job_category.id %}" >
