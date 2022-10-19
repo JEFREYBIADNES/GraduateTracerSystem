@@ -55,7 +55,7 @@
                       <div class="col-lg-6 mb-2">
                           <form method="POST" action="{% url 'approvedUser' user_info.id %}">
                               {% csrf_token %}
-                              <button class="btn btn-block text-white bg-success active" role="button" aria-pressed="true" type="submit"><i class="fas fa-check"> Approved</i></button>
+                              <button class="btn btn-block text-white bg-primary active" role="button" aria-pressed="true" type="submit"><i class="fas fa-check"> Approved</i></button>
                           </form>
                       </div>
                       <div class="col-lg-6 mb-2">

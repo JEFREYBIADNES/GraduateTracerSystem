@@ -80,19 +80,18 @@
         </div>
       </div>
       <div class="card-body p-2">
-
         <form method="POST" name="advertise" enctype="multipart/form-data">
           {% csrf_token %}
-          <div class="row ">
+          <div class="row w-100 m-auto ">
             <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
               <h6 class="text-dark">Company Name</h6>
               {% render_field ads.name class="form-control" placeholder="Company Name" name="company_name" %}
             </div>
-            <div class="col-10 col-sm-10col-md-4 col-lg-5 mb-3">
+            <div class="col-10 col-sm-10 col-md-4 col-lg-5 mb-3">
                 <h6 class="text-dark">Job Category</h6>
                 {% render_field ads.job_category class="form-control" name="ads_job_category" %}
             </div>
-            <div class="col-2 col-sm-2 col-md-2 col-lg-1 mb-3" style=" display: flex;align-items: end;">   
+            <div class="col-2 col-sm-2 col-md-2 col-lg-1 mb-3" style=" display: flex;align-items: end; margin-right:2">   
               <button class="btn bg-c-lite-green text-white" type="button" data-toggle="modal" data-target="#exampleModalCenter" name="button"><i class="fas fa-plus"></i></button>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6 mb-3">  
@@ -152,8 +151,8 @@
         </form>
       </div>
     </div>
-  </div>
-<div class="card shadow-sm m-3">
+ 
+<d class="card shadow-sm mt-3 mb-3">
   <div class="card-header bg-c-lite-green text-center text-white">
     <h2 class="card-title">Job Categories</h2>
   </div>
@@ -183,6 +182,7 @@
       </table>
     </div>
   </div>
+</div>
 </div>
 </div>
 <!-- Sweet Alert -->
