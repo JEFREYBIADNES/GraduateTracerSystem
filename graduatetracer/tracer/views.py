@@ -188,7 +188,7 @@ def DisplayGradInfo(request):
     jobs = Advertise.objects.all().order_by('-date_created')
     job_categories = JobCategory.objects.all().order_by('-id')
     announcements = Announcement.objects.all().order_by('-date_created')
-
+   
     top_notif_announcements = Announcement.objects.all().order_by(
         '-date_created').filter(announcement_notif_counter=False)[:3]
     top_notif_jobs = Advertise.objects.all().order_by(
@@ -217,7 +217,8 @@ def DisplayGradInfo(request):
                'user_job_advertise_notifications_counter': user_job_advertise_notifications_counter,
                'user_job_request_notifications_counter': user_job_request_notifications_counter,
                'user_job_category_notif_counter': user_job_category_notif_counter,
-               'grad_infos': grad_infos
+               'grad_infos': grad_infos,
+             
                }
     return render(request, 'tracer/user/DisplayInfo.html', context)
 
@@ -674,7 +675,7 @@ class PostListView(LoginRequiredMixin, View):
         }
 
 
-        return render(request, 'tracer/user/post_list.html', context)
+        return render(request, 'tracer/user/post_list.html' , context)
 
     def post(self, request, *args, **kwargs):
         posts = Post.objects.all().order_by('-id')

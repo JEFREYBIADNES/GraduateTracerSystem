@@ -2,21 +2,109 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
- <!-- <style>
-#profile-pic {
-    width: 180px;
-    height: 180px;
-    border-radius: 93px;
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+#photo{
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
 }
-</style>  -->
+
+#photo:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
 <div id="profile-upper">
     <div id="profile-banner-image">
       <img src="https://dl.dropbox.com/s/raiecd5lbrkc1uw/239888289_1768773953323405_6641976422482278421_n.jpg?dl=0" alt="Banner image">
     </div>
-    <div id="profile-d">
-      <div id="profile-pic" class="circular--square">
-        <!-- <img class="circular--square" src="woman.png" /> -->
-        <img src="{{user.profile_picture.url}}">
+   
+    <div id="profile-d" >    
+        <div class="profile-pic-div" >
+          <img  src="{{user.profile_picture.url}}" alt="Snow" id="photo">
+        <input type="file" id="file" name="profile" hidden>
+        <label for="file" id ="uploadBtn">Chose Photo</label>
       </div>
       <div id="u-name">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
       <div class="pg-sub-title">Alumni</div>
@@ -29,8 +117,17 @@
       </div>
       
     </div>
+ 
     <div id="black-grd"></div>
   </div>
+  <!-- modal for viewing picture -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+  
+  <!-- ends here -->
   <div id="main-content">
     <div class="tb">
       <div class="td" id="l-col">
@@ -39,7 +136,6 @@
             <i class="l-i" id="l-i-i"></i>
             <span>Personal Information</span>
           </div>
-          
        <div  id ="i-box" class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
@@ -151,6 +247,7 @@
                   </div>
           </div>
         </div>
+        <button onclick="myFunction()">See more info...</button>
         <div class="l-cnt l-mrg">
           <div class="cnt-label">
             <i class="l-i" id="l-i-p"></i>
@@ -161,7 +258,7 @@
            {% if grad_info.email != request.user.email %}
           <div class="main" >
             <div class="inner" style="font-size: 25px;" >
-                <script>
+                <!-- <script>
                     document.write(" <table border=2px solid black>")
                     for (rows = 1; rows <= 4; rows++) {
                         document.write(" <tr> ")
@@ -172,7 +269,7 @@
                         document.write(" </tr> ")
                     }
                     document.write("</table>")
-                </script>
+                </script> -->
             </div>
         </div>
                    {% endif %}
@@ -288,8 +385,37 @@
   </div>
   <link href="{% static 'css/Display.css' %}" rel="stylesheet">
 
- 
-
-
+  <script src="{% static '/js/user/profile.js' %}"></script>
+  <!-- <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("photo");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() { 
+      modal.style.display = "none";
+    }
+    function myFunction() {
+  var x = document.getElementById("i-box");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+    </script> -->
 
     {% endblock %}
+  </body>

@@ -2,9 +2,21 @@ body{
     margin-top:20px;
     background:#eee;
 }
+body{background: #eee}.date{font-size: 11px}.comment-text{font-size: 12px}.fs-12{font-size: 12px}.shadow-none{box-shadow: none}.name{color: #007bff}.cursor:hover{color: blue}.cursor{cursor: pointer}.textarea{resize: none}
 .avatar.avatar-xl {
     width: 5rem;
     height: 5rem;
+}
+.p-2 {
+    padding: 0.5rem!important;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+textarea.form-control {
+    height: 44px;
+    border-radius: 21px;
 }
 .avatar {
     width: 2rem;
