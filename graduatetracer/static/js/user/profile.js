@@ -45,3 +45,7 @@ file.addEventListener('change', function() {
         //thanks for watching
     }
 });
+
+// read more/less
+
+//   ends here
